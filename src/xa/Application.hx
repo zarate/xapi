@@ -23,10 +23,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+*  <p>The Application class provides access to basic information about your application. </p> 
+**/
+
 package xa;
 
 class Application
 {
+	
+	/**
+	* <p>Returns the full path to the folder where your application is located.</p>
+	* <p>If you are planning to use this folder to store data, please read <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a> first.</p> 
+	**/
 	
 	public static function getFolder() : String
 	{
@@ -34,15 +43,32 @@ class Application
 		return path.substr(0, path.lastIndexOf(xa.System.getSeparator()));
 	}
 	
+	/**
+	* <p>Returns the full path of your application's executable.</p>
+	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.executablePath()</a>.</p> 
+	**/
+	
 	public static function getPath() : String
 	{
 		return neko.Sys.executablePath();
 	}
 	
+	/**
+	* <p>Returns an array of string with the parameters passed to your application.</p>
+	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.args()</a>.</p>  
+	**/
+	
 	public static function getArguments() : Array<String>
 	{
 		return neko.Sys.args();
 	}
+	
+	/**
+	* <p>Terminates the application with the provided exit code.
+	* <p>Use 0 if everything went ok and 1 or above depending on your error. You can read more about
+	*  exit code conventions in <a href="http://tldp.org/LDP/abs/html/exit-status.html">Exit Status</a> and
+	*  <a href="http://tldp.org/LDP/abs/html/exitcodes.html">Exit Codes</a>.</p>
+	**/
 	
 	public static function exit(code : Int) : Void
 	{

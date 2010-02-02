@@ -23,10 +23,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>The File class provides access to files in the system. </p> 
+* <p>You can use both relative and absolute paths. Please note that path are relative to your application or your current working directory.</p> 
+**/
+
 package xa;
 
 class File
 {
+	
+	/**
+	* <p>Reads the content of a text file.</p> 
+	**/
 	
 	public static function read(path : String) : String
 	{
@@ -37,12 +46,20 @@ class File
 		return content;
 	}
 	
+	/**
+	* <p>Writes content to a text file.</p> 
+	**/
+	
 	public static function write(path : String, content : String) : Void
 	{
 		var f = neko.io.File.write(path, false);
 		f.writeString(content);
 		f.close();
 	}
+	
+	/**
+	* <p>Appends content to a text file.</p> 
+	**/
 	
 	public static function append(path : String, content : String) : Void 
 	{
@@ -51,20 +68,36 @@ class File
 		f.close();
 	}
 	
+	/**
+	* <p>Deletes a file.</p> 
+	**/
+	
 	public static function delete(path : String) : Void 
 	{
 		neko.FileSystem.deleteFile(path);
 	}
+	
+	/**
+	* <p>Copies a file (source) to destination. Please note that <strong>destination must be the path to a folder</strong>.</p> 
+	**/
 	
 	public static function copy(source : String, destination : String) : Void 
 	{
 		neko.io.File.copy(source, destination);
 	}
 	
+	/**
+	* <p>Checks wether the given path is a file or not.</p> 
+	**/
+	
 	public static function isFile(path : String) : Bool
 	{
 		return (neko.FileSystem.exists(path) && !neko.FileSystem.isDirectory(path));
 	}
+	
+	/**
+	* <p>Launch a given file with system's default application.</p> 
+	**/
 	
 	public static function launch(path : String, ?args : Array<String>) : Void 
 	{
@@ -87,15 +120,27 @@ class File
 		
 	}
 	
+	/**
+	* <p>Reads the contents of a binary file.</p> 
+	**/
+	
 	public static function readBinary(path : String) : neko.io.FileInput
 	{
 		return neko.io.File.read(path, true);
 	}
 	
+	/**
+	* <p>Writes to a binary file.</p> 
+	**/
+	
 	public static function writeBinary(path : String) : neko.io.FileOutput
 	{
 		return neko.io.File.write(path, true);
 	}
+	
+	/**
+	* <p>Appends data to a binary file.</p> 
+	**/
 	
 	public static function appendBinary(path : String) : neko.io.FileOutput
 	{
