@@ -64,7 +64,7 @@ class Application
 	}
 	
 	/**
-	* <p>Terminates the application with the provided exit code.
+	* <p>Terminates the application with the provided exit code.</p>
 	* <p>Use 0 if everything went ok and 1 or above depending on your error. You can read more about
 	*  exit code conventions in <a href="http://tldp.org/LDP/abs/html/exit-status.html">Exit Status</a> and
 	*  <a href="http://tldp.org/LDP/abs/html/exitcodes.html">Exit Codes</a>.</p>
@@ -73,6 +73,17 @@ class Application
 	public static function exit(code : Int) : Void
 	{
 		neko.Sys.exit(code);
+	}
+	
+	/**
+	* <p>Terminates the application with the provided exit error message. Default error code is 1.</p>
+	* <p>This is just a shortcut to xa.Utils.print(message) combined with xa.Application.exit(1).</p>
+	**/
+	
+	public static function exitError(message : String, ?code : Int = 1) : Void
+	{
+		xa.Utils.print(message);
+		exit(code);
 	}
 	
 }
