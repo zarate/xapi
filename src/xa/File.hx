@@ -78,7 +78,10 @@ class File
 	}
 	
 	/**
-	* <p>Copies a file (source) to destination. Please note that <strong>destination must be the path to a folder</strong>.</p> 
+	* <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten.</p>
+	* <p>Example. If you want to copy file "a.txt" to "folder", you need this:</p>
+	* <p>xa.File.copy("a.txt", "folder/a.txt");</p>
+	* <p>Note that you just can't pass "folder", you need to pass the full new path.</p> 
 	**/
 	
 	public static function copy(source : String, destination : String) : Void 
@@ -92,11 +95,20 @@ class File
 	
 	public static function isFile(path : String) : Bool
 	{
-		return (neko.FileSystem.exists(path) && !neko.FileSystem.isDirectory(path));
+		
+		var exists : Bool = false;
+		
+		if(path != null)
+		{
+			exists = (neko.FileSystem.exists(path) && !neko.FileSystem.isDirectory(path));
+		}
+		
+		return exists;
 	}
 	
 	/**
-	* <p>Launch a given file with system's default application.</p> 
+	* <p>Launches a given file with system's default application.</p>
+	* <p>It will open html files with your default browser and pdf files with your pdf reader.</p> 
 	**/
 	
 	public static function launch(path : String, ?args : Array<String>) : Void 

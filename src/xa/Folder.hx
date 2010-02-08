@@ -51,7 +51,15 @@ class Folder
 	
 	public static function isFolder(path : String) : Bool 
 	{
-		return (neko.FileSystem.exists(path) && neko.FileSystem.isDirectory(path));
+		
+		var exists : Bool = false;
+		
+		if(path != null)
+		{
+			exists = (neko.FileSystem.exists(path) && neko.FileSystem.isDirectory(path));
+		}
+		
+		return exists;
 	}
 	
 	public static function getTotalItems(path : String) : Int
