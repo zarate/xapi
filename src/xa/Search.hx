@@ -23,20 +23,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>Provides searching functionality over system items.</p> 
+**/
+
 package xa;
 
 class Search
 {
 	
-	public static function search(path : String, ?filter : String -> Bool, ?deep : Int = -1) : Array<String>
+	/**
+	* <p>Search for items in the given folder path. By default search is fully recursive and returns all items.</p>
+	* <p>You can exclude items from the search using a filter function mathing the String -> Bool signature.
+	* The filter will receive a call passing the full path of each item. Return true to include the item in the
+	* search result or false otherwise.</p>
+	* <p>The search is fully recursive by default. To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
+	* If you want to search for items in the root and the next level, pass 1. To search for items in root + first and second levels, past 2, etc.</p> 
+	**/
+	
+	public static function search(folderPath : String, ?filter : String -> Bool, ?deep : Int = -1) : Array<String>
 	{
 		// We use an internal privateSearch function to keep search public signature clean (without currentLevel counter)
-		return privateSearch(path, filter, deep, 0);
+		return privateSearch(folderPath, filter, deep, 0);
 	}
 	
 	// ---------------------------- 
 	
-	private static function privateSearch(path : String, ?filter : String -> Bool, ?deep : Int = -1, ?currentLevel : Int = 0) : Array<String>
+	private static function privateSearch(folderPath : String, ?filter : String -> Bool, ?deep : Int = -1, ?currentLevel : Int = 0) : Array<String>
 	{
 		
 		if(filter == null)
@@ -48,12 +61,12 @@ class Search
 		
 		var foundItems = new Array<String>();
 		
-		var items = xa.Folder.read(path);
+		var items = xa.Folder.read(folderPath);
 		
 		for(itemName in items)
 		{
 			
-			var itemPath = path + systemSeparator + itemName;
+			var itemPath = folderPath + systemSeparator + itemName;
 			
 			if(filter(itemPath))
 			{

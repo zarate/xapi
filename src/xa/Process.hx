@@ -23,15 +23,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>Use the Process to launch and interact with other tools in the system.</p> 
+**/
+
 package xa;
 
 class Process extends neko.io.Process
 {
+
+	/**
+	* <p>Returns the standard error from the process.</p> 
+	**/
 	
 	public function getError() : String
 	{
 		return stderr.readAll().toString();
 	}
+	
+	/**
+	* <p>Returns the standard output from the process.</p> 
+	**/
 	
 	public function getOutput() : String
 	{

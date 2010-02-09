@@ -23,10 +23,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* Provides simple helper methods.
+**/
+
 package xa;
 
 class Utils
 {
+	
+	/**
+	* Prints out to the standard output.
+	**/	
 	
 	public static function print(v : Dynamic) : Void
 	{
