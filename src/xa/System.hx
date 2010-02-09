@@ -129,7 +129,7 @@ class System
 	
 	/**
 	*  <p>Returns systems's temp folder.</p>
-	*  <p>In Windows returns the value of %TEMP% or %TEMP%. in Linux returns the value of $TMPDIR if exists, /tmp otherwise. <strong>Not ready for Macs yet</strong>.</p>
+	*  <p>In Windows returns the value of %TEMP% or %TEMP%. in Linux returns the value of $TMPDIR if exists, /tmp otherwise. In Macs returns the value of $TMPDIR.</p>
 	**/
 	
 	public static function getTempFolder() : String
@@ -151,7 +151,7 @@ class System
 				
 			case MAC:
 				
-				// TODO
+				folder = neko.Sys.getEnv("TMPDIR");
 				
 			case LINUX: 
 				
