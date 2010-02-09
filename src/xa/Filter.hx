@@ -23,17 +23,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>The Filter class offers predetermined filters for Folder.copy() and Search.search().</p> 
+* <p>As a rule of thumb when you build your own filters, you should return true when you want the given
+*  item to be copied or returned as part of the search; false otherwise.</p>
+**/
+
 package xa;
 
 class Filter
 {
+	
+	/**
+	* <p>Returns true for all items.</p> 
+	**/	
 	
 	public static var ALL : String -> Bool = function(path : String) : Bool
 	{
 		return true;
 	}
 	
-	public inline static var ALL_BUT_HIDDEN : String -> Bool = function(path : String) : Bool
+	/**
+	* <p>Returns false for all hidden files.</p>
+	* <p>In Mac and Linux, all files/folder starting with "." are considered hidden. <strong>This is not available for Windows files yet</strong>.</p> 
+	**/
+	
+	public static var ALL_BUT_HIDDEN : String -> Bool = function(path : String) : Bool
 	{
 		
 		var hidden = false;

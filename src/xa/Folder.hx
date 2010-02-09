@@ -23,31 +23,60 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>The Folder class offers functionality to work with folders in your system.</p> 
+**/
+
 package xa;
 
 class Folder
 {
+
+	/**
+	* <p>Reads the contents of a given folder returning an array strings with the paths to the items contained.</p> 
+	**/
 	
 	public static function read(path : String) : Array<String>
 	{
 		return neko.FileSystem.readDirectory(path);
 	}
 	
+	/**
+	* <p>Creates a folder in the given path.</p> 
+	**/
+	
 	public static function create(path : String) : Void 
 	{
 		neko.FileSystem.createDirectory(path);
 	}
+	
+	/**
+	* <p>Deletes the folder in the given path.</p> 
+	**/
 	
 	public static function delete(path : String) : Void 
 	{
 		neko.FileSystem.deleteDirectory(path);
 	}
 	
+	/**
+	* <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items are copied and the process is fully recursive.</p>
+	* <p>If you want to exclude items from being copied, pass a filter function matching the String -> Bool signature. 
+	* The filter function will get called for each item, passing to it
+	* the path to each item. It should return true if the item has to be copied, false otherwise.</p>
+	* <p>The copy is fully recursive by default. To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
+	* If you want to copy items in the root and the next level, pass 1. To copy items in root + first and second levels, past 2, etc.</p> 
+	**/
+	
 	public static function copy(source : String, destination : String, ?filter : String -> Bool, ?deep : Int = -1) : Void 
 	{
 		// We use an internal privateCopy function to keep copy public signature clean (without currentLevel counter)
 		privateCopy(source, destination, filter, deep, 0);
 	}
+	
+	/**
+	* <p>Returns true if the path exists and is a folder, false otherwise.</p>
+	**/
 	
 	public static function isFolder(path : String) : Bool 
 	{
@@ -62,10 +91,18 @@ class Folder
 		return exists;
 	}
 	
+	/**
+	* <p>Returns the number of items in the given folder.</p>
+	**/
+	
 	public static function getTotalItems(path : String) : Int
 	{
 		return read(path).length;
 	}
+	
+	/**
+	* <p>Returns true if the folder has no items.</p>
+	**/
 	
 	public static function isEmpty(path : String) : Bool 
 	{
