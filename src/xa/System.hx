@@ -199,6 +199,31 @@ class System
 		return folder;
 		
 	}
+
+	/**
+	*  <p>Returns the name of the current host system.</p>
+	**/
+	
+	public static function getHostName() : String
+	{
+		
+		var hostname : String;
+		
+		if(isUnix())
+		{
+			var p = new xa.Process('hostname', ['-s']);
+			hostname = p.getOutput();
+		}
+		else
+		{
+			var p = new xa.Process('hostname', []);
+			hostname = p.getOutput();
+			p.close();
+		}
+		
+		return hostname;
+		
+	}
 	
 	/**
 	*  <p>Returns a hash containing systems's environment variables.</p>
