@@ -44,32 +44,13 @@ class Filter
 	}
 	
 	/**
-	* <p>Returns false for all hidden files.</p>
-	* <p>In Mac and Linux, all files/folder starting with "." are considered hidden. <strong>This is not available for Windows files yet</strong>.</p> 
+	* <p>Returns false for all hidden files. Please see xa.FileSystem.isHidden for a full
+	* explanation of how this works across different systems.</p>
 	**/
 	
 	public static var ALL_BUT_HIDDEN : String -> Bool = function(path : String) : Bool
 	{
-		
-		var hidden = false;
-		
-		if(xa.System.isUnix())
-		{
-			
-			// Matches names starting with "."
-			// TODO, we need to match the name of the item, not the path!!
-			
-			var r = new EReg("^\\.", "");
-			hidden = !r.match(path);
-			
-		} else {
-			
-			// TODO: we need to find a way of doing this in Windows
-			
-		}
-		
-		return hidden;
-		
+		return !xa.FileSystem.isHidden(path);
 	}
 	
 }
