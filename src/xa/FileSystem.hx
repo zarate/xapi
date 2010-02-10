@@ -77,4 +77,22 @@ class FileSystem
 		neko.FileSystem.rename(path, newPath);
 	}
 	
+	/**
+	* <p>Given the path to an item, it returns its name, <strong>including the extension if it has it<strong>.</p> 
+	**/
+	
+	public static function getNameFromPath(path : String) : String
+	{
+		
+		// Coming from here with a little bit of tweaking
+		// http://stackoverflow.com/questions/223162/parse-filename-from-full-path-using-regular-expressions-in-c
+		// If you know a better or faster way of doing this please let me know :)
+		
+		var nameRegExp = new EReg('[^\\\\|/]*$', 'i');
+		nameRegExp.match(path);
+		
+		return nameRegExp.matched(0);
+		
+	}
+	
 }
