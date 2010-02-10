@@ -90,7 +90,7 @@ class File
 	}
 	
 	/**
-	* <p>Checks wether the given path is a file or not.</p> 
+	* <p>Checks whether the given path is a file or not.</p> 
 	**/
 	
 	public static function isFile(path : String) : Bool
@@ -104,6 +104,25 @@ class File
 		}
 		
 		return exists;
+	}
+	
+	
+	/**
+	*  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
+	*  <p>For example, if you want to check both for html and htm files, pass an array like [".htm", ".html"].</p>
+	*  <p>Extensions are case-insensitve (would match .txt or .TXT).</p>
+	**/  
+	
+	public static function hasExtension(path : String, extensions : Array<String>) : Bool
+	{
+		
+		var name = xa.FileSystem.getNameFromPath(path);
+		
+		var w = extensions.join("|");
+		var r = new EReg(w, 'i');
+		
+		return r.match(name);
+		
 	}
 	
 	/**

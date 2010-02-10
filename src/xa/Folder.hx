@@ -73,6 +73,25 @@ class Folder
 		// We use an internal privateCopy function to keep copy public signature clean (without currentLevel counter)
 		privateCopy(source, destination, filter, deep, 0);
 	}
+
+	/**
+	*  <p>Copies source folder to destination filtering by extension.</p>
+	*  <p>Pass an array of extensions and whether files matching those extensions should be included (true) or excluded(false).</p>
+	*  <p>If you want to <strong>only</strong> copy .txt files from the source folder, you could do: xa.Folder.copyByExtension(source, destination, [".txt"], true).</p>
+	*  <p>If you want to copy every item <strong>but</strong> .swf and .project files, you could do: xa.Folder.copyByExtension(source, destination, [".swf", ".project"], false).</p>
+	*  <p>Extensions are case-insensitve (would match .txt or .TXT).</p>
+	*  <p>Remeber that you can always roll your own filtering function if you have more specific needs.</p>
+	**/
+
+	public static function copyByExtension(source : String, destination : String, extensions : Array<String>, include : Bool, ?deep : Int = -1) : Void
+	{
+		
+		_extensions = extensions;
+		_include = include;
+		
+		privateCopy(source, destination, extensionFilter, deep, 0);
+		
+	}
 	
 	/**
 	* <p>Returns true if the path exists and is a folder, false otherwise.</p>
@@ -182,5 +201,29 @@ class Folder
 		}
 		
 	}
+	
+	private static function extensionFilter(path : String) : Bool
+	{
+		
+		var copy = false;
+		
+		if(xa.File.isFile(path))
+		{
+			
+			var hasExtension = xa.File.hasExtension(path, _extensions);
+			copy = (_include)? hasExtension : !hasExtension;
+			
+		}
+		else
+		{
+			copy = true;
+		}
+		
+		return copy;		
+	}
+	
+	private static var _extensions : Array<String>;
+	
+	private static var _include : Bool;
 	
 }
