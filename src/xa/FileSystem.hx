@@ -78,6 +78,47 @@ class FileSystem
 	}
 	
 	/**
+	* <p>Returns wether a path is hidden or not.</p>
+	* <p>In Mac and Linux, all files/folders starting with "." are considered hidden. Please note that in OSX there are
+	*  other methods to hide files and folders, see <a href="http://www.westwind.com/reference/OS-X/invisibles.html">Mac OS X Hidden Files and Directories</a> for more info.</p> 
+	* <p>In Windows, we use the <a href="http://www.computerhope.com/attribhl.htm">attrib command</a>, so the process might be fairly slow.</p>
+	* <p>Ideally, <a href="http://haxe.org/api/neko/filestat">neko.io.FileStat</a> would return wether an item is hidden or not in a crossplatform 
+	* and native manner, but until then, this is our best bet. If you can come up with faster and more reliable ways of finding out, please let us know!</p>
+	**/
+	
+	public static function isHidden(path : String) : Bool
+	{
+		
+		var hidden : Bool;
+		
+		if(xa.System.isUnix())
+		{
+			
+			// Matches names starting with "."
+			
+			var name = xa.FileSystem.getNameFromPath(path);
+			
+			var r = new EReg("^\\.", "");
+			hidden = r.match(name);
+			
+		} else {
+			
+			var p = new xa.Process('attrib', [path]);
+			var output = p.getOutput();
+			
+			// We need to clean up the output removing the path and empty spaces.
+			// Sadly, this only makes things slower :|
+			output = StringTools.trim(output.substr(0, output.indexOf(path)));
+			
+			hidden = (output.indexOf('H') != -1);
+			
+		}
+		
+		return hidden;
+
+	}
+	
+	/**
 	* <p>Given the path to an item, it returns its name, <strong>including the extension if it has it<strong>.</p> 
 	**/
 	
