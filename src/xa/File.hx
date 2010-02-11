@@ -24,8 +24,8 @@ THE SOFTWARE.
 */
 
 /**
-* <p>The File class provides access to files in the system. </p> 
-* <p>You can use both relative and absolute paths. Please note that path are relative to your application or your current working directory.</p> 
+* <p>The File class provides access to files in the system.</p> 
+* <p>You can use both relative and absolute paths. Please note that paths are relative to your current working directory (which might not be your application's directory).</p> 
 **/
 
 package xa;
@@ -78,19 +78,19 @@ class File
 	}
 	
 	/**
-	* <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten.</p>
-	* <p>Example. If you want to copy file "a.txt" to "folder", you need this:</p>
-	* <p>xa.File.copy("a.txt", "folder/a.txt");</p>
-	* <p>Note that you just can't pass "folder", you need to pass the full new path.</p> 
+	* <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten (<strong>no warning!</strong>).</p>
+	* <p>Example: if you want to copy file "a.txt" to "folder", you need this:</p>
+	* <p>[xa.File.copy("a.txt", "folder/a.txt");]</p>
+	* <p>Note that you just can't pass "folder", <strong>you need to pass the full path of the new file</strong>.</p> 
 	**/
 	
-	public static function copy(source : String, destination : String) : Void 
+	public static function copy(sourcePath : String, destinationPath : String) : Void 
 	{
-		neko.io.File.copy(source, destination);
+		neko.io.File.copy(sourcePath, destinationPath);
 	}
 	
 	/**
-	* <p>Checks whether the given path is a file or not.</p> 
+	* <p>Returns true if the path exists <strong>and</strong> is a file.</p> 
 	**/
 	
 	public static function isFile(path : String) : Bool
@@ -109,8 +109,9 @@ class File
 	
 	/**
 	*  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
-	*  <p>For example, if you want to check both for html and htm files, pass an array like [".htm", ".html"].</p>
-	*  <p>Extensions are case-insensitve (would match .txt or .TXT).</p>
+	*  <p>Example: if you want to check if a file has either html or htm extension, you could try:</p>
+	*  <p>[var isHtml = xa.File.hasExtension(path, \[".htm", ".html"\])].</p>
+	*  <p>Extensions are case-insensitve (".txt" will match both .txt and .TXT).</p>
 	**/  
 	
 	public static function hasExtension(path : String, extensions : Array<String>) : Bool
@@ -126,8 +127,8 @@ class File
 	}
 	
 	/**
-	* <p>Launches a given file with system's default application.</p>
-	* <p>It will open html files with your default browser and pdf files with your pdf reader.</p> 
+	* <p>Launches a given file with system's default application passing the parameters given.</p>
+	* <p>For example, it will open html files with your default browser and pdf files with your pdf reader.</p> 
 	**/
 	
 	public static function launch(path : String, ?args : Array<String>) : Void 
@@ -152,7 +153,7 @@ class File
 	}
 	
 	/**
-	* <p>Reads the contents of a binary file.</p> 
+	* <p>Returns a std input object from which you can read the data of a binary file.</p> 
 	**/
 	
 	public static function readBinary(path : String) : neko.io.FileInput
@@ -161,7 +162,7 @@ class File
 	}
 	
 	/**
-	* <p>Writes to a binary file.</p> 
+	* <p>Returns a std output object that you can use to write data to a binary file.</p> 
 	**/
 	
 	public static function writeBinary(path : String) : neko.io.FileOutput
@@ -170,7 +171,7 @@ class File
 	}
 	
 	/**
-	* <p>Appends data to a binary file.</p> 
+	* <p>Returns a std output object that you can use to append data to a binary file.</p> 
 	**/
 	
 	public static function appendBinary(path : String) : neko.io.FileOutput

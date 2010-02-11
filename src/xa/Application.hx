@@ -34,7 +34,7 @@ class Application
 	
 	/**
 	* <p>Returns the full path to the folder where your application is located.</p>
-	* <p>If you are planning to use this folder to store data, please read <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a> first.</p> 
+	* <p>If you are planning to use this folder to store data, please read <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a>.</p> 
 	**/
 	
 	public static function getFolder() : String
@@ -54,7 +54,7 @@ class Application
 	}
 	
 	/**
-	* <p>Returns an array of string with the parameters passed to your application.</p>
+	* <p>Returns an array of strings with the parameters passed to your application.</p>
 	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.args()</a>.</p>  
 	**/
 	
@@ -77,7 +77,7 @@ class Application
 	
 	/**
 	* <p>Terminates the application with the provided exit error message. Default error code is 1.</p>
-	* <p>This is just a shortcut to xa.Utils.print(message) combined with xa.Application.exit(1).</p>
+	* <p>This is just a shortcut to [xa.Utils.print(message)] combined with [xa.Application.exit(code)].</p>
 	**/
 	
 	public static function exitError(message : String, ?code : Int = 1) : Void
