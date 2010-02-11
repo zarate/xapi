@@ -73,18 +73,18 @@ class Search
 				
 				foundItems.push(itemPath);
 				
-			}
-			
-			if(deep == -1 || (currentLevel < deep))
-			{
-				
-				if(xa.Folder.isFolder(itemPath))
+				if(deep == -1 || (currentLevel < deep))
 				{
+				
+					if(xa.Folder.isFolder(itemPath))
+					{
 					
-					currentLevel++;
-					var recursiveItems = privateSearch(itemPath, filter, deep, currentLevel);
-					foundItems = foundItems.concat(recursiveItems);
+						currentLevel++;
+						var recursiveItems = privateSearch(itemPath, filter, deep, currentLevel);
+						foundItems = foundItems.concat(recursiveItems);
 										
+					}
+				
 				}
 				
 			}
