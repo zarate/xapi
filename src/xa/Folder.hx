@@ -51,7 +51,7 @@ class Folder
 	}
 	
 	/**
-	* <p>Deletes the folder in the given path. <strong>The folder cannot be deleted if it's not empty.</strong></p> 
+	* <p>Deletes the folder in the given path. <strong>The folder cannot be deleted if it's not empty</strong> (an exception is thrown).</p> 
 	**/
 	
 	public static function delete(path : String) : Void 
@@ -63,8 +63,8 @@ class Folder
 	* <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
 	* <p>If you want to exclude items from being copied, pass a filter function matching the String -> Bool signature. 
 	* The filter function will get called once per item, receiving the path (of each item, that is).
-	* It should return true if the item has to be copied, false otherwise.</p>
-	* <p>The copy is fully recursive by default. To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
+	* It should return true if the item has to be copied, false otherwise. You can use the predefined filters in the Filter class or roll your own.</p>
+	* <p>The copy is fully recursive by default (deep = -1). To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
 	* If you want to copy items in the root and the next level, pass 1. To copy items in root + first and second levels, past 2, etc.</p> 
 	**/
 	
@@ -75,10 +75,12 @@ class Folder
 	}
 
 	/**
-	*  <p>Copies source folder to destination filtering by extension.</p>
+	*  <p>Copies source folder to destination filtering files by extension.</p>
 	*  <p>Pass an array of extensions and whether files matching those extensions should be included (true) or excluded(false).</p>
-	*  <p>If you want to <strong>only</strong> copy .txt files from the source folder, you could do: xa.Folder.copyByExtension(source, destination, [".txt"], true).</p>
-	*  <p>If you want to copy every item <strong>but</strong> .swf and .project files, you could do: xa.Folder.copyByExtension(source, destination, [".swf", ".project"], false).</p>
+	*  <p>If you want to <strong>only</strong> copy .txt files from the source folder:</p> 
+	*  <p>[xa.Folder.copyByExtension(source, destination, [".txt"], true);]</p>
+	*  <p>If you want to copy al files <strong>but</strong> .swf and .project files:</p>
+	*  <p>[xa.Folder.copyByExtension(source, destination, [".swf", ".project"], false);]</p>
 	*  <p>Extensions are case-insensitve (would match .txt or .TXT).</p>
 	*  <p>Remeber that you can always roll your own filtering function if you have more specific needs.</p>
 	**/

@@ -33,7 +33,7 @@ class Utils
 {
 	
 	/**
-	* Prints out to the standard output.
+	* <p>Prints out to the standard output (automatically adds a line break).</p>
 	**/	
 	
 	public static function print(v : Dynamic) : Void

@@ -24,7 +24,7 @@ THE SOFTWARE.
 */
 
 /**
-* <p>Provides searching functionality over system items.</p> 
+* <p>Provides search functionality over system items.</p> 
 **/
 
 package xa;
@@ -33,11 +33,11 @@ class Search
 {
 	
 	/**
-	* <p>Search for items in the given folder path. By default search is fully recursive and returns all items.</p>
-	* <p>You can exclude items from the search using a filter function mathing the String -> Bool signature.
-	* The filter will receive a call passing the full path of each item. Return true to include the item in the
-	* search result or false otherwise.</p>
-	* <p>The search is fully recursive by default. To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
+	* <p>Searches for items in the given folder path.</p>
+	* <p>Similar to the [xa.Folder.copy()] method, you can exclude items from the search using a filter function matching the String -> Bool signature.
+	* The filter function will get called once per item, receiving the path of each item. It should return true to include the item in the
+	* search result or false otherwise. You can use predefined filters in the Filter class or roll your own.</p>
+	* <p>The search is fully recursive by default (deep = -1). To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
 	* If you want to search for items in the root and the next level, pass 1. To search for items in root + first and second levels, past 2, etc.</p> 
 	**/
 	

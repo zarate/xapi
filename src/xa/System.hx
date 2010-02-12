@@ -33,31 +33,31 @@ class System
 {
 
 	/**
-	* <p>Windows system id.</p>
+	* <p>Windows system identifier.</p>
 	**/
 	
 	public static var WIN : String = "Windows";
 	
 	/**
-	* <p>Mac system id.</p>
+	* <p>Mac system identifier.</p>
 	**/
 	
 	public static var MAC : String = "Mac";
 	
 	/**
-	* <p>Linux system id.</p>
+	* <p>Linux system identifier.</p>
 	**/
 	
 	public static var LINUX : String = "Linux";
 	
 	/**
-	* <p>Folder separator for Windows systems "\".</p>
+	* <p>Folder separator for Windows systems ("\").</p>
 	**/
 	
 	public static var WIN_SEPARATOR:String = "\\";
 	
 	/**
-	* <p>Folder separator for Unix systems "/".</p>
+	* <p>Folder separator for Unix systems ("/").</p>
 	**/
 	
 	public static var UNIX_SEPARATOR:String = "/";
@@ -99,7 +99,7 @@ class System
 	}
 	
 	/**
-	*  <p>Returns system name: Windows, Mac or Linux.</p>
+	*  <p>Returns system name: "Windows", "Mac" or "Linux".</p>
 	**/
 	
 	public static function getName() : String
@@ -119,7 +119,8 @@ class System
 	/**
 	*  <p>Returns user's folder.</p>
 	*  <p>In Windows returns the value of %USERPROFILE% and in Mac and Linux returns the value of $HOME.</p>
-	*  <p>Please read first <a href="">Don't polute the user space</a> in case you are planning to write files in the user folder.</p>
+	*  <p>Please read first <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a> 
+	*  in case you are planning to write files in the user folder.</p>
 	**/
 	
 	public static function getUserFolder() : String
@@ -171,7 +172,7 @@ class System
 	/**
 	*  <p>Returns systems's applications data folder.</p>
 	*  <p>In Windows returns the value of %APPDATA%. in Linux returns the value of $HOME and Macs $HOME + "/Library/Application Support".</p>
-	*  <p>Please note that is standard across Linux system writing application data to the user folder, usually	in a hidden folder such as ".appName".</p>
+	*  <p>Please note that is standard across Linux systems writing application data to the user folder, usually in a hidden folder such as ".appName".</p>
 	**/
 	
 	public static function getAppDataFolder() : String
