@@ -16,4 +16,8 @@ You've been warned!
 
 	Some file system operations can be lengthy so it might be handy keeping a responsive application. Ideally, there will be some kind of callback with information about the state of the process (think "copied 12/456" kind of thing).
 
-	
+****** Discuss throwing custom-strong-type exceptions when problems arise.
+
+****** *NICE* documentation
+
+****** Unit testing
