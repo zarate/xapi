@@ -82,7 +82,7 @@ class Application
 	
 	public static function exitError(message : String, ?code : Int = 1) : Void
 	{
-		xa.Utils.print(message);
+		xa.Utils.printError(message);
 		exit(code);
 	}
 	

@@ -41,4 +41,13 @@ class Utils
 		neko.Lib.println(v);
 	}
 	
+	/**
+	* <p>Prints out to the standard error (automatically adds a line break).</p>
+	**/
+	
+	public static function printError(v : Dynamic) : Void
+	{
+		neko.io.File.stderr().writeString(v + '\n');
+	}
+	
 }
