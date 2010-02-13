@@ -33,7 +33,9 @@ class Folder
 {
 
 	/**
-	* <p>Reads the contents of the given folder returning an array of strings with the paths to the items it contains.</p> 
+	* <p>Reads the contents of the given folder returning an array of strings with the paths to the items contained.</p> 
+	* <p>Please note that [xa.Folder.read()] is NOT recursive, it returns items on the given folder only. If you need to
+	*  read recursively, you can use [xa.Search.search()].</p>
 	**/
 	
 	public static function read(path : String) : Array<String>
