@@ -4,14 +4,6 @@ You've been warned!
 
 ****** FIX BUGS! (fixing bugs is always a priority)
 
-
-****** API addition: xa.Folder.forceDelete()
- 
-	Currently, xa.Folder.delete() throws an exception if the the folder is not empty. While this is desirable to prevent mistakes, it should also be possible to force a delete. This could be a parameter on the delete() method, but to make perfectly clear to the developer what WILL happen (no confirmation!) it will be a brand new method.
-
-	Since std neko API doesn't allow this at the moment, it will be implemented using rm -rf in Mac and Linux, and something similar in Windows.
-
-
 ****** API addition: xa.Folder.copyAsync(), xa.File.copyAsyc(), xa.Search.searchAsync()
 
 	Some file system operations can be lengthy so it might be handy keeping a responsive application. Ideally, there will be some kind of callback with information about the state of the process (think "copied 12/456" kind of thing).
