@@ -1,0 +1,20 @@
+<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Application</div><div class="classdoc">
+  <p>The Application class provides access to basic information about your application. </p>
+</div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>exit(code : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+	 <p>Terminates the application with the provided exit code.</p>
+	 <p>Use 0 if everything went ok and 1 or above depending on your error. You can read more about
+	  exit code conventions in <a href="http://tldp.org/LDP/abs/html/exit-status.html">Exit Status</a> and
+	  <a href="http://tldp.org/LDP/abs/html/exitcodes.html">Exit Codes</a>.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>exitError(message : <a href="../String.html" class="type">String</a>, ?code : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+	 <p>Terminates the application with the provided exit error message. Default error code is 1.</p>
+	 <p>This is just a shortcut to <code>xa.Utils.print(message)</code> combined with <code>xa.Application.exit(code)</code>.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getArguments() : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;</dt><dd>
+	 <p>Returns an array of strings with the parameters passed to your application.</p>
+	 <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.args()</a>.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getFolder() : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Returns the full path to the folder where your application is located.</p>
+	 <p>If you are planning to use this folder to store data, please read <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a>.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getPath() : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Returns the full path of your application's executable.</p>
+	 <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.executablePath()</a>.</p>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a></body></html>

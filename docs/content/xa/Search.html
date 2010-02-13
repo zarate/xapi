@@ -1,0 +1,10 @@
+<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Search</div><div class="classdoc">
+ <p>Provides search functionality over system items.</p>
+</div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>search(folderPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../String.html" class="type">String</a> -> <a href="../Bool.html" class="type">Bool</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;</dt><dd>
+	 <p>Searches for items in the given folder path.</p>
+	 <p>Similar to the <code>xa.Folder.copy()</code> method, you can exclude items from the search using a filter function matching the String -> Bool signature.
+	 The filter function will get called once per item, receiving the path of each item. It should return true to include the item in the
+	 search result or false otherwise. You can use predefined filters in the Filter class or roll your own.</p>
+	 <p>The search is fully recursive by default (deep = -1). To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
+	 If you want to search for items in the root and the next level, pass 1. To search for items in root + first and second levels, past 2, etc.</p>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a></body></html>

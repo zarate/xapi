@@ -1,0 +1,41 @@
+<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.System</div><div class="classdoc">
+ <p>Provides information about the system.</p>
+</div><dl><dt><span class="kwd">static </span><span class="kwd">var </span>LINUX : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Linux system identifier.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">var </span>MAC : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Mac system identifier.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">var </span>UNIX_SEPARATOR : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Folder separator for Unix systems ("/").</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">var </span>WIN : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Windows system identifier.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">var </span>WIN_SEPARATOR : <a href="../String.html" class="type">String</a></dt><dd>
+	 <p>Folder separator for Windows systems ("\").</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>environment() : <a href="../Hash.html" class="type">Hash</a>&lt;<a href="../String.html" class="type">String</a>&gt;</dt><dd>
+	  <p>Returns a hash containing systems's environment variables.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getAppDataFolder() : <a href="../String.html" class="type">String</a></dt><dd>
+	  <p>Returns systems's applications data folder.</p>
+	  <p>In Windows returns the value of %APPDATA%. in Linux returns the value of $HOME and Macs $HOME + "/Library/Application Support".</p>
+	  <p>Please note that is standard across Linux systems writing application data to the user folder, usually in a hidden folder such as ".appName".</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getHostName() : <a href="../String.html" class="type">String</a></dt><dd>
+	  <p>Returns the name of the current host system.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getName() : <a href="../String.html" class="type">String</a></dt><dd>
+	  <p>Returns system name: "Windows", "Mac" or "Linux".</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getSeparator() : <a href="../String.html" class="type">String</a></dt><dd>
+	  <p>Returns current's system separator.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getTempFolder() : <a href="../String.html" class="type">String</a></dt><dd>
+	  <p>Returns systems's temp folder.</p>
+	  <p>In Windows returns the value of %TEMP% or %TEMP%. in Linux returns the value of $TMPDIR if exists, /tmp otherwise. In Macs returns the value of $TMPDIR.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>getUserFolder() : <a href="../String.html" class="type">String</a></dt><dd>
+	  <p>Returns user's folder.</p>
+	  <p>In Windows returns the value of %USERPROFILE% and in Mac and Linux returns the value of $HOME.</p>
+	  <p>Please read first <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a>
+	  in case you are planning to write files in the user folder.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>isLinux() : <a href="../Bool.html" class="type">Bool</a></dt><dd>
+	  <p>Returns true if the system is Linux.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>isMac() : <a href="../Bool.html" class="type">Bool</a></dt><dd>
+	  <p>Returns true if the system is Mac.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>isUnix() : <a href="../Bool.html" class="type">Bool</a></dt><dd>
+	  <p>Returns true if the system is either Mac or Linux.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>isWindows() : <a href="../Bool.html" class="type">Bool</a></dt><dd>
+	  <p>Returns true if the system is Windows.</p>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a></body></html>
