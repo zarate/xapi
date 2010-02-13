@@ -1,0 +1,7 @@
+***** TO BE RELEASED
+
+* Fixed bug: xa.Application.exitError() was printing to std out instead of std error. Thanks to Benjamin Dasnois for finding out the bug and the better solution.
+
+***** 13 / Feb / 2010: 0.1
+
+Initial release!
