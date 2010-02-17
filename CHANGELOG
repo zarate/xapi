@@ -2,6 +2,8 @@
 
 * Fixed bug: xa.Application.exitError() was printing to std out instead of std error. Thanks to Benjamin Dasnois for finding out the bug and the better solution.
 
+* API addition: xa.Process.success() returns true if exit code is 0, false otherwise.
+
 ***** 13 / Feb / 2010: 0.1
 
 Initial release!

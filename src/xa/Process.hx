@@ -51,4 +51,14 @@ class Process extends neko.io.Process
 		return stdout.readAll().toString();
 	}
 	
+	/**
+	*  <p>Returns true if the exit code is 0, false otherwise.</p>
+	*  <p>Please note that <strong>calling success() will block your app until the process has finished</strong>.</p>
+	**/
+	
+	public function success() : Bool
+	{
+		return (exitCode() == 0);
+	}
+	
 }
