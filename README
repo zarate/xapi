@@ -1,6 +1,7 @@
-XAPI (Ximple API) is a high level API for haXe backends.
+XAPI (Ximple API) is a high level API for Neko backends.
 
-It's meant to simplify daily tasks and also complete the official API.
+It's meant to simplify daily tasks and also extend the official API.
 
-Stay tuned.
+Checkout GitHub for more info:
 
+http://github.com/zarate/xapi

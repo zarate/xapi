@@ -1,4 +1,116 @@
-<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Folder</div><div class="classdoc">
+<html>
+
+<head>
+<title>XAPI Documentation</title>
+
+<style type="text/css">
+body
+{
+	font-family: sans-serif;
+	background-color : #fff;
+}
+
+.document 
+{
+	width : 800px;
+	position : relative;
+	margin : 10px auto 15px auto;
+}
+
+.title 
+{
+	font-size: 35;
+	font-weight: bold;
+	margin : auto auto 10px auto;
+}
+
+ul.entry 
+{
+	list-style-type: circle;
+	font-weight : bold;
+	margin-left : 30px;
+}
+
+.package_content
+{
+	
+}
+
+a {
+	color : #000;
+}
+
+a:hover 
+{
+	color : #FFAE00;
+}
+
+a.package 
+{
+	color : black;
+}
+
+.index 
+{
+	margin-left : 10px;
+}
+
+.kwd {
+	color : #00A;
+}
+
+.classname 
+{
+	font-size : 30;
+	font-weight : bold;
+	margin: 10px auto 10px 20px;
+}
+
+.classdoc 
+{
+	border : 1px dashed #666;
+	margin-left : 20px;
+	margin-right : 20px;
+	padding : 5 5 5 5;
+}
+
+.importmod, .extends, .implements, .typedef, .platforms 
+{
+	margin-left: 20px;
+	color : #777;
+}
+
+dd 
+{
+	margin : 0 20 20 40;
+	font-size : 12pt;
+	color : #444;
+}
+
+dt 
+{
+	margin-left : 20px;
+	margin-bottom : 5px;
+	text-align : left;
+	font-size : 10pt;
+	font-family: Courier New, monospace;
+}
+
+#footer
+{
+	margin-top:15px;
+	font-size:0.8em;
+	color:#212121;
+}
+
+</style>
+
+</head>
+
+	<body>
+		<div class="document">
+		<div class="title">XAPI Documentation</div>
+			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Folder</div><div class="classdoc">
  <p>The Folder class offers functionality to work with folders in the system.</p>
 </div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../String.html" class="type">String</a> -> <a href="../Bool.html" class="type">Bool</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
@@ -33,4 +145,9 @@
 	 <p>Reads the contents of the given folder returning an array of strings with the paths to the items contained.</p>
 	 <p>Please note that <code>xa.Folder.read()</code> is NOT recursive, it returns items on the given folder only. If you need to
 	  read recursively, you can use <code>xa.Search.search()</code>.</p>
-</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a></body></html>
+</dd></dl><a href="../../index.html" class="index">Index</a>
+			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
+		</div>
+	</body>
+	
+</html>

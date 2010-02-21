@@ -1,4 +1,116 @@
-<html><body><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Process</div><div class="extends">extends <a href="../neko/io/Process.html" class="type">neko.io.Process</a></div><div class="classdoc">
+<html>
+
+<head>
+<title>XAPI Documentation</title>
+
+<style type="text/css">
+body
+{
+	font-family: sans-serif;
+	background-color : #fff;
+}
+
+.document 
+{
+	width : 800px;
+	position : relative;
+	margin : 10px auto 15px auto;
+}
+
+.title 
+{
+	font-size: 35;
+	font-weight: bold;
+	margin : auto auto 10px auto;
+}
+
+ul.entry 
+{
+	list-style-type: circle;
+	font-weight : bold;
+	margin-left : 30px;
+}
+
+.package_content
+{
+	
+}
+
+a {
+	color : #000;
+}
+
+a:hover 
+{
+	color : #FFAE00;
+}
+
+a.package 
+{
+	color : black;
+}
+
+.index 
+{
+	margin-left : 10px;
+}
+
+.kwd {
+	color : #00A;
+}
+
+.classname 
+{
+	font-size : 30;
+	font-weight : bold;
+	margin: 10px auto 10px 20px;
+}
+
+.classdoc 
+{
+	border : 1px dashed #666;
+	margin-left : 20px;
+	margin-right : 20px;
+	padding : 5 5 5 5;
+}
+
+.importmod, .extends, .implements, .typedef, .platforms 
+{
+	margin-left: 20px;
+	color : #777;
+}
+
+dd 
+{
+	margin : 0 20 20 40;
+	font-size : 12pt;
+	color : #444;
+}
+
+dt 
+{
+	margin-left : 20px;
+	margin-bottom : 5px;
+	text-align : left;
+	font-size : 10pt;
+	font-family: Courier New, monospace;
+}
+
+#footer
+{
+	margin-top:15px;
+	font-size:0.8em;
+	color:#212121;
+}
+
+</style>
+
+</head>
+
+	<body>
+		<div class="document">
+		<div class="title">XAPI Documentation</div>
+			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Process</div><div class="extends">extends <a href="../neko/io/Process.html" class="type">neko.io.Process</a></div><div class="classdoc">
  <p>Use the Process to launch and interact with other tools in the system (SVN, MTASC, commands such ls, etc.).</p>
  <p>See <a href="http://haxe.org/api/neko/io/process">neko.io.Process</a> for the full API and <a href="http://haxe.org/api/neko/io/process/examples">usage samples</a>.</p>
 </div><dl><dt><span class="kwd">function </span>new(cmd : <a href="../String.html" class="type">String</a>, args : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;) : <a href="../Void.html" class="type">Void</a></dt><dd></dd><dt><span class="kwd">function </span>getError() : <a href="../String.html" class="type">String</a></dt><dd>
@@ -8,4 +120,9 @@
 </dd><dt><span class="kwd">function </span>success() : <a href="../Bool.html" class="type">Bool</a></dt><dd>
 	  <p>Returns true if the exit code is 0, false otherwise.</p>
 	  <p>Please note that <strong>calling success() will block your app until the process has finished</strong>.</p>
-</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a></body></html>
+</dd></dl><a href="../../index.html" class="index">Index</a>
+			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
+		</div>
+	</body>
+	
+</html>
