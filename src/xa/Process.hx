@@ -34,12 +34,12 @@ class Process extends neko.io.Process
 {
 
 	/**
-	* <p>Returns the standard error from the process.</p> 
+	* <p>Returns the standard error from the process.</p>
 	**/
 	
 	public function getError() : String
 	{
-		return stderr.readAll().toString();
+		return readStream(stderr);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ class Process extends neko.io.Process
 	
 	public function getOutput() : String
 	{
-		return stdout.readAll().toString();
+		return readStream(stdout);
 	}
 	
 	/**
@@ -60,5 +60,56 @@ class Process extends neko.io.Process
 	{
 		return (exitCode() == 0);
 	}
+	
+	/**
+	*  <p>Returns process' exit code. If there are no errors, code is 0, more than 0 otherwise.</p>
+	*  <p>Please note that <strong>calling exitCode() will block your app until the process has finished</strong>.</p>
+	**/
+	
+	override public function exitCode() : Int
+	{
+		
+		if(_code == null)
+		{
+			_code = super.exitCode();
+		}
+		
+		return _code;
+		
+	}
+	
+	// -------
+	
+	/**
+	*  <p>Reads a stream line by line until the end. to avoid problems reading long streams.</p>
+	*  <p>Reading line by line in a loop prevents errors when the stream returned is too long.</p>
+	**/
+	
+	private function readStream(stream : haxe.io.Input) : String
+	{
+		
+		var s = '';
+		
+		while(true)
+		{
+			
+			try
+			{
+				s += stream.readLine() + '\n';
+			}
+			catch(e : haxe.io.Eof)
+			{
+				break;
+			}
+			
+		}
+		
+		stream.close();
+		
+		return s;
+		
+	}
+	
+	private var _code : Int;
 	
 }

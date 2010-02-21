@@ -4,6 +4,8 @@
 
 * API addition: xa.Process.success() returns true if exit code is 0, false otherwise.
 
+* xa.Process now reads stderr and stdout streams line by line to avoid problems with long streams. It also stores internally the exit code of the process in case it's being called more than once (for example indirectly via success() and then via exitCode()).
+
 ***** 13 / Feb / 2010: 0.1
 
 Initial release!
