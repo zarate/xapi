@@ -29,6 +29,8 @@ THE SOFTWARE.
 
 package xa;
 
+import xa.Backend;
+
 class System
 {
 
@@ -104,7 +106,7 @@ class System
 	
 	public static function getName() : String
 	{
-		return neko.Sys.systemName();
+		return XASys.systemName();
 	}
 	
 	/**
@@ -125,7 +127,7 @@ class System
 	
 	public static function getUserFolder() : String
 	{
-		return (isWindows())? neko.Sys.getEnv("USERPROFILE") : neko.Sys.getEnv("HOME");
+		return (isWindows())? XASys.getEnv("USERPROFILE") : XASys.getEnv("HOME");
 	}
 	
 	/**
@@ -143,20 +145,20 @@ class System
 			
 			case WIN:
 				
-				folder = neko.Sys.getEnv("TEMP");
+				folder = XASys.getEnv("TEMP");
 				
 				if(folder == null)
 				{
-					folder = neko.Sys.getEnv("TMP");
+					folder = XASys.getEnv("TMP");
 				}
 				
 			case MAC:
 				
-				folder = neko.Sys.getEnv("TMPDIR");
+				folder = XASys.getEnv("TMPDIR");
 				
 			case LINUX: 
 				
-				folder = neko.Sys.getEnv("TMPDIR");
+				folder = XASys.getEnv("TMPDIR");
 				
 				if(folder == null)
 				{
@@ -185,7 +187,7 @@ class System
 			
 			case WIN:
 				
-				folder = neko.Sys.getEnv("APPDATA");
+				folder = XASys.getEnv("APPDATA");
 				
 			case MAC:
 				
@@ -193,7 +195,7 @@ class System
 				
 			case LINUX: 
 				
-				folder = neko.Sys.getEnv("HOME");
+				folder = XASys.getEnv("HOME");
 				
 		}
 		
@@ -232,7 +234,7 @@ class System
 	
 	public static function environment() : Hash<String>
 	{
-		return neko.Sys.environment();
+		return XASys.environment();
 	}
 	
 }

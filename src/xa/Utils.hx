@@ -24,10 +24,12 @@ THE SOFTWARE.
 */
 
 /**
-* Provides simple helper methods.
+* <p>Provides simple helper methods.</p>
 **/
 
 package xa;
+
+import xa.Backend;
 
 class Utils
 {
@@ -38,7 +40,7 @@ class Utils
 	
 	public static function print(v : Dynamic) : Void
 	{
-		neko.Lib.println(v);
+		XALib.println(v);
 	}
 	
 	/**
@@ -47,7 +49,7 @@ class Utils
 	
 	public static function printError(v : Dynamic) : Void
 	{
-		neko.io.File.stderr().writeString(v + '\n');
+		XAFile.stderr().writeString(v + '\n');
 	}
 	
 }

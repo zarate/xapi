@@ -29,6 +29,8 @@ THE SOFTWARE.
 
 package xa;
 
+import xa.Backend;
+
 class Folder
 {
 
@@ -40,7 +42,7 @@ class Folder
 	
 	public static function read(path : String) : Array<String>
 	{
-		return neko.FileSystem.readDirectory(path);
+		return XAFileSystem.readDirectory(path);
 	}
 	
 	/**
@@ -49,7 +51,7 @@ class Folder
 	
 	public static function create(path : String) : Void 
 	{
-		neko.FileSystem.createDirectory(path);
+		XAFileSystem.createDirectory(path);
 	}
 	
 	/**
@@ -58,7 +60,7 @@ class Folder
 	
 	public static function delete(path : String) : Void 
 	{
-		neko.FileSystem.deleteDirectory(path);
+		XAFileSystem.deleteDirectory(path);
 	}
 	
 	/**
@@ -72,7 +74,7 @@ class Folder
 		if(xa.System.isWindows())
 		{
 			
-			var exit = neko.Sys.command('RMDIR', [path, '/s', '/q']);
+			var exit = XASys.command('RMDIR', [path, '/s', '/q']);
 			
 		}
 		else
@@ -132,7 +134,7 @@ class Folder
 		
 		if(path != null)
 		{
-			exists = (neko.FileSystem.exists(path) && neko.FileSystem.isDirectory(path));
+			exists = (XAFileSystem.exists(path) && XAFileSystem.isDirectory(path));
 		}
 		
 		return exists;

@@ -30,7 +30,9 @@ THE SOFTWARE.
 
 package xa;
 
-class Process extends neko.io.Process
+import xa.Backend;
+
+class Process extends XAProcess
 {
 
 	/**

@@ -29,6 +29,8 @@ THE SOFTWARE.
 
 package xa;
 
+import xa.Backend;
+
 class Application
 {
 	
@@ -50,7 +52,7 @@ class Application
 	
 	public static function getPath() : String
 	{
-		return neko.Sys.executablePath();
+		return XASys.executablePath();
 	}
 	
 	/**
@@ -60,7 +62,7 @@ class Application
 	
 	public static function getArguments() : Array<String>
 	{
-		return neko.Sys.args();
+		return XASys.args();
 	}
 	
 	/**
@@ -72,7 +74,7 @@ class Application
 	
 	public static function exit(code : Int) : Void
 	{
-		neko.Sys.exit(code);
+		XASys.exit(code);
 	}
 	
 	/**

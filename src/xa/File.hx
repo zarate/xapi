@@ -30,6 +30,8 @@ THE SOFTWARE.
 
 package xa;
 
+import xa.Backend;
+
 class File
 {
 	
@@ -39,10 +41,10 @@ class File
 	
 	public static function read(path : String) : String
 	{
-		var f = neko.io.File.read(path, false);
+		var f = XAFile.read(path, false);
 		var content = f.readAll().toString();
 		f.close();
-		
+		 
 		return content;
 	}
 	
@@ -52,7 +54,7 @@ class File
 	
 	public static function write(path : String, content : String) : Void
 	{
-		var f = neko.io.File.write(path, false);
+		var f = XAFile.write(path, false);
 		f.writeString(content);
 		f.close();
 	}
@@ -63,7 +65,7 @@ class File
 	
 	public static function append(path : String, content : String) : Void 
 	{
-		var f = neko.io.File.append(path, false);
+		var f = XAFile.append(path, false);
 		f.writeString(content);
 		f.close();
 	}
@@ -74,7 +76,7 @@ class File
 	
 	public static function delete(path : String) : Void 
 	{
-		neko.FileSystem.deleteFile(path);
+		XAFileSystem.deleteFile(path);
 	}
 	
 	/**
@@ -86,7 +88,7 @@ class File
 	
 	public static function copy(sourcePath : String, destinationPath : String) : Void 
 	{
-		neko.io.File.copy(sourcePath, destinationPath);
+		XAFile.copy(sourcePath, destinationPath);
 	}
 	
 	/**
@@ -95,12 +97,11 @@ class File
 	
 	public static function isFile(path : String) : Bool
 	{
-		
 		var exists : Bool = false;
 		
 		if(path != null)
 		{
-			exists = (neko.FileSystem.exists(path) && !neko.FileSystem.isDirectory(path));
+			exists = (XAFileSystem.exists(path) && !XAFileSystem.isDirectory(path));
 		}
 		
 		return exists;
@@ -137,18 +138,18 @@ class File
 		// Worth taking a look to http://haxe.org/api/neko/io/Process
 		// http://lists.motion-twin.com/pipermail/haxe/2008-March/015438.html
 		
-		var actualPath = new neko.io.Path(path);
+		var actualPath = new XAPath(path);
 		
 		// a relative path makes actualPath.dir null, so we handle that using current working directory
 		if(actualPath.dir == null)
 		{
-			actualPath.dir = neko.Sys.getCwd();
+			actualPath.dir = XASys.getCwd();
 		}
 		
-		neko.Sys.setCwd(actualPath.dir);
+		XASys.setCwd(actualPath.dir);
 		
 		var command = (xa.System.isWindows())? "start" : "open";
-		neko.Sys.command('"' + command + '" ' + actualPath.file + "." + actualPath.ext, args);
+		XASys.command('"' + command + '" ' + actualPath.file + "." + actualPath.ext, args);
 		
 	}
 	
@@ -156,27 +157,27 @@ class File
 	* <p>Returns a std input object from which you can read the data of a binary file.</p> 
 	**/
 	
-	public static function readBinary(path : String) : neko.io.FileInput
+	public static function readBinary(path : String) : XAFileInput
 	{
-		return neko.io.File.read(path, true);
+		return XAFile.read(path, true);
 	}
-	
+
 	/**
 	* <p>Returns a std output object that you can use to write data to a binary file.</p> 
 	**/
-	
-	public static function writeBinary(path : String) : neko.io.FileOutput
+
+	public static function writeBinary(path : String) : XAFileOutput
 	{
-		return neko.io.File.write(path, true);
+		return XAFile.write(path, true);
 	}
-	
+
 	/**
 	* <p>Returns a std output object that you can use to append data to a binary file.</p> 
 	**/
-	
-	public static function appendBinary(path : String) : neko.io.FileOutput
+
+	public static function appendBinary(path : String) : XAFileOutput
 	{
-		return neko.io.File.append(path, true);
+		return XAFile.append(path, true);
 	}
 	
 }

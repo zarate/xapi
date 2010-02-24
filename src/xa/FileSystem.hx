@@ -29,6 +29,8 @@ THE SOFTWARE.
 
 package xa;
 
+import xa.Backend;
+
 class FileSystem
 {
 	
@@ -65,7 +67,7 @@ class FileSystem
 	
 	public static function exists(path : String) : Bool
 	{
-		return neko.FileSystem.exists(path);
+		return XAFileSystem.exists(path);
 	}
 	
 	/**
@@ -76,7 +78,7 @@ class FileSystem
 	
 	public static function rename(path : String, newPath : String) : Void 
 	{
-		neko.FileSystem.rename(path, newPath);
+		XAFileSystem.rename(path, newPath);
 	}
 	
 	/**
