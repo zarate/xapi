@@ -74,10 +74,15 @@ a.package
 	padding : 5 5 5 5;
 }
 
-.importmod, .extends, .implements, .typedef, .platforms 
+.extends, .implements, .platforms 
 {
 	margin-left: 20px;
 	color : #777;
+}
+
+.typedef, .importmod
+{
+	display : none;
 }
 
 dd 
@@ -115,7 +120,7 @@ dt
  <p>You can use both relative and absolute paths. Please note that paths are relative to your current working directory (which might not be your application's directory).</p>
 </div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>append(path : <a href="../String.html" class="type">String</a>, content : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Appends content to a text file.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>appendBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../neko/io/FileOutput.html" class="type">neko.io.FileOutput</a></dt><dd>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>appendBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../xa/XAFileOutput.html" class="type">XAFileOutput</a></dt><dd>
 	 <p>Returns a std output object that you can use to append data to a binary file.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten (<strong>no warning!</strong>).</p>
@@ -136,11 +141,11 @@ dt
 	 <p>For example, it will open html files with your default browser and pdf files with your pdf reader.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>read(path : <a href="../String.html" class="type">String</a>) : <a href="../String.html" class="type">String</a></dt><dd>
 	 <p>Reads the content of a text file.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>readBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../neko/io/FileInput.html" class="type">neko.io.FileInput</a></dt><dd>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>readBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../xa/XAFileInput.html" class="type">XAFileInput</a></dt><dd>
 	 <p>Returns a std input object from which you can read the data of a binary file.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>write(path : <a href="../String.html" class="type">String</a>, content : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Writes content to a text file.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>writeBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../neko/io/FileOutput.html" class="type">neko.io.FileOutput</a></dt><dd>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>writeBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../xa/XAFileOutput.html" class="type">XAFileOutput</a></dt><dd>
 	 <p>Returns a std output object that you can use to write data to a binary file.</p>
 </dd></dl><a href="../../index.html" class="index">Index</a>
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>

@@ -23,23 +23,56 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/**
-* <p>The Backend class provides cross-platform typedef aliases to File, FileInput, FileOutput, Path, FileSystem, Sys, Lib and Process classes.</p> 
-* <p>This alows XAPI to target Neko, PHP and C++ through a common API until this is implemented in the Std API.</p>
-* <p>You can read about it in the mailing list and the New Features page on haXe's wiki.</p>
-**/
-
 package xa;
 
 #if neko
 
+/**
+* <p>Alias for neko.io.File, php.io.File or cpp.io.File depending on the compilation target.</p> 
+**/
+
 typedef XAFile = neko.io.File;
+
+/**
+* <p>Alias for neko.io.FileInput, php.io.FileInput or cpp.io.FileInput depending on the compilation target.</p> 
+**/
+
 typedef XAFileInput = neko.io.FileInput;
+
+/**
+* <p>Alias for neko.io.FileOutput, php.io.FileOutput or cpp.io.FileOutput depending on the compilation target.</p> 
+**/
+
 typedef XAFileOutput = neko.io.FileOutput;
+
+/**
+* <p>Alias for neko.io.Path, php.io.Path or cpp.io.Path depending on the compilation target.</p> 
+**/
+
 typedef XAPath = neko.io.Path;
+
+/**
+* <p>Alias for neko.FileSystem, php.FileSystem or cpp.FileSystem depending on the compilation target.</p> 
+**/
+
 typedef XAFileSystem = neko.FileSystem;
+
+/**
+* <p>Alias for neko.Sys, php.Sys or cpp.Sys depending on the compilation target.</p> 
+**/
+
 typedef XASys = neko.Sys;
+
+/**
+* <p>Alias for neko.Lib, php.Lib or cpp.Lib depending on the compilation target.</p> 
+**/
+
 typedef XALib = neko.Lib;
+
+/**
+* <p>Alias for neko.io.Process, php.io.Process or cpp.io.Process depending on the compilation target.</p> 
+**/
+
 typedef XAProcess = neko.io.Process;
 
 #elseif php
@@ -65,5 +98,11 @@ typedef XALib = cpp.Lib;
 typedef XAProcess = cpp.io.Process;
 
 #end
+
+/**
+* <p>The Backend class provides cross-platform typedef aliases to File, FileInput, FileOutput, Path, FileSystem, Sys, Lib and Process classes.</p> 
+* <p>This alows XAPI to target Neko, PHP and C++ through a common API until this is implemented in the Std API.</p>
+* <p>You can read about it in <a href="http://wiki.github.com/zarate/xapi/cross-target">Wiki</a>, the <a href="http://lists.motion-twin.com/pipermail/haxe/2010-February/034044.html">mailing list</a> and the <a href="http://haxe.org/com/features">New Features page</a> on haXe's site.</p>
+**/
 
 class Backend{}

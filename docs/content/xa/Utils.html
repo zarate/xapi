@@ -74,10 +74,15 @@ a.package
 	padding : 5 5 5 5;
 }
 
-.importmod, .extends, .implements, .typedef, .platforms 
+.extends, .implements, .platforms 
 {
 	margin-left: 20px;
 	color : #777;
+}
+
+.typedef, .importmod
+{
+	display : none;
 }
 
 dd 
@@ -111,7 +116,7 @@ dt
 		<div class="document">
 		<div class="title">XAPI Documentation</div>
 			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Utils</div><div class="classdoc">
- Provides simple helper methods.
+ <p>Provides simple helper methods.</p>
 </div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>print(v : <a href="../Dynamic.html" class="type">Dynamic</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Prints out to the standard output (automatically adds a line break).</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>printError(v : <a href="../Dynamic.html" class="type">Dynamic</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
