@@ -221,7 +221,7 @@ class System
 		{
 			var p = new xa.Process('hostname', []);
 			hostname = p.getOutput();
-			p.close();
+			#if !php p.close(); #end // Waiting for bug 85 in the haXe compiler to be fixed (php target has not Process.close())
 		}
 		
 		return hostname;
