@@ -138,11 +138,11 @@ class File
 		// Worth taking a look to http://haxe.org/api/neko/io/Process
 		// http://lists.motion-twin.com/pipermail/haxe/2008-March/015438.html
 		
-		var currentPath = XASys.getCwd();
+		var currentDirectory = XASys.getCwd();
 		
 		var actualPath = new XAPath(path);
 		
-		// a relative path makes actualPath.dir null, so we handle that using current working directory
+		// A relative path makes actualPath.dir null, so we handle that using current working directory
 		if(actualPath.dir == null)
 		{
 			actualPath.dir = XASys.getCwd();
@@ -150,10 +150,18 @@ class File
 		
 		XASys.setCwd(actualPath.dir);
 		
-		var command = (xa.System.isWindows())? "start" : "open";
-		XASys.command('"' + command + '" ' + actualPath.file + "." + actualPath.ext, args);
 		
-		XASys.setCwd(currentPath);
+		var filePath = actualPath.file;
+		
+		if(actualPath.ext != null)
+		{
+			filePath += '.' + actualPath.ext;
+		}
+		
+		var command = (xa.System.isWindows())? "start" : "open";
+		
+		XASys.command('"' + command + '" ' + filePath, args);
+		XASys.setCwd(currentDirectory);
 		
 	}
 	

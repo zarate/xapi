@@ -1,7 +1,8 @@
 ***** TO BE RELEASED
 
 * XAPI now targets Neko, PHP and C++ backends automatically via typedefs and conditional compilation.
-* Fixed bug xa.File.launch() method was modifying current working directory and not setting it back afterwards.
+* Fixed bug. xa.File.launch() method was modifying current working directory and not setting it back afterwards.
+* Fixed bug. xa.File.launch() wouldn't launch a file without extension.
 
 ***** 21 / Feb / 2010: 0.2
 
