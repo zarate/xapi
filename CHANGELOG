@@ -1,17 +1,14 @@
-***** TO BE RELEASED
+***** 7 / June / 2010: 0.3
 
 * XAPI now targets Neko, PHP and C++ backends automatically via typedefs and conditional compilation.
-* Fixed bug. xa.File.launch() method was modifying current working directory and not setting it back afterwards.
-* Fixed bug. xa.File.launch() wouldn't launch a file without extension.
+* Fixed bug: xa.File.launch() method was modifying current working directory and not setting it back afterwards.
+* Fixed bug: xa.File.launch() wouldn't launch a file without extension.
 
 ***** 21 / Feb / 2010: 0.2
 
 * Fixed bug: xa.Application.exitError() was printing to std out instead of std error. Thanks to Benjamin Dasnois for finding out the bug and the better solution.
-
 * API addition: xa.Process.success() returns true if exit code is 0, false otherwise.
-
 * xa.Process now reads stderr and stdout streams line by line to avoid problems with long streams. It also stores internally the exit code of the process in case it's being called more than once (for example indirectly via success() and then via exitCode()).
-
 * Better looking docs.
 
 ***** 13 / Feb / 2010: 0.1
