@@ -26,12 +26,18 @@ THE SOFTWARE.
 package xa  
 {
 	import flash.filesystem.File;
+	import flash.desktop.NativeApplication;
 
 	public class Application 
 	{
 		public static function getFolder() : String
 		{
 			return flash.filesystem.File.applicationDirectory.nativePath;
+		}
+		
+		public static function exit(code : int = 0) : void
+		{
+			NativeApplication.nativeApplication.exit(code);
 		}
 	}
 }
