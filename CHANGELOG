@@ -1,3 +1,8 @@
+***** TO BE RELEASED
+
+* First version of XAPI for AIR!
+* API modification: xa.File.remove(), xa.Folder.remove() and xa.Folder.forceRemove() for consistency with AIR API where "delete" is a reserved keyword. Consequently xa.File.delete(), xa.Folder.delete() and xa.Folder.forceDelete() are deprecated now (will be completely removed in XAPI 0.5). 
+
 ***** 7 / June / 2010: 0.3
 
 * XAPI now targets Neko, PHP and C++ backends automatically via typedefs and conditional compilation.

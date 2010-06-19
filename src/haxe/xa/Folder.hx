@@ -54,23 +54,34 @@ class Folder
 		XAFileSystem.createDirectory(path);
 	}
 	
+	public static function delete(path : String) : Void 
+	{
+		// DEPRECATED. Please use remove instead.
+		remove(path);
+	}
+	
 	/**
-	* <p>Deletes the folder in the given path. <strong>The folder cannot be deleted if it's not empty</strong> (an exception is thrown).</p> 
+	* <p>Removes the folder in the given path. <strong>The folder cannot be removed if it's not empty</strong> (an exception is thrown).</p> 
 	**/
 	
-	public static function delete(path : String) : Void 
+	public static function remove(path : String) : Void 
 	{
 		XAFileSystem.deleteDirectory(path);
 	}
 	
+	public static function forceDelete(path : String) : Void
+	{
+		// DEPRECATED. Please use forceRemove instead.
+		forceRemove(path);
+	}
+	
 	/**
-	*  <p>Deletes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
+	*  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
 	*  <p>In Mac and Linux uses [rm -rf path] and in Windows [RMDIR path /s /q]</p>
 	**/
 	
-	public static function forceDelete(path : String) : Void
+	public static function forceRemove(path : String) : Void
 	{
-		
 		if(xa.System.isWindows())
 		{
 			
@@ -84,7 +95,6 @@ class Folder
 			var exit = p.exitCode();
 			
 		}
-		
 	}
 	
 	/**
