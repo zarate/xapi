@@ -103,14 +103,7 @@ class File
 	
 	public static function isFile(path : String) : Bool
 	{
-		var exists : Bool = false;
-		
-		if(path != null)
-		{
-			exists = (XAFileSystem.exists(path) && !XAFileSystem.isDirectory(path));
-		}
-		
-		return exists;
+		return (XAFileSystem.exists(path) && !XAFileSystem.isDirectory(path));
 	}
 	
 	

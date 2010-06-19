@@ -139,15 +139,7 @@ class Folder
 	
 	public static function isFolder(path : String) : Bool 
 	{
-		
-		var exists : Bool = false;
-		
-		if(path != null)
-		{
-			exists = (XAFileSystem.exists(path) && XAFileSystem.isDirectory(path));
-		}
-		
-		return exists;
+		return (XAFileSystem.exists(path) && XAFileSystem.isDirectory(path));
 	}
 	
 	/**
