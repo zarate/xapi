@@ -1,4 +1,4 @@
-XAPI (Ximple API) is a high level API for haXe backends (Neko, PHP, C++).
+XAPI (Ximple API) is a high level API for haXe backends (Neko, PHP, C++) and Adobe AIR applications.
 
 It's meant to simplify daily tasks and also extend the official API.
 
