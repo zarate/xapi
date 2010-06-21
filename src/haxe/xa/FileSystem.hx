@@ -108,11 +108,12 @@ class FileSystem
 		} else {
 			
 			var p = new xa.Process('attrib', [path]);
-			var output = p.getOutput();
-			
+
 			// We need to clean up the output removing the path and empty spaces.
 			// Sadly, this only makes things slower :|
-			output = StringTools.trim(output.substr(0, output.indexOf(path)));
+			
+			var output = StringTools.trim(p.getOutput());
+			output = output.substr(0, output.length - neko.FileSystem.fullPath(path).length);
 			
 			hidden = (output.indexOf('H') != -1);
 			

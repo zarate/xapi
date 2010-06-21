@@ -3,6 +3,7 @@
 * First version of XAPI for AIR!
 * API modification: xa.File.remove(), xa.Folder.remove() and xa.Folder.forceRemove() for consistency with AIR API where "delete" is a reserved keyword. Consequently xa.File.delete(), xa.Folder.delete() and xa.Folder.forceDelete() are deprecated now (will be completely removed in XAPI 0.5). 
 * haXe: File.isFile() and Folder.isFolder() would not return false any more when path is null (an exception is thrown). This is over protecting the developer and not consistent throughout XAPI. Nicolas was right all along: http://code.google.com/p/haxe/issues/detail?id=67
+* Fixed bug: xa.FileSystem.isHidden() was returning wrong results in Windows under specific circumstances. 
 
 ***** 7 / June / 2010: 0.3
 
