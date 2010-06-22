@@ -27,6 +27,8 @@ package xa
 {
 	import flash.filesystem.File;
 	
+	import xa.filters.IFilter;
+	
 	public class Folder 
 	{
 		public static function create(path : String) : void
@@ -89,6 +91,55 @@ package xa
 			file = null;
 			
 			return ret;
+		}
+		
+		public static function copy(sourcePath : String, destinationPath : String, filter : IFilter = null, deep : int = -1) : void
+		{
+			privateCopy(sourcePath, destinationPath, filter, deep, 0);
+		}
+		
+		private static function privateCopy(source : String, destination : String, filter : IFilter = null, deep : int = -1, currentLevel : int = 0) : void
+		{
+			var separator : String = xa.System.getSeparator();
+			
+			create(destination);
+			
+			if(filter == null)
+			{
+				filter = xa.Filter.ALL;
+			}
+		
+			var items : Vector.<String> = read(source);
+			
+			for each(var itemName : String in items)
+			{
+				var itemPath : String = source + separator + itemName;
+				
+				if(filter.filter(itemPath))
+				{
+					if(isFolder(itemPath))
+					{
+						if(deep == -1)
+						{
+							// Full recursion, so just go ahead
+							privateCopy(itemPath, destination + separator + itemName, filter, deep);
+						} 
+						else
+						{
+							// Max recursion defined, so check out currentLevel
+							if(currentLevel <= deep)
+							{
+								currentLevel++;
+								privateCopy(itemPath, destination + separator + itemName, filter, deep, currentLevel);
+							}
+						}
+					}
+					else
+					{
+						xa.File.copy(itemPath, destination + separator + itemName);
+					}
+				}
+			}	
 		}
 	}
 }
