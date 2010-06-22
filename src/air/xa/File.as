@@ -117,5 +117,15 @@ package xa
 			
 			return ret;
 		}
+		
+		public static function launch(path : String) : void
+		{
+			// Read this for more info: http://www.adobe.com/devnet/air/flex/articles/exploring_file_capabilities.html#a
+			
+			var file : flash.filesystem.File = new flash.filesystem.File(path);
+			file.openWithDefaultApplication();
+			
+			file = null;
+		}
 	}
 }
