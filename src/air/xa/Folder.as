@@ -28,6 +28,7 @@ package xa
 	import flash.filesystem.File;
 	
 	import xa.filters.IFilter;
+	import xa.filters.ExtensionFilter;
 	
 	public class Folder 
 	{
@@ -96,6 +97,12 @@ package xa
 		public static function copy(sourcePath : String, destinationPath : String, filter : IFilter = null, deep : int = -1) : void
 		{
 			privateCopy(sourcePath, destinationPath, filter, deep, 0);
+		}
+		
+		public static function copyByExtension(source : String, destination : String, extensions : Vector.<String>, copy : Boolean, deep : int = -1) : void
+		{
+			var filter : ExtensionFilter = new ExtensionFilter(extensions, copy);
+			privateCopy(source, destination, filter, deep, 0);
 		}
 		
 		private static function privateCopy(source : String, destination : String, filter : IFilter = null, deep : int = -1, currentLevel : int = 0) : void
