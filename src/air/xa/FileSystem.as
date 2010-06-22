@@ -72,5 +72,20 @@ package xa
 			
 			return ret
 		}
+		
+		public static function pathToUnix(path : String) : String
+		{
+			return path.split("\\").join(xa.System.UNIX_SEPARATOR);
+		}
+		
+		public static function pathToWindows(path : String) : String
+		{
+			return path.split("/").join(xa.System.WIN_SEPARATOR);
+		}
+		
+		public static function pathToCurrent(path : String) : String
+		{
+			return (true == xa.System.isWindows())? pathToWindows(path) : pathToUnix(path);
+		}
 	}
 }
