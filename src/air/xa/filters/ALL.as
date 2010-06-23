@@ -27,7 +27,7 @@ package xa.filters
 {
 	import xa.filters.IFilter;
 
-	public class ALL implements IFilter
+	public class All implements IFilter
 	{
 		public function filter(path : String) : Boolean
 		{

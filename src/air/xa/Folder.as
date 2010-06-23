@@ -113,7 +113,7 @@ package xa
 			
 			if(filter == null)
 			{
-				filter = xa.Filter.ALL;
+				filter = xa.Filter.All;
 			}
 		
 			var items : Vector.<String> = read(source);

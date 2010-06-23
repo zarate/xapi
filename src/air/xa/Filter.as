@@ -26,12 +26,13 @@ THE SOFTWARE.
 package xa 
 {
 	
-	import xa.filters.ALL;
+	import xa.filters.All;
+	import xa.filters.AllButHidden;
 	import xa.filters.IFilter;
 	
 	public class Filter 
 	{
-		public static const ALL : IFilter = new xa.filters.ALL();
-		public static const ALL_BUT_HIDDEN : IFilter = new xa.filters.ALL_BUT_HIDDEN();
+		public static const All : IFilter = new xa.filters.All();
+		public static const AllButHidden : IFilter = new xa.filters.AllButHidden();
 	}
 }

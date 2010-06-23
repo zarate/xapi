@@ -30,9 +30,18 @@ package xa
 
 	public class Application 
 	{
+		import flash.desktop.NativeApplication;
+
 		public static function getFolder() : String
 		{
 			return flash.filesystem.File.applicationDirectory.nativePath;
+		}
+		
+		public static function getPath() : String
+		{
+			var xml : XML = NativeApplication.nativeApplication.applicationDescriptor;
+			var ns : Namespace = xml.namespace();
+			return xa.FileSystem.pathToCurrent(getFolder() + '/' + xml.ns::filename);
 		}
 		
 		public static function exit(code : int = 0) : void

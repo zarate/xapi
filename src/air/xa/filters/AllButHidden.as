@@ -28,7 +28,7 @@ package xa.filters
 	import xa.filters.IFilter;
 	import xa.FileSystem;
 	
-	public class ALL_BUT_HIDDEN implements IFilter 
+	public class AllButHidden implements IFilter 
 	{
 		public function filter(path : String) : Boolean
 		{
