@@ -84,16 +84,12 @@ class Folder
 	{
 		if(xa.System.isWindows())
 		{
-			
 			var exit = XASys.command('RMDIR', [path, '/s', '/q']);
-			
 		}
 		else
 		{
-			
 			var p = new xa.Process('rm', ['-rf', path]);
 			var exit = p.exitCode();
-			
 		}
 	}
 	
@@ -125,12 +121,10 @@ class Folder
 
 	public static function copyByExtension(source : String, destination : String, extensions : Array<String>, copy : Bool, ?deep : Int = -1) : Void
 	{
-		
 		_extensions = extensions;
 		_copy = copy;
 		
 		privateCopy(source, destination, extensionFilter, deep, 0);
-		
 	}
 	
 	/**
@@ -164,74 +158,44 @@ class Folder
 	
 	private static function privateCopy(source : String, destination : String, ?filter : String -> Bool, ?deep : Int = -1, ?currentLevel : Int = 0) : Void
 	{
+		create(destination);
 		
-		if(isFolder(source))
+		if(filter == null)
 		{
-			
-			if(!xa.FileSystem.exists(destination))
-			{
-				
-				create(destination);
-				
-				if(filter == null)
-				{
-					filter = xa.Filter.ALL;
-				}
-			
-				var items = read(source);
-				
-				for(itemName in items)
-				{
-					
-					var itemPath = source + "/" + itemName;
-					
-					if(filter(itemPath))
-					{
-						
-						if(isFolder(itemPath))
-						{
-							
-							if(deep == -1)
-							{
-								
-								// Full recursion, so just go ahead
-								privateCopy(itemPath, destination + "/" + itemName, filter, deep);
-								
-							} else {
-								
-								// Max recursion defined, so check out currentLevel
-								if(currentLevel <= deep)
-								{
-									
-									currentLevel++;
-									privateCopy(itemPath, destination + "/" + itemName, filter, deep, currentLevel);
-									
-								}
-								
-							}
-							
-						} else {
-							
-							xa.File.copy(itemPath, destination + "/" + itemName);
-							
-						}
-						
-					}
-					
-				}			
-				
-			} else {
-				
-				throw "Destination folder (" + destination + ") already exists";
-				
-			}
-			
-		} else {
-			
-			throw "Source folder (" + source + ") is not a directory or it doesn't exist";
-			
+			filter = xa.Filter.ALL;
 		}
+	
+		var items = read(source);
 		
+		for(itemName in items)
+		{
+			var itemPath = source + "/" + itemName;
+			
+			if(filter(itemPath))
+			{
+				if(isFolder(itemPath))
+				{
+					if(deep == -1)
+					{
+						// Full recursion, so just go ahead
+						privateCopy(itemPath, destination + "/" + itemName, filter, deep);
+					} 
+					else 
+					{
+						// Max recursion defined, so check out currentLevel
+						if(currentLevel <= deep)
+						{
+							currentLevel++;
+							privateCopy(itemPath, destination + "/" + itemName, filter, deep, currentLevel);
+						}
+					}
+				} 
+				else 
+				{	
+					xa.File.copy(itemPath, destination + "/" + itemName);	
+				}
+			}
+		}	
 	}
 	
 	private static function extensionFilter(path : String) : Bool
