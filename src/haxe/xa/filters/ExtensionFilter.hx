@@ -23,29 +23,36 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/**
-* <p>The Filter class offers predetermined filters for actions such as Folder.copy() and Search.search().</p> 
-* <p>As a rule of thumb, when you build your own filters, you should return true when you want the given
-* item to be copied or returned as part of the search, false otherwise.</p>
-**/
-
-package xa;
+package xa.filters;
 
 import xa.filters.IFilter;
 
-class Filter
+class ExtensionFilter implements IFilter
 {
-
-	/**
-	* <p>Returns true for all items.</p> 
-	**/	
+	public function new(extensions : Array<String>, copy : Bool)
+	{
+		this.extensions = extensions;
+		this.copy = copy;
+	}
 	
-	public static var ALL : IFilter = new xa.filters.All();
-
-	/**
-	* <p>Returns false for all hidden files. Please see xa.FileSystem.isHidden for a full
-	* explanation of how this works across different systems.</p>
-	**/
+	public function filter(path : String) : Bool
+	{
+		var include = false;
+		
+		if(xa.File.isFile(path))
+		{
+			var hasExtension = xa.File.hasExtension(path, extensions);
+			include = (copy)? hasExtension : !hasExtension;
+		}
+		else
+		{
+			include = true;
+		}
+		
+		return include;
+	}
 	
-	public static var ALL_BUT_HIDDEN : IFilter = new xa.filters.AllButHidden();
+	private var extensions : Array<String>;
+	
+	private var copy : Bool;
 }

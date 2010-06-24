@@ -30,6 +30,7 @@ THE SOFTWARE.
 package xa;
 
 import xa.Backend;
+import xa.filters.IFilter;
 
 class Folder
 {
@@ -102,7 +103,7 @@ class Folder
 	* If you want to copy items in the root and the next level, pass 1. To copy items in root + first and second levels, past 2, etc.</p> 
 	**/
 	
-	public static function copy(sourcePath : String, destinationPath : String, ?filter : String -> Bool, ?deep : Int = -1) : Void 
+	public static function copy(sourcePath : String, destinationPath : String, ?filter : IFilter, ?deep : Int = -1) : Void 
 	{
 		// We use an internal privateCopy function to keep copy public signature clean (without currentLevel counter)
 		privateCopy(sourcePath, destinationPath, filter, deep, 0);
@@ -121,10 +122,8 @@ class Folder
 
 	public static function copyByExtension(source : String, destination : String, extensions : Array<String>, copy : Bool, ?deep : Int = -1) : Void
 	{
-		_extensions = extensions;
-		_copy = copy;
-		
-		privateCopy(source, destination, extensionFilter, deep, 0);
+		var filter = new xa.filters.ExtensionFilter(extensions, copy);
+		privateCopy(source, destination, filter, deep, 0);
 	}
 	
 	/**
@@ -156,7 +155,7 @@ class Folder
 	
 	// ---------------------------- 
 	
-	private static function privateCopy(source : String, destination : String, ?filter : String -> Bool, ?deep : Int = -1, ?currentLevel : Int = 0) : Void
+	private static function privateCopy(source : String, destination : String, ?filter : IFilter, ?deep : Int = -1, ?currentLevel : Int = 0) : Void
 	{
 		create(destination);
 		
@@ -171,7 +170,7 @@ class Folder
 		{
 			var itemPath = source + "/" + itemName;
 			
-			if(filter(itemPath))
+			if(filter.filter(itemPath))
 			{
 				if(isFolder(itemPath))
 				{
@@ -197,28 +196,4 @@ class Folder
 			}
 		}	
 	}
-	
-	private static function extensionFilter(path : String) : Bool
-	{
-		var include = false;
-		
-		if(xa.File.isFile(path))
-		{
-			
-			var hasExtension = xa.File.hasExtension(path, _extensions);
-			include = (_copy)? hasExtension : !hasExtension;
-			
-		}
-		else
-		{
-			include = true;
-		}
-		
-		return include;
-	}
-	
-	private static var _extensions : Array<String>;
-	
-	private static var _copy : Bool;
-	
 }

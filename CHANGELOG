@@ -6,6 +6,7 @@
 * Fixed bug: xa.FileSystem.isHidden() was returning wrong results in Windows under specific circumstances. 
 * API modification, haXe: renamed 'include' parameter to 'copy' in Folder.copyByExtension() to be consistent with AIR API where 'include' *still* is a reserved keyword.
 * Refactoring, haXe: Folder.copy won't throw an exception any more if source path is not a folder or if destination already exists. Throwing exceptions is not consistent throughout XAPI, we'll let Neko do that job. 
+* API modification, haXe: Created new xa.filters package and IFilter interface to be consistent with AIR (no function signatures available) and also because it's a little bit cleaner (although less haXe-ish). 
 
 ***** 7 / June / 2010: 0.3
 
