@@ -81,5 +81,11 @@ package xa
 			
 			return path;
 		}
+		
+		public static function getAppDataFolder() : String
+		{
+			var bits : Array = flash.filesystem.File.applicationStorageDirectory.nativePath.split(getSeparator());
+			return bits.slice(0, bits.length - 2).join(getSeparator());
+		}
 	}
 }
