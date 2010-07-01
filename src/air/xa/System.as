@@ -70,5 +70,16 @@ package xa
 			return flash.filesystem.File.userDirectory.nativePath;
 		}
 		
+		public static function getTempFolder() : String
+		{
+			var tmpFile : flash.filesystem.File = flash.filesystem.File.createTempFile();
+			
+			var path : String = tmpFile.nativePath.substr(0, tmpFile.nativePath.lastIndexOf(getSeparator()));
+			
+			tmpFile.deleteFile();
+			tmpFile = null;
+			
+			return path;
+		}
 	}
 }
