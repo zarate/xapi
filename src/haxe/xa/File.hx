@@ -162,33 +162,6 @@ class File
 		XASys.command('"' + command + '" ' + filePath, args);
 		XASys.setCwd(currentDirectory);
 		
-	}
-	
-	/**
-	* <p>Returns a std input object from which you can read the data of a binary file.</p> 
-	**/
-	
-	public static function readBinary(path : String) : XAFileInput
-	{
-		return XAFile.read(path, true);
-	}
-
-	/**
-	* <p>Returns a std output object that you can use to write data to a binary file.</p> 
-	**/
-
-	public static function writeBinary(path : String) : XAFileOutput
-	{
-		return XAFile.write(path, true);
-	}
-
-	/**
-	* <p>Returns a std output object that you can use to append data to a binary file.</p> 
-	**/
-
-	public static function appendBinary(path : String) : XAFileOutput
-	{
-		return XAFile.append(path, true);
-	}
+	}	
 	
 }
