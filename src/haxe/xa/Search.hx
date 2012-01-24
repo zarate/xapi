@@ -34,14 +34,14 @@ class Search
 	
 	/**
 	* <p>Searches for items in the given folder path.</p>
-	* <p>Similar to the [xa.Folder.copy()] method, you can exclude items from the search using a filter function matching the String -> Bool signature.
+	* <p>Similar to the [xa.Folder.copy()] method, you can exclude items from the search using an IFilter instance. See built-in filters in xa.Filter.
 	* The filter function will get called once per item, receiving the path of each item. It should return true to include the item in the
 	* search result or false otherwise. You can use predefined filters in the Filter class or roll your own.</p>
 	* <p>The search is fully recursive by default (deep = -1). To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
 	* If you want to search for items in the root and the next level, pass 1. To search for items in root + first and second levels, past 2, etc.</p> 
 	**/
 	
-	public static function search(folderPath : String, ?filter : String -> Bool, ?deep : Int = -1) : Array<String>
+	public static function search(folderPath : String, ?filter : xa.filters.IFilter, ?deep : Int = -1) : Array<String>
 	{
 		// We use an internal privateSearch function to keep search public signature clean (without currentLevel counter)
 		return privateSearch(folderPath, filter, deep, 0);
@@ -49,7 +49,7 @@ class Search
 	
 	// ---------------------------- 
 	
-	private static function privateSearch(folderPath : String, ?filter : String -> Bool, ?deep : Int = -1, ?currentLevel : Int = 0) : Array<String>
+	private static function privateSearch(folderPath : String, ?filter : xa.filters.IFilter, ?deep : Int = -1, ?currentLevel : Int = 0) : Array<String>
 	{
 		
 		if(filter == null)
@@ -65,34 +65,24 @@ class Search
 		
 		for(itemName in items)
 		{
-			
 			var itemPath = folderPath + systemSeparator + itemName;
 			
-			if(filter(itemPath))
+			if(filter.filter(itemPath))
 			{
-				
 				foundItems.push(itemPath);
 				
 				if(deep == -1 || (currentLevel < deep))
 				{
-				
 					if(xa.Folder.isFolder(itemPath))
 					{
-					
 						currentLevel++;
 						var recursiveItems = privateSearch(itemPath, filter, deep, currentLevel);
 						foundItems = foundItems.concat(recursiveItems);
-										
 					}
-				
-				}
-				
+				}	
 			}
-			
 		}
 		
 		return foundItems;
-		
 	}
-	
 }

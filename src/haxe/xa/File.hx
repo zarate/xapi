@@ -164,4 +164,11 @@ class File
 		
 	}	
 	
+	/**
+	* <p>Returns the size in bytes of the file</p>
+	**/
+	public static function size(path : String) : Int
+	{
+		return neko.FileSystem.stat(path).size;
+	}
 }

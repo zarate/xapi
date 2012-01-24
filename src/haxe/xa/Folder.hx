@@ -96,7 +96,7 @@ class Folder
 	
 	/**
 	* <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
-	* <p>If you want to exclude items from being copied, pass a filter function matching the String -> Bool signature. 
+	* <p>If you want to exclude items from being copied, use an IFilter instance. See built-in filters in xa.Filter. 
 	* The filter function will get called once per item, receiving the path (of each item, that is).
 	* It should return true if the item has to be copied, false otherwise. You can use the predefined filters in the Filter class or roll your own.</p>
 	* <p>The copy is fully recursive by default (deep = -1). To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
@@ -151,6 +151,24 @@ class Folder
 	public static function isEmpty(path : String) : Bool 
 	{
 		return (getTotalItems(path) == 0);
+	}
+	
+	/**
+	* <p>Returns the size in bytes of the folder, including all its items.</p>
+	**/
+	
+	public static function size(path : String) : Int
+	{
+		var totalBytes = 0;
+		
+		var items = xa.Search.search(path);
+		
+		for(item in items)
+		{
+			totalBytes += neko.FileSystem.stat(item).size;
+		}
+		
+		return totalBytes;		
 	}
 	
 	// ---------------------------- 

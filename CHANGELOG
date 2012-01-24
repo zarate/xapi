@@ -8,6 +8,8 @@
 * Refactoring, haXe: Folder.copy won't throw an exception any more if source path is not a folder or if destination already exists. Throwing exceptions is not consistent throughout XAPI, we'll let Neko do that job. 
 * API modification, haXe: Created new xa.filters package and IFilter interface to be consistent with AIR (no function signatures available) and also because it's a little bit cleaner (although less haXe-ish). 
 * API modification, haXe: Removed the binary methods in the File class as they don't add anything up.
+* API addition, added File.size() and Folder.size().
+* API modification, Search.search() and Folder.copy() now take an IFilter instance instead of a String -> Bool signature.
 
 ***** 7 / June / 2010: 0.3
 
