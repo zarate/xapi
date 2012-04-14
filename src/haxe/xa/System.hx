@@ -29,45 +29,36 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
-
 class System
 {
-
 	/**
 	* <p>Windows system identifier.</p>
 	**/
-	
 	public static var WIN : String = "Windows";
 	
 	/**
 	* <p>Mac system identifier.</p>
 	**/
-	
 	public static var MAC : String = "Mac";
 	
 	/**
 	* <p>Linux system identifier.</p>
 	**/
-	
 	public static var LINUX : String = "Linux";
 	
 	/**
 	* <p>Folder separator for Windows systems ("\").</p>
 	**/
-	
 	public static var WIN_SEPARATOR:String = "\\";
 	
 	/**
 	* <p>Folder separator for Unix systems ("/").</p>
 	**/
-	
 	public static var UNIX_SEPARATOR:String = "/";
 	
 	/**
 	*  <p>Returns true if the system is Mac.</p>
 	**/
-	
 	public static function isMac() : Bool
 	{
 		return (getName() == MAC);
@@ -76,7 +67,6 @@ class System
 	/**
 	*  <p>Returns true if the system is Windows.</p>
 	**/
-	
 	public static function isWindows() : Bool
 	{
 		return (getName() == WIN);
@@ -85,7 +75,6 @@ class System
 	/**
 	*  <p>Returns true if the system is Linux.</p>
 	**/
-	
 	public static function isLinux() : Bool
 	{
 		return (getName() == LINUX);
@@ -94,7 +83,6 @@ class System
 	/**
 	*  <p>Returns true if the system is either Mac or Linux.</p>
 	**/
-	
 	public static function isUnix() : Bool
 	{
 		return (isMac() || isLinux());
@@ -103,16 +91,14 @@ class System
 	/**
 	*  <p>Returns system name: "Windows", "Mac" or "Linux".</p>
 	**/
-	
 	public static function getName() : String
 	{
-		return XASys.systemName();
+		return Sys.systemName();
 	}
 	
 	/**
 	*  <p>Returns current's system separator.</p>
 	**/
-	
 	public static function getSeparator() : String
 	{
 		return (isWindows())? WIN_SEPARATOR : UNIX_SEPARATOR;
@@ -124,51 +110,45 @@ class System
 	*  <p>Please read first <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a> 
 	*  in case you are planning to write files in the user folder.</p>
 	**/
-	
 	public static function getUserFolder() : String
 	{
-		return (isWindows())? XASys.getEnv("USERPROFILE") : XASys.getEnv("HOME");
+		return (isWindows())? Sys.getEnv("USERPROFILE") : Sys.getEnv("HOME");
 	}
 	
 	/**
 	*  <p>Returns systems's temp folder.</p>
 	*  <p>In Windows returns the value of %TEMP% or %TMP%. in Linux returns the value of $TMPDIR if exists, /tmp otherwise. In Macs returns the value of $TMPDIR.</p>
 	**/
-	
 	public static function getTempFolder() : String
 	{
-		
 		var folder = "";
 		
 		switch(getName())
 		{
-			
 			case WIN:
 				
-				folder = XASys.getEnv("TEMP");
+				folder = Sys.getEnv("TEMP");
 				
 				if(folder == null)
 				{
-					folder = XASys.getEnv("TMP");
+					folder = Sys.getEnv("TMP");
 				}
 				
 			case MAC:
 				
-				folder = XASys.getEnv("TMPDIR");
+				folder = Sys.getEnv("TMPDIR");
 				
 			case LINUX: 
 				
-				folder = XASys.getEnv("TMPDIR");
+				folder = Sys.getEnv("TMPDIR");
 				
 				if(folder == null)
 				{
 					folder = "/tmp";
 				}
-				
 		}
 		
 		return folder;
-		
 	}
 	
 	/**
@@ -176,18 +156,15 @@ class System
 	*  <p>In Windows returns the value of %APPDATA%. in Linux returns the value of $HOME and Macs $HOME + "/Library/Application Support".</p>
 	*  <p>Please note that is standard across Linux systems writing application data to the user folder, usually in a hidden folder such as ".appName".</p>
 	**/
-	
 	public static function getAppDataFolder() : String
 	{
-		
 		var folder = "";
 		
 		switch(getName())
 		{
-			
 			case WIN:
 				
-				folder = XASys.getEnv("APPDATA");
+				folder = Sys.getEnv("APPDATA");
 				
 			case MAC:
 				
@@ -195,21 +172,18 @@ class System
 				
 			case LINUX: 
 				
-				folder = XASys.getEnv("HOME");
+				folder = Sys.getEnv("HOME");
 				
 		}
 		
 		return folder;
-		
 	}
 
 	/**
 	*  <p>Returns the name of the current host system.</p>
 	**/
-	
 	public static function getHostName() : String
 	{
-		
 		var hostname : String;
 		
 		if(isUnix())
@@ -225,16 +199,13 @@ class System
 		}
 		
 		return hostname;
-		
 	}
 	
 	/**
 	*  <p>Returns a hash containing systems's environment variables.</p>
 	**/
-	
 	public static function environment() : Hash<String>
 	{
-		return XASys.environment();
+		return Sys.environment();
 	}
-	
 }
