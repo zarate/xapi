@@ -29,15 +29,11 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
-
 class FileSystem
 {
-	
 	/**
 	* <p>Translates a path to the current OS.</p>
 	**/
-	
 	public static function pathToCurrent(path : String) : String
 	{
 		return (xa.System.isWindows())? pathToWindows(path) : pathToUnix(path);
@@ -46,7 +42,6 @@ class FileSystem
 	/**
 	* <p>Translates a path to Unix.</p>
 	**/
-	
 	public static function pathToUnix(path : String) : String
 	{
 		return path.split("\\").join(xa.System.UNIX_SEPARATOR);
@@ -55,7 +50,6 @@ class FileSystem
 	/**
 	* <p>Translates a path to Windows.</p>
 	**/
-	
 	public static function pathToWindows(path : String) : String
 	{
 		return path.split("/").join(xa.System.WIN_SEPARATOR);
@@ -64,10 +58,9 @@ class FileSystem
 	/**
 	* <p>Returns true if the given path exists on the file system, false otherwise.</p>
 	**/
-	
 	public static function exists(path : String) : Bool
 	{
-		return XAFileSystem.exists(path);
+		return sys.FileSystem.exists(path);
 	}
 	
 	/**
@@ -75,10 +68,9 @@ class FileSystem
 	* <p>Example: if you want to rename "a.txt" to "b.txt", you can use:</p>
 	* <p>[xa.FileSystem.rename("a.txt", "b.txt");]</p>
 	**/
-	
 	public static function rename(path : String, newPath : String) : Void 
 	{
-		XAFileSystem.rename(path, newPath);
+		sys.FileSystem.rename(path, newPath);
 	}
 	
 	/**
@@ -89,21 +81,14 @@ class FileSystem
 	* <p>Ideally, <a href="http://haxe.org/api/neko/filestat">neko.io.FileStat</a> would return whether an item is hidden or not in a crossplatform 
 	* and native manner, but until then, this is our best bet. If you can come up with faster and more reliable ways of finding out, please let us know!</p>
 	**/
-	
 	public static function isHidden(path : String) : Bool
 	{
-		
 		var hidden : Bool;
 		
 		if(xa.System.isUnix())
 		{
-			
-			// Matches names starting with "."
-			
 			var name = xa.FileSystem.getNameFromPath(path);
-			
-			var r = new EReg("^\\.", "");
-			hidden = r.match(name);
+			hidden = StringTools.startsWith(name, ".");
 			
 		} else {
 			
@@ -116,29 +101,17 @@ class FileSystem
 			output = output.substr(0, output.length - neko.FileSystem.fullPath(path).length);
 			
 			hidden = (output.indexOf('H') != -1);
-			
 		}
 		
 		return hidden;
-
 	}
 	
 	/**
 	* <p>Given the path to an item, it returns its name, <strong>including the extension (if any)</strong>.</p> 
 	**/
-	
 	public static function getNameFromPath(path : String) : String
 	{
-		
-		// Coming from here with a little bit of tweaking
-		// http://stackoverflow.com/questions/223162/parse-filename-from-full-path-using-regular-expressions-in-c
-		// If you know a better or faster way of doing this please let me know :)
-		
-		var nameRegExp = new EReg('[^\\\\|/]*$', 'i');
-		nameRegExp.match(path);
-		
-		return nameRegExp.matched(0);
-		
+		var path = new haxe.io.Path(sys.FileSystem.fullPath(path));
+		return (null == path.ext)? path.file : path.file + "." + path.ext;
 	}
-	
 }
