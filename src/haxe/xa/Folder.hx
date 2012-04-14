@@ -29,7 +29,6 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
 import xa.filters.IFilter;
 
 class Folder
@@ -40,19 +39,17 @@ class Folder
 	* <p>Please note that [xa.Folder.read()] is NOT recursive, it returns items on the given folder only. If you need to
 	*  read recursively, you can use [xa.Search.search()].</p>
 	**/
-	
 	public static function read(path : String) : Array<String>
 	{
-		return XAFileSystem.readDirectory(path);
+		return sys.FileSystem.readDirectory(path);
 	}
 	
 	/**
 	* <p>Creates a folder in the given path.</p> 
 	**/
-	
 	public static function create(path : String) : Void 
 	{
-		XAFileSystem.createDirectory(path);
+		sys.FileSystem.createDirectory(path);
 	}
 	
 	public static function delete(path : String) : Void 
@@ -64,10 +61,9 @@ class Folder
 	/**
 	* <p>Removes the folder in the given path. <strong>The folder cannot be removed if it's not empty</strong> (an exception is thrown).</p> 
 	**/
-	
 	public static function remove(path : String) : Void 
 	{
-		XAFileSystem.deleteDirectory(path);
+		sys.FileSystem.deleteDirectory(path);
 	}
 	
 	public static function forceDelete(path : String) : Void
@@ -80,12 +76,11 @@ class Folder
 	*  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
 	*  <p>In Mac and Linux uses [rm -rf path] and in Windows [RMDIR path /s /q]</p>
 	**/
-	
 	public static function forceRemove(path : String) : Void
 	{
 		if(xa.System.isWindows())
 		{
-			var exit = XASys.command('RMDIR', [path, '/s', '/q']);
+			var exit = Sys.command('RMDIR', [path, '/s', '/q']);
 		}
 		else
 		{
@@ -102,7 +97,6 @@ class Folder
 	* <p>The copy is fully recursive by default (deep = -1). To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
 	* If you want to copy items in the root and the next level, pass 1. To copy items in root + first and second levels, past 2, etc.</p> 
 	**/
-	
 	public static function copy(sourcePath : String, destinationPath : String, ?filter : IFilter, ?deep : Int = -1) : Void 
 	{
 		// We use an internal privateCopy function to keep copy public signature clean (without currentLevel counter)
@@ -132,7 +126,7 @@ class Folder
 	
 	public static function isFolder(path : String) : Bool 
 	{
-		return (XAFileSystem.exists(path) && XAFileSystem.isDirectory(path));
+		return (sys.FileSystem.exists(path) && sys.FileSystem.isDirectory(path));
 	}
 	
 	/**
