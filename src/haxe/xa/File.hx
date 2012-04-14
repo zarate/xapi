@@ -30,18 +30,14 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
-
 class File
-{
-	
+{	
 	/**
 	* <p>Reads the content of a text file.</p> 
 	**/
-	
 	public static function read(path : String) : String
 	{
-		var f = XAFile.read(path, false);
+		var f = sys.io.File.read(path, false);
 		var content = f.readAll().toString();
 		f.close();
 		 
@@ -51,10 +47,9 @@ class File
 	/**
 	* <p>Writes content to a text file.</p> 
 	**/
-	
 	public static function write(path : String, content : String) : Void
 	{
-		var f = XAFile.write(path, false);
+		var f = sys.io.File.write(path, false);
 		f.writeString(content);
 		f.close();
 	}
@@ -62,10 +57,9 @@ class File
 	/**
 	* <p>Appends content to a text file.</p> 
 	**/
-	
 	public static function append(path : String, content : String) : Void 
 	{
-		var f = XAFile.append(path, false);
+		var f = sys.io.File.append(path, false);
 		f.writeString(content);
 		f.close();
 	}
@@ -79,10 +73,9 @@ class File
 	/**
 	* <p>Removes a file.</p> 
 	**/
-		
 	public static function remove(path : String) : Void
 	{
-		XAFileSystem.deleteFile(path);
+		sys.FileSystem.deleteFile(path);
 	}
 	
 	/**
@@ -91,21 +84,18 @@ class File
 	* <p>[xa.File.copy("a.txt", "folder/a.txt");]</p>
 	* <p>Note that you just can't pass "folder", <strong>you need to pass the full path of the new file</strong>.</p> 
 	**/
-	
 	public static function copy(sourcePath : String, destinationPath : String) : Void 
 	{
-		XAFile.copy(sourcePath, destinationPath);
+		sys.io.File.copy(sourcePath, destinationPath);
 	}
 	
 	/**
 	* <p>Returns true if the path exists <strong>and</strong> is a file.</p> 
 	**/
-	
 	public static function isFile(path : String) : Bool
 	{
-		return (XAFileSystem.exists(path) && !XAFileSystem.isDirectory(path));
+		return (sys.FileSystem.exists(path) && !sys.FileSystem.isDirectory(path));
 	}
-	
 	
 	/**
 	*  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
@@ -113,55 +103,27 @@ class File
 	*  <p>[var isHtml = xa.File.hasExtension(path, \[".htm", ".html"\])].</p>
 	*  <p>Extensions are case-insensitve (".txt" will match both .txt and .TXT).</p>
 	**/  
-	
 	public static function hasExtension(path : String, extensions : Array<String>) : Bool
 	{
-		
 		var name = xa.FileSystem.getNameFromPath(path);
 		
 		var w = extensions.join("|");
 		var r = new EReg(w, 'i');
 		
 		return r.match(name);
-		
 	}
 	
 	/**
 	* <p>Launches a given file with system's default application passing the parameters given.</p>
 	* <p>For example, it will open html files with your default browser and pdf files with your pdf reader.</p> 
 	**/
-	
 	public static function launch(path : String, ?args : Array<String>) : Void 
 	{
-		
 		// Worth taking a look to http://haxe.org/api/neko/io/Process
 		// http://lists.motion-twin.com/pipermail/haxe/2008-March/015438.html
 		
-		var currentDirectory = XASys.getCwd();
-		
-		var actualPath = new XAPath(path);
-		
-		// A relative path makes actualPath.dir null, so we handle that using current working directory
-		if(actualPath.dir == null)
-		{
-			actualPath.dir = XASys.getCwd();
-		}
-		
-		XASys.setCwd(actualPath.dir);
-		
-		
-		var filePath = actualPath.file;
-		
-		if(actualPath.ext != null)
-		{
-			filePath += '.' + actualPath.ext;
-		}
-		
-		var command = (xa.System.isWindows())? "start" : "open";
-		
-		XASys.command('"' + command + '" ' + filePath, args);
-		XASys.setCwd(currentDirectory);
-		
+		var command = (xa.System.isWindows())? "start" : "open";		
+		Sys.command('"' + command + '" ' + sys.FileSystem.fullPath(path), args);
 	}	
 	
 	/**
@@ -169,6 +131,6 @@ class File
 	**/
 	public static function size(path : String) : Int
 	{
-		return neko.FileSystem.stat(path).size;
+		return sys.FileSystem.stat(path).size;
 	}
 }
