@@ -29,8 +29,6 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
-
 class Application
 {
 	
@@ -38,7 +36,6 @@ class Application
 	* <p>Returns the full path to the folder where your application is located.</p>
 	* <p>If you are planning to use this folder to store data, please read <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a>.</p> 
 	**/
-	
 	public static function getFolder() : String
 	{
 		var path = getPath();
@@ -49,20 +46,18 @@ class Application
 	* <p>Returns the full path of your application's executable.</p>
 	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.executablePath()</a>.</p> 
 	**/
-	
 	public static function getPath() : String
 	{
-		return XASys.executablePath();
+		return Sys.executablePath();
 	}
 	
 	/**
 	* <p>Returns an array of strings with the parameters passed to your application.</p>
 	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.args()</a>.</p>  
 	**/
-	
 	public static function getArguments() : Array<String>
 	{
-		return XASys.args();
+		return Sys.args();
 	}
 	
 	/**
@@ -71,21 +66,18 @@ class Application
 	*  exit code conventions in <a href="http://tldp.org/LDP/abs/html/exit-status.html">Exit Status</a> and
 	*  <a href="http://tldp.org/LDP/abs/html/exitcodes.html">Exit Codes</a>.</p>
 	**/
-	
 	public static function exit(code : Int) : Void
 	{
-		XASys.exit(code);
+		Sys.exit(code);
 	}
 	
 	/**
 	* <p>Terminates the application with the provided exit error message. Default error code is 1.</p>
 	* <p>This is just a shortcut to [xa.Utils.print(message)] combined with [xa.Application.exit(code)].</p>
 	**/
-	
 	public static function exitError(message : String, ?code : Int = 1) : Void
 	{
 		xa.Utils.printError(message);
 		exit(code);
 	}
-	
 }
