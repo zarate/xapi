@@ -29,27 +29,21 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
-
 class Utils
 {
-	
 	/**
 	* <p>Prints out to the standard output (automatically adds a line break).</p>
-	**/	
-	
-	public static function print(v : Dynamic) : Void
+	**/
+	public static function print(txt : String) : Void
 	{
-		XALib.println(v);
+		Sys.stdout().writeString(txt + '\n');
 	}
 	
 	/**
 	* <p>Prints out to the standard error (automatically adds a line break).</p>
 	**/
-	
-	public static function printError(v : Dynamic) : Void
+	public static function printError(txt : String) : Void
 	{
-		XAFile.stderr().writeString(v + '\n');
+		Sys.stderr().writeString(txt + '\n');
 	}
-	
 }
