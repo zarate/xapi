@@ -30,15 +30,12 @@ THE SOFTWARE.
 
 package xa;
 
-import xa.Backend;
-
-class Process extends XAProcess
+class Process extends sys.io.Process
 {
 
 	/**
 	* <p>Returns the standard error from the process.</p>
 	**/
-	
 	public function getError() : String
 	{
 		return readStream(stderr);
@@ -47,7 +44,6 @@ class Process extends XAProcess
 	/**
 	* <p>Returns the standard output from the process.</p> 
 	**/
-	
 	public function getOutput() : String
 	{
 		return readStream(stdout);
@@ -57,7 +53,6 @@ class Process extends XAProcess
 	*  <p>Returns true if the exit code is 0, false otherwise.</p>
 	*  <p>Please note that <strong>calling success() will block your app until the process has finished</strong>.</p>
 	**/
-	
 	public function success() : Bool
 	{
 		return (exitCode() == 0);
@@ -67,7 +62,6 @@ class Process extends XAProcess
 	*  <p>Returns process' exit code. If there are no errors, code is 0, more than 0 otherwise.</p>
 	*  <p>Please note that <strong>calling exitCode() will block your app until the process has finished</strong>.</p>
 	**/
-	
 	override public function exitCode() : Int
 	{
 		
@@ -86,7 +80,6 @@ class Process extends XAProcess
 	*  <p>Reads a stream line by line until the end. to avoid problems reading long streams.</p>
 	*  <p>Reading line by line in a loop prevents errors when the stream returned is too long.</p>
 	**/
-	
 	private function readStream(stream : haxe.io.Input) : String
 	{
 		
@@ -112,6 +105,5 @@ class Process extends XAProcess
 		
 	}
 	
-	private var _code : Int;
-	
+	private var _code : Int;	
 }
