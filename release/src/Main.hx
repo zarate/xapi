@@ -26,7 +26,7 @@ class Main
 	
 	static var HAXELIB_DESCRIPTOR_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + HAXELIB_DESCRIPTOR_FILENAME;
 	
-	static var XAPI_HAXEDOC_TEMPLATE_FILENAME : String = "haxedoc-template.xml";
+	static var XAPI_HAXEDOC_TEMPLATE_FILENAME : String = "template.xml";
 	
 	static var XAPI_HAXEDOC_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
 	
@@ -148,7 +148,9 @@ class Main
 		xa.Folder.create(_docsFolder);
 		
 		// we need to copy the template first
-		xa.File.copy(XAPI_HAXEDOC_TEMPLATE_PATH, _tmpFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME);
+		// to the docs folder since despite what the documentation says
+		// haxedoc only looks in CWD for the file
+		xa.File.copy(XAPI_HAXEDOC_TEMPLATE_PATH, _docsFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME);
 		
 		// then call haxedoc, filtering everything but the xa.* package
 		var args = 
@@ -173,6 +175,9 @@ class Main
 		}
 		
 		Sys.setCwd(currentCwd);
+		
+		// we have the docs now, we can remove the template.
+		xa.File.remove(_docsFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME);
 	}
 	
 	function generateHaxelibPackage() : Void

@@ -111,10 +111,13 @@ dt
 </style>
 
 </head>
+
 	<body>
 		<div class="document">
-		<div class="title">XAPI Documentation</div>
-		<data />
+			<div class="title">XAPI Documentation</div>
+			<data />
+			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
 	</body>
+	
 </html>
