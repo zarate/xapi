@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI Documentation</title>
+<title>XAPI 0.4 documentation</title>
 
 <style type="text/css">
 body
@@ -114,21 +114,19 @@ dt
 
 	<body>
 		<div class="document">
-		<div class="title">XAPI Documentation</div>
-			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.File</div><div class="classdoc">
+			<div class="title">XAPI 0.4 documentation</div>
+			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.File</div><div class="classdoc">
  <p>The File class provides access to files in the system.</p>
  <p>You can use both relative and absolute paths. Please note that paths are relative to your current working directory (which might not be your application's directory).</p>
 </div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>append(path : <a href="../String.html" class="type">String</a>, content : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Appends content to a text file.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>appendBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../xa/XAFileOutput.html" class="type">XAFileOutput</a></dt><dd>
-	 <p>Returns a std output object that you can use to append data to a binary file.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten (<strong>no warning!</strong>).</p>
 	 <p>Example: if you want to copy file "a.txt" to "folder", you need this:</p>
 	 <p><code>xa.File.copy("a.txt", "folder/a.txt");</code></p>
 	 <p>Note that you just can't pass "folder", <strong>you need to pass the full path of the new file</strong>.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>delete(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	 <p>Deletes a file.</p>
+	 DEPRECATED. Please use remove instead.
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>hasExtension(path : <a href="../String.html" class="type">String</a>, extensions : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;) : <a href="../Bool.html" class="type">Bool</a></dt><dd>
 	  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
 	  <p>Example: if you want to check if a file has either html or htm extension, you could try:</p>
@@ -141,13 +139,13 @@ dt
 	 <p>For example, it will open html files with your default browser and pdf files with your pdf reader.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>read(path : <a href="../String.html" class="type">String</a>) : <a href="../String.html" class="type">String</a></dt><dd>
 	 <p>Reads the content of a text file.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>readBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../xa/XAFileInput.html" class="type">XAFileInput</a></dt><dd>
-	 <p>Returns a std input object from which you can read the data of a binary file.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>remove(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+	 <p>Removes a file.</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>size(path : <a href="../String.html" class="type">String</a>) : <a href="../Int.html" class="type">Int</a></dt><dd>
+	 <p>Returns the size in bytes of the file</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>write(path : <a href="../String.html" class="type">String</a>, content : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Writes content to a text file.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>writeBinary(path : <a href="../String.html" class="type">String</a>) : <a href="../xa/XAFileOutput.html" class="type">XAFileOutput</a></dt><dd>
-	 <p>Returns a std output object that you can use to write data to a binary file.</p>
-</dd></dl><a href="../../index.html" class="index">Index</a>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a>
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
 	</body>

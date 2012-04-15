@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI Documentation</title>
+<title>XAPI 0.4 documentation</title>
 
 <style type="text/css">
 body
@@ -114,17 +114,18 @@ dt
 
 	<body>
 		<div class="document">
-		<div class="title">XAPI Documentation</div>
-			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Search</div><div class="classdoc">
+			<div class="title">XAPI 0.4 documentation</div>
+			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Search</div><div class="classdoc">
  <p>Provides search functionality over system items.</p>
-</div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>search(folderPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../String.html" class="type">String</a> -> <a href="../Bool.html" class="type">Bool</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;</dt><dd>
+</div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>search(folderPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../xa/filters/IFilter.html" class="type">xa.filters.IFilter</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;</dt><dd>
 	 <p>Searches for items in the given folder path.</p>
-	 <p>Similar to the <code>xa.Folder.copy()</code> method, you can exclude items from the search using a filter function matching the String -> Bool signature.
+	 <p>Similar to <code>xa.Folder.copy()</code>, you can exclude items from the search using a <code>xa.filters.IFilter</code> instance. See predefined filters in <code>xa.Filter</code>.
 	 The filter function will get called once per item, receiving the path of each item. It should return true to include the item in the
-	 search result or false otherwise. You can use predefined filters in the Filter class or roll your own.</p>
+	 search result or false otherwise. You can use predefined filters or roll your own implementing <code>xa.filters.IFilter</code>.</p>
+	 <p>Default filter is <code>xa.filters.All</code>.
 	 <p>The search is fully recursive by default (deep = -1). To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
 	 If you want to search for items in the root and the next level, pass 1. To search for items in root + first and second levels, past 2, etc.</p>
-</dd></dl><a href="../../index.html" class="index">Index</a>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a>
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
 	</body>

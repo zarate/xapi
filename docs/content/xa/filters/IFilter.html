@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI Documentation</title>
+<title>XAPI 0.4 documentation</title>
 
 <style type="text/css">
 body
@@ -114,10 +114,13 @@ dt
 
 	<body>
 		<div class="document">
-		<div class="title">XAPI Documentation</div>
-			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">typedef </span>xa.XALib</div><div class="importmod">import xa.Backend</div><div class="classdoc">
- <p>Alias for neko.Lib, php.Lib or cpp.Lib depending on the compilation target.</p>
-</div><div class="typedef">= <a href="../neko/Lib.html" class="type">neko.Lib</a></div><a href="../../index.html" class="index">Index</a>
+			<div class="title">XAPI 0.4 documentation</div>
+			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a><div class="classname"><span class="kwd">interface </span>xa.filters.IFilter</div><div class="classdoc">
+ <p>Main interface for filters.</p>
+ <p>The main purpose of a filter is removing certain results from search and copy operations.</p>
+</div><dl><dt><span class="kwd">function </span>filter(path : <a href="../../String.html" class="type">String</a>) : <a href="../../Bool.html" class="type">Bool</a></dt><dd>
+	 <p> Takes the path to an item (file or folder) and should return true for that item to be included in the results, false otherwise.
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a>
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
 	</body>

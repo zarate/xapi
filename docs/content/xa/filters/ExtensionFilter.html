@@ -115,15 +115,16 @@ dt
 	<body>
 		<div class="document">
 			<div class="title">XAPI 0.4 documentation</div>
-			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Filter</div><div class="classdoc">
- <p>The Filter class offers predetermined filters for actions such as Folder.copy() and Search.search().</p>
- <p>As a rule of thumb, when you build your own filters, you should return true when you want the given
- item to be copied or returned as part of the search, false otherwise.</p>
-</div><dl><dt><span class="kwd">static </span><span class="kwd">var </span>ALL : <a href="../xa/filters/IFilter.html" class="type">xa.filters.IFilter</a></dt><dd>
-	 <p>See <code>xa.filters.All</code>.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">var </span>ALL_BUT_HIDDEN : <a href="../xa/filters/IFilter.html" class="type">xa.filters.IFilter</a></dt><dd>
-	 <p>See <code>xa.filters.AllButHidden</code>.</p>
-</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a>
+			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.filters.ExtensionFilter</div><div class="implements">implements <a href="../../xa/filters/IFilter.html" class="type">IFilter</a></div><div class="classdoc">
+ <p>Filters files based on its extension.</p>
+ <p>It internally uses <code>xa.File.hasExtension()</code>, see for more info.</p>
+ <p>It allows all folders.</p>
+</div><dl><dt><span class="kwd">function </span>new(extensions : <a href="../../Array.html" class="type">Array</a>&lt;<a href="../../String.html" class="type">String</a>&gt;, allow : <a href="../../Bool.html" class="type">Bool</a>) : <a href="../../Void.html" class="type">Void</a></dt><dd>
+	 @param extensions Array of extensions to filter
+	 @param allow True if the files with the given extensions should be included, false otherwise.
+</dd><dt><span class="kwd">function </span>filter(path : <a href="../../String.html" class="type">String</a>) : <a href="../../Bool.html" class="type">Bool</a></dt><dd>
+	 @inheritdoc
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../../index.html" class="index">Index</a>
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
 	</body>

@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI Documentation</title>
+<title>XAPI 0.4 documentation</title>
 
 <style type="text/css">
 body
@@ -114,31 +114,33 @@ dt
 
 	<body>
 		<div class="document">
-		<div class="title">XAPI Documentation</div>
-			<a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Folder</div><div class="classdoc">
+			<div class="title">XAPI 0.4 documentation</div>
+			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Folder</div><div class="classdoc">
  <p>The Folder class offers functionality to work with folders in the system.</p>
-</div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../String.html" class="type">String</a> -> <a href="../Bool.html" class="type">Bool</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+</div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../xa/filters/IFilter.html" class="type">xa.filters.IFilter</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
-	 <p>If you want to exclude items from being copied, pass a filter function matching the String -> Bool signature.
+	 <p>If you want to exclude items from being copied, use an IFilter instance. See built-in filters in xa.Filter.
 	 The filter function will get called once per item, receiving the path (of each item, that is).
 	 It should return true if the item has to be copied, false otherwise. You can use the predefined filters in the Filter class or roll your own.</p>
 	 <p>The copy is fully recursive by default (deep = -1). To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
 	 If you want to copy items in the root and the next level, pass 1. To copy items in root + first and second levels, past 2, etc.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>copyByExtension(source : <a href="../String.html" class="type">String</a>, destination : <a href="../String.html" class="type">String</a>, extensions : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;, include : <a href="../Bool.html" class="type">Bool</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>copyByExtension(source : <a href="../String.html" class="type">String</a>, destination : <a href="../String.html" class="type">String</a>, extensions : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;, copy : <a href="../Bool.html" class="type">Bool</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	  <p>Copies source folder to destination filtering files by extension.</p>
-	  <p>Pass an array of extensions and whether files matching those extensions should be included (true) or excluded(false).</p>
+	  <p>Pass an array of extensions and whether files matching those extensions should be copied (true) or excluded (false).</p>
 	  <p>If you want to <strong>only</strong> copy .txt files from the source folder:</p>
 	  <p><code>xa.Folder.copyByExtension(source, destination, [".txt"], true);</code></p>
 	  <p>If you want to copy al files <strong>but</strong> .swf and .project files:</p>
 	  <p><code>xa.Folder.copyByExtension(source, destination, [".swf", ".project"], false);</code></p>
 	  <p>Extensions are case-insensitve (would match .txt or .TXT).</p>
-	  <p>Remeber that you can always roll your own filtering function if you have more specific needs.</p>
+	  <p>Remember that you can always roll your own filter if you have more specific needs.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>create(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Creates a folder in the given path.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>delete(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	 <p>Deletes the folder in the given path. <strong>The folder cannot be deleted if it's not empty</strong> (an exception is thrown).</p>
+	 DEPRECATED. Please use remove instead.
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>forceDelete(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	  <p>Deletes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
+	 DEPRECATED. Please use forceRemove instead.
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>forceRemove(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+	  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
 	  <p>In Mac and Linux uses <code>rm -rf path</code> and in Windows <code>RMDIR path /s /q</code></p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>getTotalItems(path : <a href="../String.html" class="type">String</a>) : <a href="../Int.html" class="type">Int</a></dt><dd>
 	 <p>Returns the number of items in the given folder.</p>
@@ -150,7 +152,11 @@ dt
 	 <p>Reads the contents of the given folder returning an array of strings with the paths to the items contained.</p>
 	 <p>Please note that <code>xa.Folder.read()</code> is NOT recursive, it returns items on the given folder only. If you need to
 	  read recursively, you can use <code>xa.Search.search()</code>.</p>
-</dd></dl><a href="../../index.html" class="index">Index</a>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>remove(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
+	 <p>Removes the folder in the given path. <strong>The folder cannot be removed if it's not empty</strong> (an exception is thrown).</p>
+</dd><dt><span class="kwd">static </span><span class="kwd">function </span>size(path : <a href="../String.html" class="type">String</a>) : <a href="../Int.html" class="type">Int</a></dt><dd>
+	 <p>Returns the size in bytes of the folder, including all its items.</p>
+</dd></dl><a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a>
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
 	</body>
