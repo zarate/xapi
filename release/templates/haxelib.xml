@@ -1,9 +1,10 @@
-<project name="xapi" url="https://github.com/zarate/xapi" license="GPL">
+<project name="xapi" url="https://github.com/zarate/xapi" license="BSD">
     <user name="zarate"/>
     <tag v="neko"/>
     <tag v="cpp"/>
     <tag v="php"/>
     <tag v="cross"/>
+    <tag v="xapi"/>
     <description>XAPI (Ximple API) is a high level API for haXe backends (Neko, PHP, C++). It's meant to simplify daily tasks and also extend the official API.</description>
     <version name="::version::">See CHANGELOG for full list of changes: https://github.com/zarate/xapi/blob/master/CHANGELOG</version>
 </project>
