@@ -1,0 +1,4 @@
+-neko bin/xapi-release.n
+-main Main
+-cp src
+-cp ../src/haxe
