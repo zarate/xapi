@@ -6,7 +6,6 @@
  * http://haxe.org/doc/haxelib/using_haxelib
  * 
  * TODO:
- * 		add version to docs
  * 		add output as parameter to output the final zip wherever
  */
 
@@ -147,10 +146,16 @@ class Main
 		_docsFolder = _tmpFolder + xa.System.getSeparator() + "docs";
 		xa.Folder.create(_docsFolder);
 		
+		var docTemplateOutputPath = _docsFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
+		
 		// we need to copy the template first
 		// to the docs folder since despite what the documentation says
 		// haxedoc only looks in CWD for the file
-		xa.File.copy(XAPI_HAXEDOC_TEMPLATE_PATH, _docsFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME);
+		xa.File.copy(XAPI_HAXEDOC_TEMPLATE_PATH, docTemplateOutputPath);
+		
+		// add version number to the docs template
+		var docsTemplate = new haxe.Template(xa.File.read(docTemplateOutputPath));
+		xa.File.write(docTemplateOutputPath, docsTemplate.execute({version: _version}));
 		
 		// then call haxedoc, filtering everything but the xa.* package
 		var args = 
@@ -177,7 +182,7 @@ class Main
 		Sys.setCwd(currentCwd);
 		
 		// we have the docs now, we can remove the template.
-		xa.File.remove(_docsFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME);
+		xa.File.remove(docTemplateOutputPath);
 	}
 	
 	function generateHaxelibPackage() : Void

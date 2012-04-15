@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI Documentation</title>
+<title>XAPI ::version:: documentation</title>
 
 <style type="text/css">
 body
@@ -114,7 +114,7 @@ dt
 
 	<body>
 		<div class="document">
-			<div class="title">XAPI Documentation</div>
+			<div class="title">XAPI ::version:: documentation</div>
 			<data />
 			<div id="footer">XAPI (Ximple API) is a high level API for Neko backends. Check out <a href="http://github.com/zarate/xapi">GitHub</a> for more info and samples.</div>
 		</div>
