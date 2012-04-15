@@ -1,13 +1,17 @@
 /*
-
-Generate haxedoc:
-http://haxe.org/doc/haxedoc?lang=en
-
-Generate haxelib:
-http://haxe.org/doc/haxelib/using_haxelib
-
-
-*/
+ * Generate haxedoc:
+ * http://haxe.org/doc/haxedoc?lang=en
+ * 
+ * Generate haxelib:
+ * http://haxe.org/doc/haxelib/using_haxelib
+ * 
+ * TODO:
+ * 		add version to docs
+ * 		add docs to haxelib zip
+ * 		add README to haxelib zip
+ * 		add haxedoc.xml to haxe lib zip
+ * 		add output as parameter to output the final zip wherever
+ */
 
 class Main
 {	
@@ -15,9 +19,17 @@ class Main
 	
 	var _haxedocXmlPath : String;
 	
-	static var XAPI_HAXEDOC_TEMPLATE_FILENAME : String = "template.xml";
+	var _version : String; 
 	
-	static var XAPI_HAXEDOC_TEMPLATE_PATH : String = "templates" + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
+	static var TEMPLATES_FOLDER_PATH : String = "templates";
+	
+	static var HAXELIB_DESCRIPTOR_FILENAME : String = "haxelib.xml";
+	
+	static var HAXELIB_DESCRIPTOR_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + HAXELIB_DESCRIPTOR_FILENAME;
+	
+	static var XAPI_HAXEDOC_TEMPLATE_FILENAME : String = "haxedoc-template.xml";
+	
+	static var XAPI_HAXEDOC_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
 	
 	static var XAPI_SRC_PATH : String = "../src/haxe";
 	
@@ -25,14 +37,38 @@ class Main
 	{
 		log("XAPI release generator");
 		
+		parseArguments();
 		generateTempFolder();
 		generateOutputXml();
 		generateDocs();
-		
-		// TODO: generate haxelib valid zip package
-		// TODO: add xapi version to zip and docs
+		generateHaxelibPackage();
 		
 		log("All done");
+	}
+	
+	function parseArguments() : Void
+	{
+		var args = xa.Application.getArguments();
+		
+		for(x in 0...args.length)
+		{
+			var arg = args[x];
+			
+			switch(arg)
+			{
+				case "-v":
+					_version = args[x+1];
+			}
+		}
+		
+		if(null == _version)
+		{
+			log("ERROR: Cannot find version to generate");
+			printHelp();
+			exit();
+		}
+		
+		log("About to generate release " + _version);
 	}
 	
 	function generateTempFolder() : Void
@@ -52,7 +88,7 @@ class Main
 	{
 		var classes = xa.Search.search(XAPI_SRC_PATH);		
 		
-		// start by generating a class with a reference with
+		// start by generating a class with a reference to
 		// all the classes in the main XAPI package
 		var allClassesFilename = "All.hx";
 		var allClassesPath = _tmpFolder + xa.System.getSeparator() + allClassesFilename;
@@ -126,6 +162,88 @@ class Main
 			log("ERROR while generating haxedoc");
 			exit(haxedoc.getError());
 		}
+	}
+	
+	function generateHaxelibPackage() : Void
+	{
+		// the haxelib package it's a zip with this structure
+		// * xapi-version
+		// 		** haxelib.xml 
+		//		** haxedoc.xml // <-- so we get docs displayed in lib.haxe.com
+		//		** README // <-- bit of info and point people to project's site
+		//		** docs // <-- in case someone is off-line
+		//		** xa
+		//			*** Application.hx
+		//			*** File.hx
+		//			*** ...
+		
+		var outputFolderName = "xapi-" + _version;
+		var outputHaxelibZipName = "xapi-" + _version + ".zip";
+		
+		// folder to drop all the haxelib goodies
+		var outputFolderPath = _tmpFolder + xa.System.getSeparator() + outputFolderName;
+
+		// copy the actual source code
+		xa.Folder.copy(XAPI_SRC_PATH, outputFolderPath);
+		
+		// add the haxelib descriptor xml from the template
+		var descriptorTemplate = new haxe.Template(xa.File.read(HAXELIB_DESCRIPTOR_TEMPLATE_PATH));
+		xa.File.write(outputFolderPath + xa.System.getSeparator() + HAXELIB_DESCRIPTOR_FILENAME, descriptorTemplate.execute({version: _version}));
+		
+		// now zip it
+		
+		// we can't change the root folder zip uses,
+		// so we need to change the current working directory
+		// and then comeback to the current one after zip is done
+		
+		var currentCwd = Sys.getCwd();
+		Sys.setCwd(_tmpFolder);
+		
+		var args = 
+		[
+			"-r",
+			outputHaxelibZipName,
+			outputFolderName
+		];
+		
+		var zip = new xa.Process("zip", args);
+		
+		if(!zip.success())
+		{
+			log("ERROR: Cannot zip for haxelib");
+			exit(zip.getError());
+		}
+		
+		// back to the wordking directory
+		Sys.setCwd(currentCwd);
+		
+		// now test it on haxelib
+		var outputHaxelibZipPath = _tmpFolder + xa.System.getSeparator() + outputHaxelibZipName;
+		
+		var haxelibArgs = 
+		[
+			"test",
+			outputHaxelibZipPath
+		];
+		
+		var haxelib = new xa.Process("haxelib", haxelibArgs);
+		
+		if(!haxelib.success())
+		{
+			log("ERROR: we don't pass haxelib validation");
+			exit(haxelib.getError());
+		}
+	}
+	
+	function printHelp() : Void
+	{
+		var help = [];
+		
+		help.push("Usage:");
+		help.push("\t-v: version to be generated, ie: 0.4, 1.2, etc");
+		help.push("\t-h -help: print this help");
+		
+		log(help.join("\n"));
 	}
 	
 	public static function exit(?txt : String) : Void
