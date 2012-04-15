@@ -7,9 +7,6 @@
  * 
  * TODO:
  * 		add version to docs
- * 		add docs to haxelib zip
- * 		add README to haxelib zip
- * 		add haxedoc.xml to haxe lib zip
  * 		add output as parameter to output the final zip wherever
  */
 
@@ -20,6 +17,8 @@ class Main
 	var _haxedocXmlPath : String;
 	
 	var _version : String; 
+	
+	var _docsFolder : String;
 	
 	static var TEMPLATES_FOLDER_PATH : String = "templates";
 	
@@ -32,6 +31,8 @@ class Main
 	static var XAPI_HAXEDOC_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
 	
 	static var XAPI_SRC_PATH : String = "../src/haxe";
+	
+	static var XAPI_README_PATH : String = "../README";
 	
 	public function new()
 	{
@@ -115,7 +116,6 @@ class Main
 		
 		xa.File.write(allClassesPath, allClassesContent.join("\n"));
 		
-		
 		// now let's create the XML required by haxedoc
 		_haxedocXmlPath = _tmpFolder + xa.System.getSeparator() + "haxedoc.xml";
 		var allBinaryPath = _tmpFolder + xa.System.getSeparator() + "all.n";
@@ -144,16 +144,25 @@ class Main
 	
 	function generateDocs() : Void
 	{
+		_docsFolder = _tmpFolder + xa.System.getSeparator() + "docs";
+		xa.Folder.create(_docsFolder);
+		
 		// we need to copy the template first
 		xa.File.copy(XAPI_HAXEDOC_TEMPLATE_PATH, _tmpFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME);
 		
 		// then call haxedoc, filtering everything but the xa.* package
 		var args = 
 		[
-			_haxedocXmlPath,
+			"../" + xa.FileSystem.getNameFromPath(_haxedocXmlPath),
 			"-f",
 			"xa"
 		];
+		
+		// we change CWD here because haxedocs doesn't 
+		// support an output folder, it simply spits out
+		// in CWD
+		var currentCwd = Sys.getCwd();
+		Sys.setCwd(_docsFolder);
 		
 		var haxedoc = new xa.Process("haxedoc", args);
 		
@@ -162,6 +171,8 @@ class Main
 			log("ERROR while generating haxedoc");
 			exit(haxedoc.getError());
 		}
+		
+		Sys.setCwd(currentCwd);
 	}
 	
 	function generateHaxelibPackage() : Void
@@ -186,9 +197,18 @@ class Main
 		// copy the actual source code
 		xa.Folder.copy(XAPI_SRC_PATH, outputFolderPath);
 		
-		// add the haxelib descriptor xml from the template
+		// add haxelib descriptor xml from the template
 		var descriptorTemplate = new haxe.Template(xa.File.read(HAXELIB_DESCRIPTOR_TEMPLATE_PATH));
 		xa.File.write(outputFolderPath + xa.System.getSeparator() + HAXELIB_DESCRIPTOR_FILENAME, descriptorTemplate.execute({version: _version}));
+		
+		// add haxedoc.xml 
+		xa.File.copy(_haxedocXmlPath, outputFolderPath + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_haxedocXmlPath));
+		
+		// add the README
+		xa.File.copy(XAPI_README_PATH, outputFolderPath + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(XAPI_README_PATH));
+		
+		// add the docs
+		xa.Folder.copy(_docsFolder, outputFolderPath + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_docsFolder));
 		
 		// now zip it
 		
