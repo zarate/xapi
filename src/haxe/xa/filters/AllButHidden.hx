@@ -23,6 +23,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>Returns false for all hidden files. Please see [xa.FileSystem.isHidden()] for a full
+* explanation of how this works across different systems.</p>
+**/
+
 package xa.filters;
 
 import xa.filters.IFilter;
@@ -31,6 +36,9 @@ class AllButHidden implements IFilter
 {
 	public function new(){}
 	
+	/**
+	* @inheritdoc
+	**/
 	public function filter(path : String) : Bool
 	{
 		return !xa.FileSystem.isHidden(path);

@@ -37,15 +37,12 @@ class Filter
 {
 
 	/**
-	* <p>Returns true for all items.</p> 
+	* <p>See [xa.filters.All].</p> 
 	**/	
-	
 	public static var ALL : IFilter = new xa.filters.All();
 
 	/**
-	* <p>Returns false for all hidden files. Please see xa.FileSystem.isHidden for a full
-	* explanation of how this works across different systems.</p>
+	* <p>See [xa.filters.AllButHidden].</p>
 	**/
-	
 	public static var ALL_BUT_HIDDEN : IFilter = new xa.filters.AllButHidden();
 }

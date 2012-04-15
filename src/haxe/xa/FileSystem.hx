@@ -78,7 +78,7 @@ class FileSystem
 	* <p>In Mac and Linux, all files/folders starting with "." are considered hidden. Please note that in OSX there are
 	*  other methods to hide files and folders, see <a href="http://www.westwind.com/reference/OS-X/invisibles.html">Mac OS X Hidden Files and Directories</a> for more info.</p> 
 	* <p>In Windows, we use the <a href="http://www.computerhope.com/attribhl.htm">attrib command</a>, so the process might be fairly slow.</p>
-	* <p>Ideally, <a href="http://haxe.org/api/neko/filestat">neko.io.FileStat</a> would return whether an item is hidden or not in a crossplatform 
+	* <p>Ideally, <a href="http://haxe.org/api/sys/filestat">sys.io.FileStat</a> would return whether an item is hidden or not in a crossplatform 
 	* and native manner, but until then, this is our best bet. If you can come up with faster and more reliable ways of finding out, please let us know!</p>
 	**/
 	public static function isHidden(path : String) : Bool

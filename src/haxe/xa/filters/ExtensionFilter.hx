@@ -23,18 +23,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>Filters files based on its extension.</p>
+* <p>It internally uses [xa.File.hasExtension()], see for more info.</p>
+* <p>It allows all folders.</p>
+**/
+
 package xa.filters;
 
 import xa.filters.IFilter;
 
 class ExtensionFilter implements IFilter
 {
-	public function new(extensions : Array<String>, copy : Bool)
+	/**
+	* @param extensions Array of extensions to filter
+	* @param allow True if the files with the given extensions should be included, false otherwise.
+	**/
+	public function new(extensions : Array<String>, allow : Bool)
 	{
 		this.extensions = extensions;
-		this.copy = copy;
+		this.allow = allow;
 	}
 	
+	/**
+	* @inheritdoc
+	**/
 	public function filter(path : String) : Bool
 	{
 		var include = false;
@@ -42,7 +55,7 @@ class ExtensionFilter implements IFilter
 		if(xa.File.isFile(path))
 		{
 			var hasExtension = xa.File.hasExtension(path, extensions);
-			include = (copy)? hasExtension : !hasExtension;
+			include = (allow)? hasExtension : !hasExtension;
 		}
 		else
 		{
@@ -54,5 +67,5 @@ class ExtensionFilter implements IFilter
 	
 	private var extensions : Array<String>;
 	
-	private var copy : Bool;
+	private var allow : Bool;
 }

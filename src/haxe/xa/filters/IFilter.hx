@@ -23,9 +23,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>Main interface for filters.</p>
+* <p>The main purpose of a filter is removing certain results from search and copy operations.</p>
+**/
+
 package xa.filters;
 
 interface IFilter
 {
+	/**
+	* <p> Takes the path to an item (file or folder) and should return true for that item to be included in the results, false otherwise.
+	**/
 	function filter(path : String) : Bool;
 }

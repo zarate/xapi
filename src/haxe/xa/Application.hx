@@ -44,7 +44,7 @@ class Application
 	
 	/**
 	* <p>Returns the full path of your application's executable.</p>
-	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.executablePath()</a>.</p> 
+	* <p>Internal call is <a href="http://haxe.org/api/sys">Sys.executablePath()</a>.</p> 
 	**/
 	public static function getPath() : String
 	{
@@ -53,7 +53,7 @@ class Application
 	
 	/**
 	* <p>Returns an array of strings with the parameters passed to your application.</p>
-	* <p>Internal Neko call is <a href="http://haxe.org/api/neko/sys">neko.Sys.args()</a>.</p>  
+	* <p>Internal call is <a href="http://haxe.org/api/sys">Sys.args()</a>.</p>  
 	**/
 	public static function getArguments() : Array<String>
 	{

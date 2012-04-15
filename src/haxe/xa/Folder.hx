@@ -52,9 +52,11 @@ class Folder
 		sys.FileSystem.createDirectory(path);
 	}
 	
+	/**
+	* DEPRECATED. Please use remove instead.
+	**/
 	public static function delete(path : String) : Void 
 	{
-		// DEPRECATED. Please use remove instead.
 		remove(path);
 	}
 	
@@ -66,9 +68,11 @@ class Folder
 		sys.FileSystem.deleteDirectory(path);
 	}
 	
+	/**
+	* DEPRECATED. Please use forceRemove instead.
+	**/
 	public static function forceDelete(path : String) : Void
 	{
-		// DEPRECATED. Please use forceRemove instead.
 		forceRemove(path);
 	}
 	

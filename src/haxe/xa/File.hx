@@ -64,9 +64,11 @@ class File
 		f.close();
 	}
 	
+	/**
+	* DEPRECATED. Please use remove instead.
+	**/
 	public static function delete(path : String) : Void 
 	{
-		// DEPRECATED. Please use remove instead.
 		remove(path);
 	}
 

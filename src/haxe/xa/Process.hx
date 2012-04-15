@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 /**
 * <p>Use the Process to launch and interact with other tools in the system (SVN, MTASC, commands such ls, etc.).</p>
-* <p>See <a href="http://haxe.org/api/neko/io/process">neko.io.Process</a> for the full API and <a href="http://haxe.org/api/neko/io/process/examples">usage samples</a>.</p>
+* <p>See <a href="http://haxe.org/api/sys/io/process">sys.io.Process</a> for the full API and <a href="http://haxe.org/api/neko/io/process/examples">usage samples</a>.</p>
 **/
 
 package xa;

@@ -23,6 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/**
+* <p>Default filter for search and copy operations, allows all items.</p>
+**/
 package xa.filters;
 
 import xa.filters.IFilter;
@@ -31,6 +34,9 @@ class All implements IFilter
 {
 	public function new(){}
 	
+	/**
+	* @inheritdoc
+	**/
 	public function filter(path : String) : Bool
 	{
 		return true;
