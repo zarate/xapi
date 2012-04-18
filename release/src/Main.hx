@@ -5,9 +5,6 @@
  * Generate haxelib:
  * http://haxe.org/doc/haxelib/using_haxelib
  * 
- * TODO:
- * 		add output as parameter to output the final zip wherever
- * 		delete temp folder when done
  */
 
 class Main
@@ -21,6 +18,8 @@ class Main
 	var _docsFolder : String;
 	
 	var _sourceFolder : String;
+	
+	var _tmpOutputFolder : String;
 	
 	var _outputFolder : String;
 	
@@ -68,6 +67,13 @@ class Main
 			{
 				case "-v":
 					_version = args[x+1];
+				
+				case "-o":
+					_outputFolder = args[x+1];
+				
+				case "-h", "-help":
+					printHelp();
+					exit();
 			}
 		}
 		
@@ -78,13 +84,26 @@ class Main
 			exit();
 		}
 		
+		if(null == _outputFolder)
+		{
+			_outputFolder = Sys.getCwd();
+		}
+		
+		if(!xa.Folder.isFolder(_outputFolder))
+		{
+			log("ERROR: output folder is not valid: " + _outputFolder);
+			printHelp();
+			exit();
+		}
+		
 		log("About to generate release " + _version);
 	}
 	
 	function createFolders() : Void
 	{
-		// FIXME: use folder from tmp, delete when done
-		_tmpFolder = "bin/tmp";
+		_tmpFolder = xa.System.getTempFolder() + xa.System.getSeparator() + "xapi-tmp-" + _version;
+		
+		log("Working here: " + _tmpFolder);
 		
 		if(xa.Folder.isFolder(_tmpFolder))
 		{
@@ -93,7 +112,7 @@ class Main
 		
 		xa.Folder.create(_tmpFolder);
 		
-		_outputFolder = _tmpFolder + xa.System.getSeparator() + "xapi-" + _version;
+		_tmpOutputFolder = _tmpFolder + xa.System.getSeparator() + "xapi-" + _version;
 		_sourceFolder = _tmpFolder + xa.System.getSeparator() + "source";
 	}
 	
@@ -129,7 +148,7 @@ class Main
 	function copySourceCode() : Void
 	{
 		log("Copying source code");
-		xa.Folder.copy(_sourceFolder + XAPI_SRC_PATH, _outputFolder);
+		xa.Folder.copy(_sourceFolder + XAPI_SRC_PATH, _tmpOutputFolder);
 	}
 	
 	function generateHaxelibXml() : Void
@@ -137,7 +156,7 @@ class Main
 		log("Generating haxelib.xml");
 		
 		var descriptorTemplate = new haxe.Template(xa.File.read(HAXELIB_DESCRIPTOR_TEMPLATE_PATH));
-		xa.File.write(_outputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(HAXELIB_DESCRIPTOR_TEMPLATE_PATH), descriptorTemplate.execute({version: _version}));
+		xa.File.write(_tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(HAXELIB_DESCRIPTOR_TEMPLATE_PATH), descriptorTemplate.execute({version: _version}));
 	}
 	
 	function generateHaxedocXml() : Void
@@ -174,7 +193,7 @@ class Main
 		xa.File.write(allClassesPath, allClassesContent.join("\n"));
 		
 		// now let's create the XML required by haxedoc
-		_haxedocXmlPath = _outputFolder + xa.System.getSeparator() + "haxedoc.xml";
+		_haxedocXmlPath = _tmpOutputFolder + xa.System.getSeparator() + "haxedoc.xml";
 		var allBinaryPath = _tmpFolder + xa.System.getSeparator() + "all.n";
 		
 		var args = 
@@ -263,14 +282,14 @@ class Main
 		//			*** File.hx
 		//			*** ...
 		
-		var outputFolderName = xa.FileSystem.getNameFromPath(_outputFolder);
-		var outputHaxelibZipName = xa.FileSystem.getNameFromPath(_outputFolder) + ".zip";
+		var outputFolderName = xa.FileSystem.getNameFromPath(_tmpOutputFolder);
+		var outputHaxelibZipName = xa.FileSystem.getNameFromPath(_tmpOutputFolder) + ".zip";
 		
 		// add the README
-		xa.File.copy(_sourceFolder + xa.System.getSeparator() + XAPI_README_FILENAME, _outputFolder + xa.System.getSeparator() + XAPI_README_FILENAME);
+		xa.File.copy(_sourceFolder + xa.System.getSeparator() + XAPI_README_FILENAME, _tmpOutputFolder + xa.System.getSeparator() + XAPI_README_FILENAME);
 		
 		// add the docs
-		xa.Folder.copy(_docsFolder, _outputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_docsFolder));
+		xa.Folder.copy(_docsFolder, _tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_docsFolder));
 		
 		// now zip it
 		// we can't change the root folder zip uses,
@@ -314,6 +333,22 @@ class Main
 			log("ERROR: we don't pass haxelib validation");
 			exit(haxelib.getError());
 		}
+		
+		// WE ARE GOOD TO GO!!
+		// move the zip to the output folder
+		
+		var finalZipPath = _outputFolder + xa.FileSystem.getNameFromPath(outputHaxelibZipPath);		
+		
+		if(xa.File.isFile(finalZipPath))
+		{
+			xa.File.remove(finalZipPath);
+		}
+		
+		xa.File.copy(outputHaxelibZipPath, finalZipPath);
+		
+		log(_version + " ZIP ready: " + finalZipPath);
+		
+		xa.Folder.forceDelete(_tmpFolder);
 	}
 	
 	function printHelp() : Void
@@ -322,6 +357,7 @@ class Main
 		
 		help.push("Usage:");
 		help.push("\t-v: version to be generated, ie: 0.4, 1.2, etc");
+		help.push("\t-o: output folder. Optional, defaults to current working directory");
 		help.push("\t-h -help: print this help");
 		
 		log(help.join("\n"));
