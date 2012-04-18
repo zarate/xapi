@@ -1,3 +1,7 @@
+***** TO BE RELEASED
+
+* Fixed old non-crossplatform references to the neko.* package.
+
 ***** 15 / April / 2012: 0.4
 
 * Minimum version is haxe 2.0.9

@@ -163,7 +163,7 @@ class Folder
 		
 		for(item in items)
 		{
-			totalBytes += neko.FileSystem.stat(item).size;
+			totalBytes += sys.FileSystem.stat(item).size;
 		}
 		
 		return totalBytes;		

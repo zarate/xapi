@@ -98,7 +98,7 @@ class FileSystem
 			// Sadly, this only makes things slower :|
 			
 			var output = StringTools.trim(p.getOutput());
-			output = output.substr(0, output.length - neko.FileSystem.fullPath(path).length);
+			output = output.substr(0, output.length - sys.FileSystem.fullPath(path).length);
 			
 			hidden = (output.indexOf('H') != -1);
 		}
