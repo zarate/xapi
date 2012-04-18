@@ -40,6 +40,8 @@ class Main
 	
 	public function new()
 	{
+		var now = Date.now();
+		
 		log("XAPI release generator");
 		
 		parseArguments();
@@ -51,7 +53,7 @@ class Main
 		generateDocs();
 		generateHaxelibPackage();
 		
-		log("All done");
+		log("All done (" + ((Date.now().getTime() - now.getTime()) / 1000) + "s)");
 	}
 	
 	function parseArguments() : Void
@@ -97,7 +99,7 @@ class Main
 	
 	function checkoutSource() : Void
 	{
-		log("About to clone remote repository: " + XAPI_REPO_URL);
+		log("Cloning remote repository: " + XAPI_REPO_URL);
 		
 		var clone = new xa.Process("git", ["clone", XAPI_REPO_URL, _sourceFolder]);
 		
@@ -126,13 +128,13 @@ class Main
 	
 	function copySourceCode() : Void
 	{
-		log("About to copy source code");
+		log("Copying source code");
 		xa.Folder.copy(_sourceFolder + XAPI_SRC_PATH, _outputFolder);
 	}
 	
 	function generateHaxelibXml() : Void
 	{
-		log("About to generate haxelib.xml");
+		log("Generating haxelib.xml");
 		
 		var descriptorTemplate = new haxe.Template(xa.File.read(HAXELIB_DESCRIPTOR_TEMPLATE_PATH));
 		xa.File.write(_outputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(HAXELIB_DESCRIPTOR_TEMPLATE_PATH), descriptorTemplate.execute({version: _version}));
@@ -140,7 +142,7 @@ class Main
 	
 	function generateHaxedocXml() : Void
 	{
-		log("About to generate haxedoc.xml");
+		log("Generating haxedoc.xml");
 		
 		var classes = xa.Search.search(_sourceFolder + XAPI_SRC_PATH);		
 		
@@ -197,7 +199,7 @@ class Main
 	
 	function generateDocs() : Void
 	{
-		log("About to generate docs.");
+		log("Generating docs");
 		
 		// to generate the documentation we pass the haxedoc.xml file generated
 		// before to the haxedoc tool.
@@ -248,7 +250,7 @@ class Main
 	
 	function generateHaxelibPackage() : Void
 	{
-		log("About to generate ZIP file");
+		log("Generating ZIP file");
 		
 		// the haxelib package it's a zip with this structure:
 		// * xapi-version
