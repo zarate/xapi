@@ -55,7 +55,7 @@ class File
 	}
 	
 	/**
-	* <p>Appends content to a text file.</p> 
+	* <p>Appends content to a text file. It creates the file if it doesn't exist.</p> 
 	**/
 	public static function append(path : String, content : String) : Void 
 	{
