@@ -1,7 +1,7 @@
 import massive.munit.Assert;
 import haxe.unit.TestRunner;
 
-class FileAppendTest
+class FileWriteTest
 {
 	@BeforeClass
 	public function setup()
@@ -16,25 +16,15 @@ class FileAppendTest
 	}
 	
 	@Test
-	public function simple_append_positive()
+	public function simple_write()
 	{
 		var filepath = TestUtils.getTmpFile();
 				
 		var txt = "hello world";
 		
-		xa.File.append(filepath, txt);
+		xa.File.write(filepath, txt);
 		
 		Assert.isTrue(xa.File.read(filepath) == txt);
-	}
-	
-	@Test
-	public function simple_append_negative()
-	{
-		var filepath = TestUtils.getTmpFile();
-				
-		xa.File.append(filepath, "hello world");
-		
-		Assert.isFalse(xa.File.read(filepath) == "");
 	}
 	
 	@Test
@@ -42,7 +32,7 @@ class FileAppendTest
 	{
 		var filepath = TestUtils.getTmpFile();
 		
-		xa.File.append(filepath, "one\ntwo\nthree"); //FIXME: doubt this is cross-platform
+		xa.File.write(filepath, "one\ntwo\nthree"); //FIXME: doubt this is cross-platform
 		
 		Assert.isTrue(xa.File.read(filepath).split("\n").length == 3);
 	}
@@ -54,13 +44,13 @@ class FileAppendTest
 		
 		try
 		{
-			xa.File.append("", "");
+			xa.File.write("", "");
 			result = true;
 		}
 		catch(e : Dynamic){}
 		
 		Assert.isFalse(result);
-	}
+	}	
 	
 	@Test
 	public function null_path()
@@ -69,7 +59,7 @@ class FileAppendTest
 		
 		try
 		{
-			xa.File.append(null, "");
+			xa.File.write(null, "");
 			result = false;
 		}
 		catch(e : Dynamic){}
@@ -84,7 +74,7 @@ class FileAppendTest
 		
 		try
 		{
-			xa.File.append(TestUtils.getTmpFile(), null);
+			xa.File.write(TestUtils.getTmpFile(), null);
 			result = false;
 		}
 		catch(e : Dynamic){}

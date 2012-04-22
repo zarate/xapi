@@ -87,6 +87,36 @@ class FileHasExtensionTest
 	}
 	
 	@Test
+	public function null_path()
+	{
+		var result = false;
+		
+		try
+		{
+			xa.File.hasExtension(null, []);
+			result = true;
+		}
+		catch(e : Dynamic){}
+		
+		Assert.isFalse(result);
+	}
+	
+	@Ignore("Pending confirmation from Nicolas") @Test
+	public function empty_path()
+	{
+		var result = false;
+		
+		try
+		{
+			xa.File.hasExtension("", []);
+			result = true;
+		}
+		catch(e : Dynamic){}
+		
+		Assert.isFalse(result);
+	}
+	
+	@Test
 	public function file_no_extension()
 	{
 		var filepath = TestUtils.getTmpFile("wadus");

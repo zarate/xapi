@@ -31,4 +31,25 @@ class FileIsFileTest
 		
 		Assert.isFalse(xa.File.isFile(tmpFolder));
 	}
+	
+	@Test
+	public function empty_path()
+	{
+		Assert.isFalse(xa.File.isFile(""));
+	}
+	
+	@Test
+	public function null_path()
+	{
+		var result = true;
+		
+		try
+		{
+			xa.File.isFile(null);
+			result = false;
+		}
+		catch(e : Dynamic){}
+		
+		Assert.isTrue(result);
+	}
 }
