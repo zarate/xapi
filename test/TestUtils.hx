@@ -21,18 +21,37 @@ class TestUtils
 		xa.Folder.forceRemove(_tmpFolder);
 	}
 	
-	public static function getTmpFile(?filename : String) : String
+	public static function getTmpFolder(?name : String) : String
 	{
-		if(null == filename)
+		if(null == name)
 		{
-			filename = "tmp-" + Std.random(10000);
+			name = "tmp-folder-" + Std.random(10000);
 		}
 		
-		if(xa.File.isFile(filename))
+		var fullpath = _tmpFolder + xa.System.getSeparator() + name;
+		
+		if(xa.Folder.isFolder(fullpath))
 		{
-			xa.File.remove(filename);
+			xa.Folder.forceRemove(fullpath);
 		}
 		
-		return _tmpFolder + xa.System.getSeparator() + filename;
+		return fullpath;
+	}
+		
+	public static function getTmpFile(?name : String) : String
+	{
+		if(null == name)
+		{
+			name = "tmp-" + Std.random(10000);
+		}
+		
+		var fullpath = _tmpFolder + xa.System.getSeparator() + name;
+		
+		if(xa.File.isFile(fullpath))
+		{
+			xa.File.remove(fullpath);
+		}
+		
+		return fullpath;
 	}
 }
