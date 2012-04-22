@@ -38,6 +38,8 @@ class ExtensionFilter implements IFilter
 	/**
 	* @param extensions Array of extensions to filter
 	* @param allow True if the files with the given extensions should be included, false otherwise.
+	* 
+	* @see xa.File#hasExtension()
 	**/
 	public function new(extensions : Array<String>, allow : Bool)
 	{

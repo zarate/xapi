@@ -1,5 +1,7 @@
 ***** TO BE RELEASED
 
+* Fixed issue #1 > xa.File.hasExtension() matches partial extensions
+* xa.File.hasExtension() takes no "." on the extensions passed any more.
 * Fixed old non-crossplatform references to the neko.* package.
 
 ***** 15 / April / 2012: 0.4

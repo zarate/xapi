@@ -101,18 +101,30 @@ class File
 	
 	/**
 	*  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
-	*  <p>Example: if you want to check if a file has either html or htm extension, you could try:</p>
-	*  <p>[var isHtml = xa.File.hasExtension(path, \[".htm", ".html"\])].</p>
-	*  <p>Extensions are case-insensitve (".txt" will match both .txt and .TXT).</p>
+	*  <p>Example: if you want to check if a file has either HTML or HTM extension, you could try:</p>
+	*  <p>[var isHtml = xa.File.hasExtension("file.html", \["htm", "html"\])].</p>
+	*  <p>Extensions are case-insensitve ("txt" will match both txt and TXT).</p>
+	*  <p><b>DO NOT INCLUDE "." on the extensions to be matched.</b></p>
 	**/  
 	public static function hasExtension(path : String, extensions : Array<String>) : Bool
 	{
-		var name = xa.FileSystem.getNameFromPath(path);
+		var ret = false;
 		
-		var w = extensions.join("|");
-		var r = new EReg(w, 'i');
+		var file = new haxe.io.Path(path);
 		
-		return r.match(name);
+		if(null != file.ext) // if file has no extension, exit soon
+		{
+			for(extension in extensions)
+			{
+				if(extension.toLowerCase() == file.ext.toLowerCase())
+				{
+					ret = true;
+					break;
+				}
+			}
+		}
+		
+		return ret;
 	}
 	
 	/**
