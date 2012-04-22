@@ -65,14 +65,6 @@ class File
 	}
 	
 	/**
-	* DEPRECATED. Please use remove instead.
-	**/
-	public static function delete(path : String) : Void 
-	{
-		remove(path);
-	}
-
-	/**
 	* <p>Removes a file.</p> 
 	**/
 	public static function remove(path : String) : Void

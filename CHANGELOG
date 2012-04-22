@@ -1,6 +1,7 @@
 ***** TO BE RELEASED
 
-* Fixed issue #1 > xa.File.hasExtension() matches partial extensions
+* Finally removed deprecated xa.File.delete(), xa.Folder.delete() and xa.Folder.forceDelete().
+* Fixed issue #1 > xa.File.hasExtension() matches partial extensions.
 * xa.File.hasExtension() takes no "." on the extensions passed any more.
 * Fixed old non-crossplatform references to the neko.* package.
 

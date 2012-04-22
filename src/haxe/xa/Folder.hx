@@ -53,27 +53,11 @@ class Folder
 	}
 	
 	/**
-	* DEPRECATED. Please use remove instead.
-	**/
-	public static function delete(path : String) : Void 
-	{
-		remove(path);
-	}
-	
-	/**
 	* <p>Removes the folder in the given path. <strong>The folder cannot be removed if it's not empty</strong> (an exception is thrown).</p> 
 	**/
 	public static function remove(path : String) : Void 
 	{
 		sys.FileSystem.deleteDirectory(path);
-	}
-	
-	/**
-	* DEPRECATED. Please use forceRemove instead.
-	**/
-	public static function forceDelete(path : String) : Void
-	{
-		forceRemove(path);
 	}
 	
 	/**
