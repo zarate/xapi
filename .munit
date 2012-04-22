@@ -1,0 +1,6 @@
+version=0.9.2.3
+src=test
+bin=test/build
+report=test/report
+hxml=test/test.hxml
+classPaths=src/haxe
