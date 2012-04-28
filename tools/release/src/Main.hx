@@ -1,21 +1,13 @@
 /*
- * Generate haxedoc:
- * http://haxe.org/doc/haxedoc?lang=en
- * 
  * Generate haxelib:
- * http://haxe.org/doc/haxelib/using_haxelib
- * 
+ * http://haxe.org/doc/haxelib/using_haxelib 
  */
 
 class Main
 {	
 	var _tmpFolder : String;
 	
-	var _haxedocXmlPath : String;
-	
 	var _version : String; 
-	
-	var _docsFolder : String;
 	
 	var _sourceFolder : String;
 	
@@ -26,10 +18,6 @@ class Main
 	static var TEMPLATES_FOLDER_PATH : String = "templates";
 	
 	static var HAXELIB_DESCRIPTOR_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + "haxelib.xml";
-	
-	static var XAPI_HAXEDOC_TEMPLATE_FILENAME : String = "template.xml";
-	
-	static var XAPI_HAXEDOC_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
 	
 	static var XAPI_SRC_PATH : String = "/src/haxe";
 	
@@ -48,8 +36,6 @@ class Main
 		checkoutSource();
 		copySourceCode();
 		generateHaxelibXml();
-		generateHaxedocXml();
-		generateDocs();
 		generateHaxelibPackage();
 		
 		log("All done (" + ((Date.now().getTime() - now.getTime()) / 1000) + "s)");
@@ -159,113 +145,6 @@ class Main
 		xa.File.write(_tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(HAXELIB_DESCRIPTOR_TEMPLATE_PATH), descriptorTemplate.execute({version: _version}));
 	}
 	
-	function generateHaxedocXml() : Void
-	{
-		log("Generating haxedoc.xml");
-		
-		var classes = xa.Search.search(_sourceFolder + XAPI_SRC_PATH);		
-		
-		// start by generating a class with a reference to
-		// all the classes in the main XAPI package
-		var allClassesFilename = "All.hx";
-		var allClassesPath = _sourceFolder + XAPI_SRC_PATH + xa.System.getSeparator() + allClassesFilename;
-		
-		var allClassesContent = [];
-		allClassesContent.push("class All");
-		allClassesContent.push("{");
-		
-		for(x in 0...classes.length)
-		{
-			if(!xa.File.isFile(classes[x])) // ignore folders
-			{
-				continue;
-			}
-			
-			var className = classes[x].substr((_sourceFolder + XAPI_SRC_PATH).length + 1);
-			className = className.substr(0, className.lastIndexOf("."));
-			className = StringTools.replace(className, "/", ".");
-			
-			allClassesContent.push("\tvar instance_" + x + " : " + className + ";");
-		}
-		
-		allClassesContent.push("}");
-		
-		xa.File.write(allClassesPath, allClassesContent.join("\n"));
-		
-		// now let's create the XML required by haxedoc
-		_haxedocXmlPath = _tmpOutputFolder + xa.System.getSeparator() + "haxedoc.xml";
-		var allBinaryPath = _tmpFolder + xa.System.getSeparator() + "all.n";
-		
-		var args = 
-		[
-			"-xml",
-			_haxedocXmlPath,
-			allClassesFilename,
-			"-neko", // we pass neko here because otherwise the haxe compiler complains, and rightly so since XAPI uses Neko APIs
-			allBinaryPath,
-			"-cp",
-			_sourceFolder + XAPI_SRC_PATH
-		];
-		
-		var haxe = new xa.Process("haxe", args);
-		
-		if(!haxe.success())
-		{
-			log("ERROR while generating haxedoc.xml");
-			exit(haxe.getError());
-		}
-	}
-	
-	function generateDocs() : Void
-	{
-		log("Generating docs");
-		
-		// to generate the documentation we pass the haxedoc.xml file generated
-		// before to the haxedoc tool.
-		// we also pass our own template for a simpler output
-		
-		_docsFolder = _tmpFolder + xa.System.getSeparator() + "docs";
-		xa.Folder.create(_docsFolder);
-		
-		var docTemplateOutputPath = _docsFolder + xa.System.getSeparator() + XAPI_HAXEDOC_TEMPLATE_FILENAME;
-		
-		// we need to first copy the template to the docs folder 
-		// since despite what the documentation says haxedoc only looks in CWD for it
-		xa.File.copy(XAPI_HAXEDOC_TEMPLATE_PATH, docTemplateOutputPath);
-		
-		// add version number to the docs template
-		var docsTemplate = new haxe.Template(xa.File.read(docTemplateOutputPath));
-		xa.File.write(docTemplateOutputPath, docsTemplate.execute({version: _version}));
-		
-		// copy over haxedoc.xml
-		xa.File.copy(_haxedocXmlPath, _docsFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_haxedocXmlPath));
-		
-		// then call haxedoc, filtering everything but the xa.* package
-		var args = 
-		[
-			xa.FileSystem.getNameFromPath(_haxedocXmlPath),
-			"-f",
-			"xa"
-		];
-		
-		// we change CWD here because haxedocs doesn't 
-		// support an output folder, it simply spits out in CWD
-		var currentCwd = Sys.getCwd();
-		Sys.setCwd(_docsFolder);
-		
-		var haxedoc = new xa.Process("haxedoc", args);
-		
-		if(!haxedoc.success())
-		{
-			log("ERROR while generating haxedoc");
-			exit(haxedoc.getError());
-		}
-		
-		Sys.setCwd(currentCwd);
-		
-		xa.File.remove(docTemplateOutputPath);
-		xa.File.remove(_docsFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_haxedocXmlPath));
-	}
 	
 	function generateHaxelibPackage() : Void
 	{
@@ -288,8 +167,14 @@ class Main
 		// add the README
 		xa.File.copy(_sourceFolder + xa.System.getSeparator() + XAPI_README_FILENAME, _tmpOutputFolder + xa.System.getSeparator() + XAPI_README_FILENAME);
 		
+		var docsFolder = _sourceFolder + xa.System.getSeparator() + "docs";
+		
+		// pick haxedoc.xml from docs folder
+		var haxeDocPath = docsFolder + xa.System.getSeparator() + "haxedoc.xml";
+		xa.FileSystem.rename(haxeDocPath, _tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(haxeDocPath));
+		
 		// add the docs
-		xa.Folder.copy(_docsFolder, _tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(_docsFolder));
+		xa.Folder.copy(docsFolder, _tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(docsFolder));
 		
 		// now zip it
 		// we can't change the root folder zip uses,
@@ -348,7 +233,7 @@ class Main
 		
 		log(_version + " ZIP ready: " + finalZipPath);
 		
-		xa.Folder.forceDelete(_tmpFolder);
+		xa.Folder.forceRemove(_tmpFolder);
 	}
 	
 	function printHelp() : Void

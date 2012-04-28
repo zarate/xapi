@@ -1,0 +1,4 @@
+-neko bin/doc-generator.n
+-main Main
+-cp src
+-cp ../../src/haxe
