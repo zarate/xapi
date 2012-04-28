@@ -1,0 +1,3086 @@
+<haxe>
+	<class path="All" params="" file="/tmp/xapi-docs-3925/All.hx">
+		<instance_1><c path="xa.Process"/></instance_1>
+		<instance_2><c path="xa.Utils"/></instance_2>
+		<instance_3><c path="xa.Application"/></instance_3>
+		<instance_4><c path="xa.FileSystem"/></instance_4>
+		<instance_5><c path="xa.System"/></instance_5>
+		<instance_6><c path="xa.Folder"/></instance_6>
+		<instance_7><c path="xa.File"/></instance_7>
+		<instance_9><c path="xa.filters.AllButHidden"/></instance_9>
+		<instance_10><c path="xa.filters.IFilter"/></instance_10>
+		<instance_11><c path="xa.filters.ExtensionFilter"/></instance_11>
+		<instance_12><c path="xa.filters.All"/></instance_12>
+		<instance_13><c path="xa.Search"/></instance_13>
+		<instance_14><c path="xa.Filter"/></instance_14>
+	</class>
+	<class path="neko.Lib" params="" file="/usr/lib/haxe/std/neko/Lib.hx">
+		<load public="1" set="method" line="32" static="1">
+			<f a="lib:prim:nargs">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Load and return a Neko primitive from a NDLL library.
+	</haxe_doc>
+		</load>
+		<loadLazy public="1" set="method" line="36" static="1"><f a="lib:prim:nargs">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="Int"/>
+	<d/>
+</f></loadLazy>
+		<print public="1" set="method" line="47" static="1">
+			<f a="v">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Print the specified value on the default output.
+	</haxe_doc>
+		</print>
+		<println public="1" set="method" line="54" static="1">
+			<f a="v">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Print the specified value on the default output followed by a newline character.
+	</haxe_doc>
+		</println>
+		<rethrow public="1" set="method" line="62" static="1">
+			<f a="e">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Rethrow an exception. This is useful when manually filtering an exception in order
+		to keep the previous exception stack.
+	</haxe_doc>
+		</rethrow>
+		<serialize public="1" set="method" line="70" static="1">
+			<f a="v">
+				<d/>
+				<c path="haxe.io.Bytes"/>
+			</f>
+			<haxe_doc>
+		Serialize using native Neko serialization. This will return a Binary string that can be
+		stored for long term usage. The serialized data is optimized for speed and not for size.
+	</haxe_doc>
+		</serialize>
+		<unserialize public="1" set="method" line="77" static="1">
+			<f a="s">
+				<c path="haxe.io.Bytes"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Unserialize a string using native Neko serialization. See [serialize].
+	</haxe_doc>
+		</unserialize>
+		<localUnserialize public="1" set="method" line="88" static="1">
+			<f a="s">
+				<c path="haxe.io.Bytes"/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Unserialize a string using native Neko serialization. See [serialize].
+		This function assume that all the serialized data was serialized with current
+		module, even if the module name was different. This can happen if you are unserializing
+		some data into mod_neko that was serialized on a different server using a different
+		file path.
+	</haxe_doc>
+		</localUnserialize>
+		<nekoToHaxe public="1" set="method" line="98" static="1">
+			<f a="v">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Converts a Neko value to its haXe equivalent. Used for wrapping String and Arrays raw values into haXe Objects.
+	</haxe_doc>
+		</nekoToHaxe>
+		<haxeToNeko public="1" set="method" line="130" static="1">
+			<f a="v">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>
+		Converts a Neko value to its haXe equivalent. Used to unwrap String and Arrays Objects into raw Neko values.
+	</haxe_doc>
+		</haxeToNeko>
+		<getClasses public="1" set="method" line="165" static="1">
+			<f a=""><d/></f>
+			<haxe_doc>
+		Returns an object containing all compiled packages and classes.
+	</haxe_doc>
+		</getClasses>
+		<stringReference public="1" get="inline" set="null" line="172" static="1">
+			<f a="b">
+				<c path="haxe.io.Bytes"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a string referencing the data contains in bytes.
+	</haxe_doc>
+		</stringReference>
+		<bytesReference public="1" get="inline" set="null" line="179" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="haxe.io.Bytes"/>
+			</f>
+			<haxe_doc>
+		Returns bytes referencing the content of a string.
+	</haxe_doc>
+		</bytesReference>
+		<__serialize line="183" static="1"><f a="">
+	<d/>
+	<t path="haxe.io.BytesData"/>
+</f></__serialize>
+		<__unserialize line="184" static="1"><f a=":">
+	<t path="haxe.io.BytesData"/>
+	<a>
+		<loadprim><f a="p:n">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></loadprim>
+		<loadmodule><f a="m:l">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></loadmodule>
+	</a>
+	<unknown/>
+</f></__unserialize>
+	</class>
+	<class path="Array" params="T" file="/usr/lib/haxe/std/neko/_std/Array.hx">
+		<new1 params="T" set="method" line="36" static="1"><f a="a:l">
+	<c path="neko.NativeArray"><c path="new1.T"/></c>
+	<c path="Int"/>
+	<c path="Array"><c path="new1.T"/></c>
+</f></new1>
+		<__a><c path="neko.NativeArray"><c path="Array.T"/></c></__a>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The length of the Array
+	</haxe_doc>
+		</length>
+		<concat public="1" set="method" line="43">
+			<f a="a">
+				<c path="Array"><c path="Array.T"/></c>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a new Array by appending [a] to [this].
+	</haxe_doc>
+		</concat>
+		<copy public="1" set="method" line="54">
+			<f a=""><c path="Array"><c path="Array.T"/></c></f>
+			<haxe_doc>
+		Returns a copy of the Array. The values are not
+		copied, only the Array structure.
+	</haxe_doc>
+		</copy>
+		<iterator public="1" set="method" line="58">
+			<f a=""><t path="Iterator"><t path="Null"><c path="Array.T"/></t></t></f>
+			<haxe_doc>
+		Returns an iterator of the Array values.
+	</haxe_doc>
+		</iterator>
+		<insert public="1" set="method" line="73">
+			<f a="pos:x">
+				<c path="Int"/>
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Inserts the element [x] at the position [pos].
+		All elements after [pos] are moved one index ahead.
+	</haxe_doc>
+		</insert>
+		<join public="1" set="method" line="86">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a representation of an array with [sep] for separating each element.
+	</haxe_doc>
+		</join>
+		<toString public="1" set="method" line="98">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a displayable representation of the Array content.
+	</haxe_doc>
+		</toString>
+		<pop public="1" set="method" line="111">
+			<f a=""><t path="Null"><c path="Array.T"/></t></f>
+			<haxe_doc>
+		Removes the last element of the array and returns it.
+	</haxe_doc>
+		</pop>
+		<push public="1" set="method" line="120">
+			<f a="x">
+				<c path="Array.T"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Adds the element [x] at the end of the array.
+	</haxe_doc>
+		</push>
+		<unshift public="1" set="method" line="127">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the element [x] at the start of the array.
+	</haxe_doc>
+		</unshift>
+		<remove public="1" set="method" line="135">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes the first occurence of [x].
+		Returns false if [x] was not present.
+		Elements are compared by using standard equality.
+	</haxe_doc>
+		</remove>
+		<reverse public="1" set="method" line="152">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Reverse the order of elements of the Array.
+	</haxe_doc>
+		</reverse>
+		<shift public="1" set="method" line="166">
+			<f a=""><t path="Null"><c path="Array.T"/></t></f>
+			<haxe_doc>
+		Removes the first element and returns it.
+	</haxe_doc>
+		</shift>
+		<slice public="1" set="method" line="179">
+			<f a="pos:?end">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Copies the range of the array starting at [pos] up to,
+		but not including, [end]. Both [pos] and [end] can be
+		negative to count from the end: -1 is the last item in
+		the array.
+	</haxe_doc>
+		</slice>
+		<sort public="1" set="method" line="196">
+			<f a="f">
+				<f a=":">
+					<c path="Array.T"/>
+					<c path="Array.T"/>
+					<c path="Int"/>
+				</f>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+		Sort the Array according to the comparison function [f].
+		[f(x,y)] should return [0] if [x == y], [>0] if [x > y]
+		and [<0] if [x < y].
+	]]></haxe_doc>
+		</sort>
+		<splice public="1" set="method" line="219">
+			<f a="pos:len">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Array"><c path="Array.T"/></c>
+			</f>
+			<haxe_doc>
+		Removes [len] elements starting from [pos] an returns them.
+	</haxe_doc>
+		</splice>
+		<__get set="method" line="246"><f a="pos">
+	<c path="Int"/>
+	<c path="Array.T"/>
+</f></__get>
+		<__set set="method" line="250"><f a="pos:v">
+	<c path="Int"/>
+	<c path="Array.T"/>
+	<c path="Array.T"/>
+</f></__set>
+		<__double set="method" line="265"><f a="l">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></__double>
+		<__neko set="method" line="280"><f a=""><c path="neko.NativeArray"><c path="Array.T"/></c></f></__neko>
+		<new public="1" set="method" line="31">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new Array.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	An Array is a storage for values. You can access it using indexes or
+	with its API. On the server side, it's often better to use a [List] which
+	is less memory and CPU consuming, unless you really need indexed access.
+</haxe_doc>
+	</class>
+	<class path="Class" params="T" file="/usr/lib/haxe/std/Class.hx" extern="1"><haxe_doc>
+	An abstract type that represents a Class.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<class path="Date" params="" file="/usr/lib/haxe/std/neko/_std/Date.hx">
+		<now public="1" set="method" line="72" static="1">
+			<f a=""><c path="Date"/></f>
+			<haxe_doc>
+		Returns a Date representing the current local time.
+	</haxe_doc>
+		</now>
+		<fromTime public="1" set="method" line="76" static="1">
+			<f a="t">
+				<c path="Float"/>
+				<c path="Date"/>
+			</f>
+			<haxe_doc>
+		Returns a Date from a timestamp [t] which is the number of
+		milliseconds elapsed since 1st January 1970.
+	</haxe_doc>
+		</fromTime>
+		<fromString public="1" set="method" line="84" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="Date"/>
+			</f>
+			<haxe_doc>
+		Returns a Date from a formated string of one of the following formats :
+		[YYYY-MM-DD hh:mm:ss] or [YYYY-MM-DD] or [hh:mm:ss]. The first two formats
+		are expressed in local time, the third in UTC Epoch.
+	</haxe_doc>
+		</fromString>
+		<new1 set="method" line="88" static="1"><f a="t">
+	<d/>
+	<c path="Date"/>
+</f></new1>
+		<date_new line="94" static="1"><f a="">
+	<unknown/>
+	<unknown/>
+</f></date_new>
+		<date_now line="95" static="1"><f a=""><unknown/></f></date_now>
+		<date_format line="96" static="1"><f a=":">
+	<d/>
+	<unknown/>
+	<c path="String"/>
+</f></date_format>
+		<date_set_hour line="97" static="1"><f a=":::">
+	<d/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<unknown/>
+</f></date_set_hour>
+		<date_set_day line="98" static="1"><f a=":::">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<unknown/>
+</f></date_set_day>
+		<date_get_day line="99" static="1"><f a="">
+	<d/>
+	<a>
+		<y><c path="Int"/></y>
+		<m><c path="Int"/></m>
+		<d><c path="Int"/></d>
+	</a>
+</f></date_get_day>
+		<date_get_hour line="100" static="1"><f a="">
+	<d/>
+	<a>
+		<s><c path="Int"/></s>
+		<m><c path="Int"/></m>
+		<h><c path="Int"/></h>
+	</a>
+</f></date_get_hour>
+		<int32_to_float line="101" static="1"><f a="">
+	<d/>
+	<c path="Int"/>
+</f></int32_to_float>
+		<int32_add line="102" static="1"><f a=":">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></int32_add>
+		<int32_shl line="103" static="1"><f a=":">
+	<unknown/>
+	<c path="Int"/>
+	<unknown/>
+</f></int32_shl>
+		<__string set="method" line="104" static="1"><f a=""><c path="String"/></f></__string>
+		<__t><d/></__t>
+		<getTime public="1" set="method" line="36">
+			<f a=""><c path="Float"/></f>
+			<haxe_doc>
+		Returns the timestamp of the date. It's the number of milliseconds
+		elapsed since 1st January 1970. It might only have a per-second precision
+		depending on the platforms.
+	</haxe_doc>
+		</getTime>
+		<getFullYear public="1" set="method" line="40">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the full year of the date.
+	</haxe_doc>
+		</getFullYear>
+		<getMonth public="1" set="method" line="44">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the month of the date (0-11 range).
+	</haxe_doc>
+		</getMonth>
+		<getDate public="1" set="method" line="48">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the day of the date (1-31 range).
+	</haxe_doc>
+		</getDate>
+		<getHours public="1" set="method" line="52">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the hours value of the date (0-23 range).
+	</haxe_doc>
+		</getHours>
+		<getMinutes public="1" set="method" line="56">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the minutes value of the date (0-59 range).
+	</haxe_doc>
+		</getMinutes>
+		<getSeconds public="1" set="method" line="60">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the seconds of the date (0-59 range).
+	</haxe_doc>
+		</getSeconds>
+		<getDay public="1" set="method" line="64">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Returns the week day of the date (0-6 range).
+	</haxe_doc>
+		</getDay>
+		<toString public="1" set="method" line="68">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a string representation for the Date, by using the
+		standard format [YYYY-MM-DD HH:MM:SS]. See [DateTools.format] for
+		other formating rules.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method" line="31">
+			<f a="year:month:day:hour:min:sec">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Creates a new date object.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	The Date class is used for date manipulation. There is some extra functions
+	available in the [DateTools] class.
+</haxe_doc>
+	</class>
+	<class path="Enum" params="T" file="/usr/lib/haxe/std/Enum.hx" extern="1"><haxe_doc>
+	An abstract type that represents an Enum.
+	See [Type] for the haXe Reflection API.
+</haxe_doc></class>
+	<class path="Hash" params="T" file="/usr/lib/haxe/std/neko/_std/Hash.hx">
+		<h><d/></h>
+		<set public="1" get="inline" set="null" line="34">
+			<f a="key:value">
+				<c path="String"/>
+				<c path="Hash.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set a value for the given key.
+	</haxe_doc>
+		</set>
+		<get public="1" get="inline" set="null" line="38">
+			<f a="key">
+				<c path="String"/>
+				<t path="Null"><c path="Hash.T"/></t>
+			</f>
+			<haxe_doc>
+		Get a value for the given key.
+	</haxe_doc>
+		</get>
+		<exists public="1" get="inline" set="null" line="42">
+			<f a="key">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value exists for the given key.
+		In particular, it's useful to tells if a key has
+		a [null] value versus no value.
+	</haxe_doc>
+		</exists>
+		<remove public="1" get="inline" set="null" line="46">
+			<f a="key">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Removes a hashtable entry. Returns [true] if
+		there was such entry.
+	</haxe_doc>
+		</remove>
+		<keys public="1" set="method" line="50">
+			<f a=""><t path="Iterator"><c path="String"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all keys in the hashtable.
+	</haxe_doc>
+		</keys>
+		<iterator public="1" set="method" line="56">
+			<f a=""><t path="Iterator"><c path="Hash.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator of all values in the hashtable.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" set="method" line="62">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an displayable representation of the hashtable content.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method" line="30">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new empty hashtable.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	Hashtable over a set of elements, using [String] as keys.
+	Other kind of keys are not possible on all platforms since they
+	can't always be implemented efficiently.
+</haxe_doc>
+	</class>
+	<class path="IntIter" params="" file="/usr/lib/haxe/std/IntIter.hx">
+		<min><c path="Int"/></min>
+		<max><c path="Int"/></max>
+		<hasNext public="1" set="method" line="46">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+		Returns true if the iterator has other items, false otherwise.
+	</haxe_doc>
+		</hasNext>
+		<next public="1" set="method" line="53">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>
+		Moves to the next item of the iterator.
+	</haxe_doc>
+		</next>
+		<new public="1" set="method" line="38">
+			<f a="min:max">
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+		Iterate from [min] (inclusive) to [max] (exclusive).
+		If [max <= min], the iterator will not act as a countdown.
+	]]></haxe_doc>
+		</new>
+		<haxe_doc>
+	Integer iterator. Used for interval implementation.
+</haxe_doc>
+	</class>
+	<class path="List" params="T" file="/usr/lib/haxe/std/List.hx">
+		<h><c path="Array"><d/></c></h>
+		<q><c path="Array"><d/></c></q>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The number of elements in this list.
+	</haxe_doc>
+		</length>
+		<add public="1" set="method" line="51">
+			<f a="item">
+				<c path="List.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Add an element at the end of the list.
+	</haxe_doc>
+		</add>
+		<push public="1" set="method" line="64">
+			<f a="item">
+				<c path="List.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Push an element at the beginning of the list.
+	</haxe_doc>
+		</push>
+		<first public="1" set="method" line="80">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Returns the first element of the list, or null
+		if the list is empty.
+	</haxe_doc>
+		</first>
+		<last public="1" set="method" line="88">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Returns the last element of the list, or null
+		if the list is empty.
+	</haxe_doc>
+		</last>
+		<pop public="1" set="method" line="98">
+			<f a=""><c path="List.T"/></f>
+			<haxe_doc>
+		Removes the first element of the list and
+		returns it or simply returns null if the
+		list is empty.
+	</haxe_doc>
+		</pop>
+		<isEmpty public="1" set="method" line="112">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>
+		Tells if a list is empty.
+	</haxe_doc>
+		</isEmpty>
+		<clear public="1" set="method" line="119">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Makes the list empty.
+	</haxe_doc>
+		</clear>
+		<remove public="1" set="method" line="129">
+			<f a="v">
+				<c path="List.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Remove the first element that is [== v] from the list.
+		Returns [true] if an element was removed, [false] otherwise.
+	</haxe_doc>
+		</remove>
+		<iterator public="1" set="method" line="152">
+			<f a=""><t path="Iterator"><c path="List.T"/></t></f>
+			<haxe_doc>
+		Returns an iterator on the elements of the list.
+	</haxe_doc>
+		</iterator>
+		<toString public="1" set="method" line="173">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns a displayable representation of the String.
+	</haxe_doc>
+		</toString>
+		<join public="1" set="method" line="193">
+			<f a="sep">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Join the element of the list by using the separator [sep].
+	</haxe_doc>
+		</join>
+		<filter public="1" set="method" line="212">
+			<f a="f">
+				<f a="">
+					<c path="List.T"/>
+					<e path="Bool"/>
+				</f>
+				<c path="List"><c path="List.T"/></c>
+			</f>
+			<haxe_doc>
+		Returns a list filtered with [f]. The returned list
+		will contain all elements [x] for which [f(x) = true].
+	</haxe_doc>
+		</filter>
+		<map public="1" params="X" set="method" line="228">
+			<f a="f">
+				<f a="">
+					<c path="List.T"/>
+					<c path="map.X"/>
+				</f>
+				<c path="List"><c path="map.X"/></c>
+			</f>
+			<haxe_doc>
+		Returns a new list where all elements have been converted
+		by the function [f].
+	</haxe_doc>
+		</map>
+		<new public="1" set="method" line="44">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new empty list.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A linked-list of elements. The list is composed of two-elements arrays
+	that are chained together. It's optimized so that adding or removing an
+	element doesn't imply to copy the whole array content everytime.
+</haxe_doc>
+	</class>
+	<class path="Math" params="" file="/usr/lib/haxe/std/neko/_std/Math.hx">
+		<PI public="1" set="null" static="1"><c path="Float"/></PI>
+		<NaN public="1" set="null" static="1"><c path="Float"/></NaN>
+		<POSITIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></POSITIVE_INFINITY>
+		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
+		<min public="1" set="method" line="34" static="1"><f a="a:b">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></min>
+		<max public="1" set="method" line="35" static="1"><f a="a:b">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></max>
+		<abs public="1" set="method" line="37" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></abs>
+		<sin public="1" set="method" line="38" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sin>
+		<cos public="1" set="method" line="39" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></cos>
+		<atan2 public="1" set="method" line="40" static="1"><f a="y:x">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan2>
+		<tan public="1" set="method" line="41" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></tan>
+		<exp public="1" set="method" line="42" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></exp>
+		<log public="1" set="method" line="43" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></log>
+		<sqrt public="1" set="method" line="44" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></sqrt>
+		<round public="1" set="method" line="45" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></round>
+		<floor public="1" set="method" line="46" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></floor>
+		<ceil public="1" set="method" line="47" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Int"/>
+</f></ceil>
+		<atan public="1" set="method" line="48" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></atan>
+		<asin public="1" set="method" line="49" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></asin>
+		<acos public="1" set="method" line="50" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></acos>
+		<pow public="1" set="method" line="51" static="1"><f a="v:exp">
+	<c path="Float"/>
+	<c path="Float"/>
+	<c path="Float"/>
+</f></pow>
+		<__rnd static="1"><unknown/></__rnd>
+		<_rand_float line="54" static="1"><f a="">
+	<unknown/>
+	<c path="Float"/>
+</f></_rand_float>
+		<_rand_int line="55" static="1"><f a=":">
+	<unknown/>
+	<c path="Int"/>
+	<unknown/>
+</f></_rand_int>
+		<random public="1" set="method" line="57" static="1"><f a=""><c path="Float"/></f></random>
+		<isNaN public="1" set="method" line="59" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isNaN>
+		<isFinite public="1" set="method" line="60" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isFinite>
+		<haxe_doc>
+	This class defines mathematical functions and constants.
+</haxe_doc>
+	</class>
+	<class path="Float" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	The standard Float type, this is a double-precision IEEE 64bit float.
+</haxe_doc></class>
+	<class path="Int" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
+		<extends path="Float"/>
+		<haxe_doc>
+	The standard Int type. Its precision depends on the platform.
+</haxe_doc>
+	</class>
+	<enum path="Bool" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<true/>
+		<false/>
+		<haxe_doc>
+	The standard Boolean type is represented as an enum with two choices.
+</haxe_doc>
+	</enum>
+	<class path="Dynamic" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>
+	Dynamic is an internal compiler type which has special behavior.
+	See the haXe language reference for more informations.
+</haxe_doc></class>
+	<enum path="Void" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>
+	The standard Void type. Only [null] values can be of the type [Void].
+</haxe_doc></enum>
+	<class path="neko.Boot" params="" file="/usr/lib/haxe/std/neko/Boot.hx">
+		<__tmp_str set="method" line="29" static="1"><f a=""><c path="String"/></f></__tmp_str>
+		<__enum_str set="method" line="33" static="1"><f a="e">
+	<d/>
+	<c path="String"/>
+</f></__enum_str>
+		<__interfLoop set="method" line="55" static="1"><f a="cc:cl">
+	<d/>
+	<d/>
+	<e path="Bool"/>
+</f></__interfLoop>
+		<__instanceof set="method" line="70" static="1"><f a="o:cl">
+	<a>
+		<__name__ set="null"><unknown/></__name__>
+		<__enum__ set="null"><t path="#Dynamic"/></__enum__>
+		<__ename__ set="null"><unknown/></__ename__>
+		<__class__ set="null"><unknown/></__class__>
+	</a>
+	<t path="#Dynamic"/>
+	<e path="Bool"/>
+</f></__instanceof>
+		<__serialize set="method" line="88" static="1"><f a="o">
+	<a>
+		<__enum__ set="null"><a><__ename__ set="null"><a><length set="null"><c path="Int"/></length></a></__ename__></a></__enum__>
+		<__class__ set="null"><a><__name__ set="null"><a><length set="null"><c path="Int"/></length></a></__name__></a></__class__>
+	</a>
+	<c path="Array"><unknown/></c>
+</f></__serialize>
+		<__tagserialize set="method" line="108" static="1"><f a="o">
+	<a>
+		<tag set="null"><unknown/></tag>
+		<__enum__ set="null"><a><__ename__ set="null"><a><length set="null"><c path="Int"/></length></a></__ename__></a></__enum__>
+	</a>
+	<c path="Array"><unknown/></c>
+</f></__tagserialize>
+		<__unserialize set="method" line="117" static="1"><f a="v">
+	<c path="Array"><unknown/></c>
+	<unknown/>
+</f></__unserialize>
+		<__init set="method" line="140" static="1"><f a=""><e path="Void"/></f></__init>
+	</class>
+	<class path="Std" params="" file="/usr/lib/haxe/std/neko/_std/Std.hx">
+		<is public="1" set="method" line="28" static="1">
+			<f a="v:t">
+				<d/>
+				<d/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if a value v is of the type t.
+	</haxe_doc>
+		</is>
+		<string public="1" set="method" line="32" static="1">
+			<f a="s">
+				<d/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Convert any value to a String
+	</haxe_doc>
+		</string>
+		<int public="1" set="method" line="36" static="1">
+			<f a="x">
+				<c path="Float"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Convert a Float to an Int, rounded down.
+	</haxe_doc>
+		</int>
+		<parseInt public="1" set="method" line="41" static="1">
+			<f a="x">
+				<c path="String"/>
+				<t path="Null"><c path="Int"/></t>
+			</f>
+			<haxe_doc>
+		Convert a String to an Int, parsing different possible representations. Returns [null] if could not be parsed.
+	</haxe_doc>
+		</parseInt>
+		<parseFloat public="1" set="method" line="52" static="1">
+			<f a="x">
+				<c path="String"/>
+				<c path="Float"/>
+			</f>
+			<haxe_doc>
+		Convert a String to a Float, parsing different possible reprensations.
+	</haxe_doc>
+		</parseFloat>
+		<random public="1" set="method" line="59" static="1">
+			<f a="x">
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Return a random integer between 0 included and x excluded.
+	</haxe_doc>
+		</random>
+		<haxe_doc>
+	The Std class provides standard methods for manipulating basic types.
+</haxe_doc>
+	</class>
+	<typedef path="Null" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<c path="Null.T"/>
+		<haxe_doc>
+	[Null] can be useful in two cases. In order to document some methods
+	that accepts or can return a [null] value, or for the Flash9 compiler and AS3
+	generator to distinguish between base values that can be null and others that
+	can't.
+</haxe_doc>
+	</typedef>
+	<typedef path="Iterator" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<a>
+			<next set="method"><f a=""><c path="Iterator.T"/></f></next>
+			<hasNext set="method"><f a=""><e path="Bool"/></f></hasNext>
+		</a>
+		<haxe_doc>
+	An Iterator is a structure that permits to list a given container
+	values. It can be used by your own data structures. See the haXe
+	documentation for more informations.
+</haxe_doc>
+	</typedef>
+	<typedef path="Iterable" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<a><iterator set="method"><f a=""><t path="Iterator"><c path="Iterable.T"/></t></f></iterator></a>
+		<haxe_doc>
+	An Iterable is a data structure which has an iterator() method.
+	See [Lambda] for generic functions on iterable structures.
+</haxe_doc>
+	</typedef>
+	<class path="ArrayAccess" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes" extern="1" interface="1"><haxe_doc>
+	ArrayAccess is used to indicate a class that can be accessed using brackets.
+	The type parameter represent the type of the elements stored.
+</haxe_doc></class>
+	<class path="String" params="" file="/usr/lib/haxe/std/neko/_std/String.hx">
+		<__is_String static="1"><e path="Bool"/></__is_String>
+		<__split line="29" static="1"><d/></__split>
+		<fromCharCode public="1" set="method" line="180" static="1"><f a="code">
+	<c path="Int"/>
+	<c path="String"/>
+</f></fromCharCode>
+		<length public="1" set="null">
+			<c path="Int"/>
+			<haxe_doc>
+		The number of characters in the String.
+	</haxe_doc>
+		</length>
+		<charAt public="1" set="method" line="46">
+			<f a="index">
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the character at the given position.
+		Returns the empty String if outside of String bounds.
+	</haxe_doc>
+		</charAt>
+		<charCodeAt public="1" set="method" line="58">
+			<f a="index">
+				<c path="Int"/>
+				<t path="Null"><c path="Int"/></t>
+			</f>
+			<haxe_doc>
+		Returns the character code at the given position.
+		Returns [null] if outside of String bounds.
+	</haxe_doc>
+		</charCodeAt>
+		<indexOf public="1" set="method" line="64">
+			<f a="str:?startIndex">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Returns the index of first occurence of [value]
+		Returns [1-1] if [value] is not found.
+		The optional [startIndex] parameter allows you to specify at which character to start searching.
+		The position returned is still relative to the beginning of the string.
+	</haxe_doc>
+		</indexOf>
+		<lastIndexOf public="1" set="method" line="73">
+			<f a="str:?startIndex">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Similar to [indexOf] but returns the latest index.
+	</haxe_doc>
+		</lastIndexOf>
+		<split public="1" set="method" line="88">
+			<f a="delimiter">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Split the string using the specified delimiter.
+	</haxe_doc>
+		</split>
+		<substr public="1" set="method" line="104">
+			<f a="pos:?len">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns a part of the String, taking [len] characters starting from [pos].
+		If [len] is not specified, it takes all the remaining characters.
+	</haxe_doc>
+		</substr>
+		<toLowerCase public="1" set="method" line="130">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an String where all characters have been lowercased.
+	</haxe_doc>
+		</toLowerCase>
+		<toUpperCase public="1" set="method" line="146">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns an String where all characters have been uppercased.
+	</haxe_doc>
+		</toUpperCase>
+		<toString public="1" set="method" line="162">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the String itself.
+	</haxe_doc>
+		</toString>
+		<__compare set="method" line="168"><f a="o">
+	<c path="String"/>
+	<c path="Int"/>
+</f></__compare>
+		<__add set="method" line="172"><f a="s">
+	<d/>
+	<c path="String"/>
+</f></__add>
+		<__radd set="method" line="176"><f a="s">
+	<d/>
+	<c path="String"/>
+</f></__radd>
+		<new public="1" set="method" line="37">
+			<f a="string">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Creates a copy from a given String.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	The basic String class.
+</haxe_doc>
+	</class>
+	<class path="StringBuf" params="" file="/usr/lib/haxe/std/neko/_std/StringBuf.hx">
+		<__make line="50" static="1"><d/></__make>
+		<__add line="51" static="1"><d/></__add>
+		<__add_char line="52" static="1"><d/></__add_char>
+		<__add_sub line="53" static="1"><d/></__add_sub>
+		<__string line="54" static="1"><d/></__string>
+		<b><d/></b>
+		<add public="1" get="inline" set="null" line="34">
+			<f a="x">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds the representation of any value to the string buffer.
+	</haxe_doc>
+		</add>
+		<addSub public="1" get="inline" set="null" line="38">
+			<f a="s:pos:?len">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a part of a string to the string buffer.
+	</haxe_doc>
+		</addSub>
+		<addChar public="1" get="inline" set="null" line="42">
+			<f a="c">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Adds a character to the string buffer.
+	</haxe_doc>
+		</addChar>
+		<toString public="1" get="inline" set="null" line="46">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the content of the string buffer.
+		The buffer is not emptied by this operation.
+	</haxe_doc>
+		</toString>
+		<new public="1" set="method" line="30">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>
+		Creates a new string buffer.
+	</haxe_doc>
+		</new>
+		<haxe_doc>
+	A String buffer is an efficient way to build a big string by
+	appending small elements together.
+</haxe_doc>
+	</class>
+	<class path="StringTools" params="" file="/usr/lib/haxe/std/StringTools.hx">
+		<urlEncode public="1" set="method" line="38" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Encode an URL by using the standard format.
+	</haxe_doc>
+		</urlEncode>
+		<urlDecode public="1" set="method" line="59" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Decode an URL using the standard format.
+	</haxe_doc>
+		</urlDecode>
+		<htmlEscape public="1" set="method" line="80" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Escape HTML special characters of the string.
+	</haxe_doc>
+		</htmlEscape>
+		<htmlUnescape public="1" set="method" line="87" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Unescape HTML special characters of the string.
+	</haxe_doc>
+		</htmlUnescape>
+		<startsWith public="1" set="method" line="98" static="1">
+			<f a="s:start">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the string [s] starts with the string [start].
+	</haxe_doc>
+		</startsWith>
+		<endsWith public="1" set="method" line="105" static="1">
+			<f a="s:end">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the string [s] ends with the string [end].
+	</haxe_doc>
+		</endsWith>
+		<isSpace public="1" set="method" line="114" static="1">
+			<f a="s:pos">
+				<c path="String"/>
+				<c path="Int"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the character in the string [s] at position [pos] is a space.
+	</haxe_doc>
+		</isSpace>
+		<ltrim public="1" set="method" line="122" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the left of the String [s].
+	</haxe_doc>
+		</ltrim>
+		<rtrim public="1" set="method" line="141" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the right of the String [s].
+	</haxe_doc>
+		</rtrim>
+		<trim public="1" set="method" line="161" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Removes spaces at the beginning and the end of the String [s].
+	</haxe_doc>
+		</trim>
+		<rpad public="1" set="method" line="172" static="1">
+			<f a="s:c:l">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Pad the string [s] by appending [c] at its right until it reach [l] characters.
+	</haxe_doc>
+		</rpad>
+		<lpad public="1" set="method" line="194" static="1">
+			<f a="s:c:l">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Pad the string [s] by appending [c] at its left until it reach [l] characters.
+	</haxe_doc>
+		</lpad>
+		<replace public="1" set="method" line="219" static="1">
+			<f a="s:sub:by">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Replace all occurences of the string [sub] in the string [s] by the string [by].
+	</haxe_doc>
+		</replace>
+		<hex public="1" set="method" line="230" static="1">
+			<f a="n:?digits">
+				<c path="Int"/>
+				<c path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Encode a number into a hexadecimal representation, with an optional number of zeros for left padding.
+	</haxe_doc>
+		</hex>
+		<fastCodeAt public="1" get="inline" set="null" line="253" static="1">
+			<f a="s:index">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Provides a fast native string charCodeAt access. Since the EOF value might vary depending on the platforms, always test with StringTools.isEOF.
+		Only guaranteed to work if index in [0,s.length] range. Might not work with strings containing \0 char.
+	</haxe_doc>
+		</fastCodeAt>
+		<isEOF public="1" get="inline" set="null" line="270" static="1"><f a="c">
+	<c path="Int"/>
+	<e path="Bool"/>
+</f></isEOF>
+		<_urlEncode line="285" static="1"><f a="">
+	<unknown/>
+	<c path="String"/>
+</f></_urlEncode>
+		<_urlDecode line="286" static="1"><f a="">
+	<unknown/>
+	<c path="String"/>
+</f></_urlDecode>
+		<haxe_doc>
+	The StringTools class contains some extra functionalities for [String]
+	manipulation. It's stored in a different class in order to prevent
+	the standard [String] of being bloated and thus increasing the size of
+	each application using it.
+</haxe_doc>
+	</class>
+	<class path="Sys" params="" file="/usr/lib/haxe/std/neko/_std/Sys.hx">
+		<print public="1" set="method" line="28" static="1">
+			<f a="v">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Print any value on the standard output.
+	</haxe_doc>
+		</print>
+		<println public="1" set="method" line="32" static="1">
+			<f a="v">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Print any value on the standard output, followed by a newline
+	</haxe_doc>
+		</println>
+		<getChar public="1" set="method" line="36" static="1">
+			<f a="echo">
+				<e path="Bool"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Read a single input character from the standard input (without blocking) and returns it. Setting [echo] to true will also display it on the output.
+	</haxe_doc>
+		</getChar>
+		<stdin public="1" set="method" line="40" static="1">
+			<f a=""><c path="haxe.io.Input"/></f>
+			<haxe_doc>
+		Returns the process standard input, from which you can read what user enters. Usually it will block until the user send a full input line. See [getChar] for an alternative.
+	</haxe_doc>
+		</stdin>
+		<stdout public="1" set="method" line="44" static="1">
+			<f a=""><c path="haxe.io.Output"/></f>
+			<haxe_doc>
+		Returns the process standard output on which you can write.
+	</haxe_doc>
+		</stdout>
+		<stderr public="1" set="method" line="48" static="1">
+			<f a=""><c path="haxe.io.Output"/></f>
+			<haxe_doc>
+		Returns the process standard error on which you can write.
+	</haxe_doc>
+		</stderr>
+		<args public="1" set="method" line="52" static="1">
+			<f a=""><c path="Array"><c path="String"/></c></f>
+			<haxe_doc>
+		Returns all the arguments that were passed by the commandline.
+	</haxe_doc>
+		</args>
+		<getEnv public="1" set="method" line="67" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the value of the given environment variable.
+	</haxe_doc>
+		</getEnv>
+		<putEnv public="1" set="method" line="74" static="1">
+			<f a="s:v">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Set the value of the given environment variable.
+	</haxe_doc>
+		</putEnv>
+		<sleep public="1" set="method" line="78" static="1">
+			<f a="seconds">
+				<c path="Float"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Suspend the current execution for the given time (in seconds).
+	</haxe_doc>
+		</sleep>
+		<setTimeLocale public="1" set="method" line="82" static="1">
+			<f a="loc">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Change the current time locale, which will affect [DateTools.format] date formating.
+		Returns true if the locale was successfully changed
+	</haxe_doc>
+		</setTimeLocale>
+		<getCwd public="1" set="method" line="86" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Get the current working directory (usually the one in which the program was started)
+	</haxe_doc>
+		</getCwd>
+		<setCwd public="1" set="method" line="90" static="1">
+			<f a="s">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Change the current working directory.
+	</haxe_doc>
+		</setCwd>
+		<systemName public="1" set="method" line="94" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the name of the system you are running on. For instance :
+			"Windows", "Linux", "BSD" and "Mac" depending on your desktop OS.
+	</haxe_doc>
+		</systemName>
+		<escapeArgument set="method" line="98" static="1"><f a="arg">
+	<c path="String"/>
+	<c path="String"/>
+</f></escapeArgument>
+		<command public="1" set="method" line="112" static="1">
+			<f a="cmd:?args">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Run the given command with the list of arguments. The command output will be printed on the same output as the current process.
+		The current process will block until the command terminates and it will return the command result (0 if there was no error).
+		Read the [sys.io.Process] api for a more complete way to start background processes.
+	</haxe_doc>
+		</command>
+		<exit public="1" set="method" line="121" static="1">
+			<f a="code">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Exit the current process with the given error code.
+	</haxe_doc>
+		</exit>
+		<time public="1" set="method" line="125" static="1">
+			<f a=""><c path="Float"/></f>
+			<haxe_doc>
+		Gives the most precise timestamp value (in seconds).
+	</haxe_doc>
+		</time>
+		<cpuTime public="1" set="method" line="129" static="1">
+			<f a=""><c path="Float"/></f>
+			<haxe_doc>
+		Gives the most precise timestamp value (in seconds) but only account for the actual time spent running on the CPU for the current thread/process.
+	</haxe_doc>
+		</cpuTime>
+		<executablePath public="1" set="method" line="133" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>
+		Returns the path to the current executable that we are running.
+	</haxe_doc>
+		</executablePath>
+		<environment public="1" set="method" line="137" static="1">
+			<f a=""><c path="Hash"><c path="String"/></c></f>
+			<haxe_doc>
+		Returns the whole environement variables.
+	</haxe_doc>
+		</environment>
+		<get_env line="147" static="1"><f a="">
+	<unknown/>
+	<c path="String"/>
+</f></get_env>
+		<put_env line="148" static="1"><f a=":">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></put_env>
+		<_sleep line="149" static="1"><f a="">
+	<c path="Float"/>
+	<unknown/>
+</f></_sleep>
+		<set_time_locale line="150" static="1"><f a="">
+	<unknown/>
+	<e path="Bool"/>
+</f></set_time_locale>
+		<get_cwd line="151" static="1"><f a=""><c path="String"/></f></get_cwd>
+		<set_cwd line="152" static="1"><f a="">
+	<unknown/>
+	<unknown/>
+</f></set_cwd>
+		<sys_string line="153" static="1"><f a=""><c path="String"/></f></sys_string>
+		<sys_command line="154" static="1"><f a="">
+	<unknown/>
+	<c path="Int"/>
+</f></sys_command>
+		<sys_exit line="155" static="1"><f a="">
+	<c path="Int"/>
+	<unknown/>
+</f></sys_exit>
+		<sys_time line="156" static="1"><f a=""><c path="Float"/></f></sys_time>
+		<sys_cpu_time line="157" static="1"><f a=""><c path="Float"/></f></sys_cpu_time>
+		<sys_exe_path line="158" static="1"><f a=""><c path="String"/></f></sys_exe_path>
+		<sys_env line="159" static="1"><f a=""><c path="Array"><d/></c></f></sys_env>
+		<file_stdin line="161" static="1"><f a=""><e path="sys.io.FileHandle"/></f></file_stdin>
+		<file_stdout line="162" static="1"><f a=""><e path="sys.io.FileHandle"/></f></file_stdout>
+		<file_stderr line="163" static="1"><f a=""><e path="sys.io.FileHandle"/></f></file_stderr>
+		<getch line="164" static="1"><f a="">
+	<e path="Bool"/>
+	<c path="Int"/>
+</f></getch>
+		<haxe_doc>
+	This class gives you access to many base functionalities of system platforms. Looks in [sys] sub packages for more system APIs.
+</haxe_doc>
+	</class>
+	<class path="haxe.Int32" params="" file="/usr/lib/haxe/std/neko/_std/haxe/Int32.hx">
+		<make public="1" get="inline" set="null" line="29" static="1"><f a="a:b">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="haxe.Int32"/>
+</f></make>
+		<ofInt public="1" get="inline" set="null" line="33" static="1"><f a="x">
+	<c path="Int"/>
+	<c path="haxe.Int32"/>
+</f></ofInt>
+		<toInt public="1" get="inline" set="null" line="37" static="1"><f a="x">
+	<c path="haxe.Int32"/>
+	<c path="Int"/>
+</f></toInt>
+		<toNativeInt public="1" get="inline" set="null" line="41" static="1"><f a="x">
+	<c path="haxe.Int32"/>
+	<c path="Int"/>
+</f></toNativeInt>
+		<add public="1" get="inline" set="null" line="45" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></add>
+		<sub public="1" get="inline" set="null" line="49" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></sub>
+		<mul public="1" get="inline" set="null" line="53" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></mul>
+		<div public="1" get="inline" set="null" line="57" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></div>
+		<mod public="1" get="inline" set="null" line="61" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></mod>
+		<shl public="1" get="inline" set="null" line="65" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="Int"/>
+	<c path="haxe.Int32"/>
+</f></shl>
+		<shr public="1" get="inline" set="null" line="69" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="Int"/>
+	<c path="haxe.Int32"/>
+</f></shr>
+		<ushr public="1" get="inline" set="null" line="73" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="Int"/>
+	<c path="haxe.Int32"/>
+</f></ushr>
+		<and public="1" get="inline" set="null" line="77" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></and>
+		<or public="1" get="inline" set="null" line="81" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></or>
+		<xor public="1" get="inline" set="null" line="85" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></xor>
+		<neg public="1" get="inline" set="null" line="89" static="1"><f a="a">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></neg>
+		<isNeg public="1" get="inline" set="null" line="93" static="1"><f a="a">
+	<c path="haxe.Int32"/>
+	<e path="Bool"/>
+</f></isNeg>
+		<isZero public="1" get="inline" set="null" line="97" static="1"><f a="a">
+	<c path="haxe.Int32"/>
+	<e path="Bool"/>
+</f></isZero>
+		<complement public="1" get="inline" set="null" line="101" static="1"><f a="a">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+</f></complement>
+		<compare public="1" get="inline" set="null" line="105" static="1"><f a="a:b">
+	<c path="haxe.Int32"/>
+	<c path="haxe.Int32"/>
+	<c path="Int"/>
+</f></compare>
+		<ucompare public="1" set="method" line="109" static="1">
+			<f a="a:b">
+				<c path="haxe.Int32"/>
+				<c path="haxe.Int32"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc>
+		Compare two Int32 in unsigned mode.
+	</haxe_doc>
+		</ucompare>
+	</class>
+	<class path="haxe.io.Bytes" params="" file="/usr/lib/haxe/std/haxe/io/Bytes.hx">
+		<alloc public="1" set="method" line="225" static="1"><f a="length">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></alloc>
+		<ofString public="1" set="method" line="253" static="1"><f a="s">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofString>
+		<ofData public="1" set="method" line="292" static="1"><f a="b">
+	<t path="haxe.io.BytesData"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofData>
+		<length public="1" set="null"><c path="Int"/></length>
+		<b><t path="haxe.io.BytesData"/></b>
+		<get public="1" get="inline" set="null" line="37"><f a="pos">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></get>
+		<set public="1" get="inline" set="null" line="51"><f a="pos:v">
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></set>
+		<blit public="1" set="method" line="65"><f a="pos:src:srcpos:len">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></blit>
+		<sub public="1" set="method" line="93"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></sub>
+		<compare public="1" set="method" line="112"><f a="other">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+</f></compare>
+		<readString public="1" set="method" line="148"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="String"/>
+</f></readString>
+		<toString public="1" set="method" line="192"><f a=""><c path="String"/></f></toString>
+		<toHex public="1" set="method" line="207"><f a=""><c path="String"/></f></toHex>
+		<getData public="1" get="inline" set="null" line="221"><f a=""><t path="haxe.io.BytesData"/></f></getData>
+		<new set="method" line="32"><f a="length:b">
+	<c path="Int"/>
+	<t path="haxe.io.BytesData"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="haxe.io.BytesBuffer" params="" file="/usr/lib/haxe/std/haxe/io/BytesBuffer.hx">
+		<b><e path="Void"/></b>
+		<addByte public="1" get="inline" set="null" line="55"><f a="byte">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></addByte>
+		<add public="1" get="inline" set="null" line="69"><f a="src">
+	<c path="haxe.io.Bytes"/>
+	<e path="Void"/>
+</f></add>
+		<addBytes public="1" get="inline" set="null" line="84"><f a="src:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></addBytes>
+		<getBytes public="1" set="method" line="106">
+			<f a=""><c path="haxe.io.Bytes"/></f>
+			<haxe_doc>
+		Returns either a copy or a reference of the current bytes.
+		Once called, the buffer can no longer be used.
+	</haxe_doc>
+		</getBytes>
+		<new public="1" set="method" line="41"><f a=""><e path="Void"/></f></new>
+	</class>
+	<typedef path="haxe.io.BytesData" params="" file="/usr/lib/haxe/std/haxe/io/BytesData.hx"><c path="neko.NativeString"/></typedef>
+	<class path="haxe.io.Eof" params="" file="/usr/lib/haxe/std/haxe/io/Eof.hx">
+		<toString set="method" line="33"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method" line="31"><f a=""><e path="Void"/></f></new>
+		<haxe_doc>
+	This exception is raised when reading while data is no longer available in the [Input].
+</haxe_doc>
+	</class>
+	<enum path="haxe.io.Error" params="" file="/usr/lib/haxe/std/haxe/io/Error.hx">
+		<Overflow><haxe_doc> An integer value is outside its allowed range </haxe_doc></Overflow>
+		<OutsideBounds><haxe_doc> An operation on Bytes is outside of its valid range </haxe_doc></OutsideBounds>
+		<Custom a="e">
+			<d/>
+			<haxe_doc> Other errors </haxe_doc>
+		</Custom>
+		<Blocked><haxe_doc> The IO is set into nonblocking mode and some data cannot be read or written </haxe_doc></Blocked>
+		<haxe_doc>
+	The possible IO errors that can occur
+</haxe_doc>
+	</enum>
+	<class path="haxe.io.Input" params="" file="/usr/lib/haxe/std/haxe/io/Input.hx">
+		<_float_of_bytes line="260" static="1"><f a=":">
+	<unknown/>
+	<e path="Bool"/>
+	<c path="Float"/>
+</f></_float_of_bytes>
+		<_double_of_bytes line="261" static="1"><f a=":">
+	<unknown/>
+	<e path="Bool"/>
+	<c path="Float"/>
+</f></_double_of_bytes>
+		<bigEndian public="1" set="setEndian"><e path="Bool"/></bigEndian>
+		<readByte public="1" set="method" line="35"><f a=""><c path="Int"/></f></readByte>
+		<readBytes public="1" set="method" line="44"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></readBytes>
+		<close public="1" set="method" line="65"><f a=""><e path="Void"/></f></close>
+		<setEndian set="method" line="68"><f a="b">
+	<e path="Bool"/>
+	<e path="Bool"/>
+</f></setEndian>
+		<readAll public="1" set="method" line="75"><f a="?bufsize">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></readAll>
+		<readFullBytes public="1" set="method" line="96"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></readFullBytes>
+		<read public="1" set="method" line="104"><f a="nbytes">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></read>
+		<readUntil public="1" set="method" line="116"><f a="end">
+	<c path="Int"/>
+	<c path="String"/>
+</f></readUntil>
+		<readLine public="1" set="method" line="124"><f a=""><c path="String"/></f></readLine>
+		<readFloat public="1" set="method" line="141"><f a=""><c path="Float"/></f></readFloat>
+		<readDouble public="1" set="method" line="155"><f a=""><c path="Float"/></f></readDouble>
+		<readInt8 public="1" set="method" line="169"><f a=""><c path="Int"/></f></readInt8>
+		<readInt16 public="1" set="method" line="176"><f a=""><c path="Int"/></f></readInt16>
+		<readUInt16 public="1" set="method" line="185"><f a=""><c path="Int"/></f></readUInt16>
+		<readInt24 public="1" set="method" line="191"><f a=""><c path="Int"/></f></readInt24>
+		<readUInt24 public="1" set="method" line="201"><f a=""><c path="Int"/></f></readUInt24>
+		<readInt31 public="1" set="method" line="208"><f a=""><c path="Int"/></f></readInt31>
+		<readUInt30 public="1" set="method" line="225"><f a=""><c path="Int"/></f></readUInt30>
+		<readInt32 public="1" set="method" line="234"><f a=""><c path="haxe.Int32"/></f></readInt32>
+		<readString public="1" set="method" line="249"><f a="len">
+	<c path="Int"/>
+	<c path="String"/>
+</f></readString>
+		<haxe_doc>
+	An Input is an abstract reader. See other classes in the [haxe.io] package
+	for several possible implementations.
+</haxe_doc>
+	</class>
+	<class path="haxe.io.Output" params="" file="/usr/lib/haxe/std/haxe/io/Output.hx">
+		<_float_bytes line="247" static="1"><f a=":">
+	<c path="Float"/>
+	<e path="Bool"/>
+	<t path="haxe.io.BytesData"/>
+</f></_float_bytes>
+		<_double_bytes line="248" static="1"><f a=":">
+	<c path="Float"/>
+	<e path="Bool"/>
+	<t path="haxe.io.BytesData"/>
+</f></_double_bytes>
+		<bigEndian public="1" set="setEndian"><e path="Bool"/></bigEndian>
+		<writeByte public="1" set="method" line="37"><f a="c">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeByte>
+		<writeBytes public="1" set="method" line="41"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></writeBytes>
+		<flush public="1" set="method" line="64"><f a=""><e path="Void"/></f></flush>
+		<close public="1" set="method" line="67"><f a=""><e path="Void"/></f></close>
+		<setEndian set="method" line="70"><f a="b">
+	<e path="Bool"/>
+	<e path="Bool"/>
+</f></setEndian>
+		<write public="1" set="method" line="77"><f a="s">
+	<c path="haxe.io.Bytes"/>
+	<e path="Void"/>
+</f></write>
+		<writeFullBytes public="1" set="method" line="88"><f a="s:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeFullBytes>
+		<writeFloat public="1" set="method" line="96"><f a="x">
+	<c path="Float"/>
+	<e path="Void"/>
+</f></writeFloat>
+		<writeDouble public="1" set="method" line="108"><f a="x">
+	<c path="Float"/>
+	<e path="Void"/>
+</f></writeDouble>
+		<writeInt8 public="1" set="method" line="120"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt8>
+		<writeInt16 public="1" set="method" line="126"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt16>
+		<writeUInt16 public="1" set="method" line="131"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeUInt16>
+		<writeInt24 public="1" set="method" line="142"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt24>
+		<writeUInt24 public="1" set="method" line="147"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeUInt24>
+		<writeInt31 public="1" set="method" line="160"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInt31>
+		<writeUInt30 public="1" set="method" line="177"><f a="x">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeUInt30>
+		<writeInt32 public="1" set="method" line="192"><f a="x">
+	<c path="haxe.Int32"/>
+	<e path="Void"/>
+</f></writeInt32>
+		<prepare public="1" set="method" line="212">
+			<f a="nbytes">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Inform that we are about to write at least a specified number of bytes.
+		The underlying implementation can allocate proper working space depending
+		on this information, or simply ignore it. This is not a mandatory call
+		but a tip and is only used in some specific cases.
+	</haxe_doc>
+		</prepare>
+		<writeInput public="1" set="method" line="215"><f a="i:?bufsize">
+	<c path="haxe.io.Input"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeInput>
+		<writeString public="1" set="method" line="237"><f a="s">
+	<c path="String"/>
+	<e path="Void"/>
+</f></writeString>
+		<haxe_doc>
+	An Output is an abstract write. A specific output implementation will only
+	have to override the [writeChar] and maybe the [write], [flush] and [close]
+	methods. See [File.write] and [String.write] for two ways of creating an
+	Output.
+</haxe_doc>
+	</class>
+	<class path="haxe.io.Path" params="" file="/usr/lib/haxe/std/haxe/io/Path.hx">
+		<withoutExtension public="1" set="method" line="60" static="1"><f a="path">
+	<c path="String"/>
+	<c path="String"/>
+</f></withoutExtension>
+		<withoutDirectory public="1" set="method" line="66" static="1"><f a="path">
+	<c path="String"/>
+	<c path="String"/>
+</f></withoutDirectory>
+		<directory public="1" set="method" line="72" static="1"><f a="path">
+	<c path="String"/>
+	<c path="String"/>
+</f></directory>
+		<extension public="1" set="method" line="79" static="1"><f a="path">
+	<c path="String"/>
+	<c path="String"/>
+</f></extension>
+		<withExtension public="1" set="method" line="86" static="1"><f a="path:ext">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></withExtension>
+		<ext public="1"><c path="String"/></ext>
+		<dir public="1"><c path="String"/></dir>
+		<file public="1"><c path="String"/></file>
+		<backslash public="1"><e path="Bool"/></backslash>
+		<toString public="1" set="method" line="56"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method" line="34"><f a="path">
+	<c path="String"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="neko.NativeArray" params="T" file="/usr/lib/haxe/std/neko/NativeArray.hx">
+		<alloc public="1" params="T" get="inline" set="null" line="29" static="1"><f a="length">
+	<c path="Int"/>
+	<c path="neko.NativeArray"><c path="alloc.T"/></c>
+</f></alloc>
+		<blit public="1" params="T" get="inline" set="null" line="33" static="1"><f a="dst:dstPos:src:srcPos:length">
+	<c path="neko.NativeArray"><c path="blit.T"/></c>
+	<c path="Int"/>
+	<c path="neko.NativeArray"><c path="blit.T"/></c>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></blit>
+		<ofArrayCopy public="1" params="T" get="inline" set="null" line="37" static="1"><f a="a">
+	<c path="Array"><c path="ofArrayCopy.T"/></c>
+	<c path="neko.NativeArray"><c path="ofArrayCopy.T"/></c>
+</f></ofArrayCopy>
+		<ofArrayRef public="1" params="T" get="inline" set="null" line="41" static="1"><f a="a">
+	<c path="Array"><c path="ofArrayRef.T"/></c>
+	<c path="neko.NativeArray"><c path="ofArrayRef.T"/></c>
+</f></ofArrayRef>
+		<sub public="1" params="T" get="inline" set="null" line="45" static="1"><f a="a:pos:len">
+	<c path="neko.NativeArray"><c path="sub.T"/></c>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="neko.NativeArray"><c path="sub.T"/></c>
+</f></sub>
+		<toArray public="1" params="T" get="inline" set="null" line="49" static="1"><f a="a">
+	<c path="neko.NativeArray"><c path="toArray.T"/></c>
+	<c path="Array"><c path="toArray.T"/></c>
+</f></toArray>
+		<length public="1" get="inline" set="null" line="53" static="1"><f a="a">
+	<c path="neko.NativeArray"><d/></c>
+	<c path="Int"/>
+</f></length>
+	</class>
+	<class path="neko.NativeString" params="" file="/usr/lib/haxe/std/neko/NativeString.hx">
+		<ofString public="1" get="inline" set="null" line="29" static="1"><f a="s">
+	<c path="String"/>
+	<c path="neko.NativeString"/>
+</f></ofString>
+		<toString public="1" get="inline" set="null" line="33" static="1"><f a="s">
+	<c path="neko.NativeString"/>
+	<c path="String"/>
+</f></toString>
+		<length public="1" get="inline" set="null" line="37" static="1"><f a="s">
+	<c path="neko.NativeString"/>
+	<c path="Int"/>
+</f></length>
+	</class>
+	<typedef path="sys.FileStat" params="" file="/usr/lib/haxe/std/sys/FileStat.hx">
+		<a>
+			<uid>
+				<c path="Int"/>
+				<haxe_doc> the user id for the file </haxe_doc>
+			</uid>
+			<size>
+				<c path="Int"/>
+				<haxe_doc> the size of the file </haxe_doc>
+			</size>
+			<rdev><c path="Int"/></rdev>
+			<nlink><c path="Int"/></nlink>
+			<mtime>
+				<c path="Date"/>
+				<haxe_doc> the last modification time for the file </haxe_doc>
+			</mtime>
+			<mode><c path="Int"/></mode>
+			<ino><c path="Int"/></ino>
+			<gid><c path="Int"/></gid>
+			<dev><c path="Int"/></dev>
+			<ctime>
+				<c path="Date"/>
+				<haxe_doc> the creation time for the file </haxe_doc>
+			</ctime>
+			<atime>
+				<c path="Date"/>
+				<haxe_doc> the last access time for the file (when enabled by the file system) </haxe_doc>
+			</atime>
+		</a>
+		<haxe_doc>
+	File informations, as given by [sys.FileSystem.stat]
+</haxe_doc>
+	</typedef>
+	<enum path="sys._FileSystem.FileKind" params="" file="/usr/lib/haxe/std/neko/_std/sys/FileSystem.hx" private="1" module="sys.FileSystem">
+		<kother a="k"><c path="String"/></kother>
+		<kfile/>
+		<kdir/>
+	</enum>
+	<class path="sys.FileSystem" params="" file="/usr/lib/haxe/std/neko/_std/sys/FileSystem.hx">
+		<exists public="1" set="method" line="36" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the given file or directory exists.
+	</haxe_doc>
+		</exists>
+		<rename public="1" set="method" line="40" static="1">
+			<f a="path:newpath">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Rename the corresponding file or directory, allow to move it accross directories as well.
+	</haxe_doc>
+		</rename>
+		<stat public="1" set="method" line="44" static="1">
+			<f a="path">
+				<c path="String"/>
+				<t path="sys.FileStat"/>
+			</f>
+			<haxe_doc>
+		Returns informations for the given file/directory.
+	</haxe_doc>
+		</stat>
+		<fullPath public="1" set="method" line="52" static="1">
+			<f a="relpath">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>
+		Returns the full path for the given path which is relative to the current working directory.
+	</haxe_doc>
+		</fullPath>
+		<kind set="method" line="56" static="1"><f a="path">
+	<c path="String"/>
+	<e path="sys._FileSystem.FileKind"/>
+</f></kind>
+		<isDirectory public="1" set="method" line="65" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+		Tells if the given path is a directory. Throw an exception if it does not exists or is not accesible.
+	</haxe_doc>
+		</isDirectory>
+		<createDirectory public="1" set="method" line="69" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Create the given directory. Not recursive : the parent directory must exists.
+	</haxe_doc>
+		</createDirectory>
+		<deleteFile public="1" set="method" line="73" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Delete a given file.
+	</haxe_doc>
+		</deleteFile>
+		<deleteDirectory public="1" set="method" line="77" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+		Delete a given directory.
+	</haxe_doc>
+		</deleteDirectory>
+		<readDirectory public="1" set="method" line="81" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc>
+		Read all the files/directories stored into the given directory.
+	</haxe_doc>
+		</readDirectory>
+		<sys_exists line="91" static="1"><f a="">
+	<unknown/>
+	<e path="Bool"/>
+</f></sys_exists>
+		<file_delete line="92" static="1"><f a="">
+	<unknown/>
+	<unknown/>
+</f></file_delete>
+		<sys_rename line="93" static="1"><f a=":">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></sys_rename>
+		<sys_stat line="94" static="1"><f a="">
+	<unknown/>
+	<t path="sys.FileStat"/>
+</f></sys_stat>
+		<sys_file_type line="95" static="1"><f a="">
+	<unknown/>
+	<c path="String"/>
+</f></sys_file_type>
+		<sys_create_dir line="96" static="1"><f a=":">
+	<unknown/>
+	<c path="Int"/>
+	<unknown/>
+</f></sys_create_dir>
+		<sys_remove_dir line="97" static="1"><f a="">
+	<unknown/>
+	<unknown/>
+</f></sys_remove_dir>
+		<sys_read_dir line="98" static="1"><f a="">
+	<unknown/>
+	<c path="Array"><d/></c>
+</f></sys_read_dir>
+		<file_full_path line="99" static="1"><f a="">
+	<unknown/>
+	<c path="String"/>
+</f></file_full_path>
+		<haxe_doc>
+	This class allows you to get informations about the files and directories.
+</haxe_doc>
+	</class>
+	<enum path="sys.io.FileHandle" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/File.hx" module="sys.io.File"/>
+	<class path="sys.io.File" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/File.hx">
+		<getContent public="1" set="method" line="35" static="1"><f a="path">
+	<c path="String"/>
+	<c path="String"/>
+</f></getContent>
+		<getBytes public="1" set="method" line="39" static="1"><f a="path">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+</f></getBytes>
+		<saveContent public="1" set="method" line="43" static="1"><f a="path:content">
+	<c path="String"/>
+	<c path="String"/>
+	<e path="Void"/>
+</f></saveContent>
+		<saveBytes public="1" set="method" line="49" static="1"><f a="path:bytes">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+	<e path="Void"/>
+</f></saveBytes>
+		<read public="1" set="method" line="55" static="1"><f a="path:?binary">
+	<c path="String"/>
+	<e path="Bool"/>
+	<c path="sys.io.FileInput"/>
+</f></read>
+		<write public="1" set="method" line="59" static="1"><f a="path:?binary">
+	<c path="String"/>
+	<e path="Bool"/>
+	<c path="sys.io.FileOutput"/>
+</f></write>
+		<append public="1" set="method" line="63" static="1"><f a="path:?binary">
+	<c path="String"/>
+	<e path="Bool"/>
+	<c path="sys.io.FileOutput"/>
+</f></append>
+		<copy public="1" set="method" line="67" static="1"><f a="src:dst">
+	<c path="String"/>
+	<c path="String"/>
+	<e path="Void"/>
+</f></copy>
+		<file_contents line="75" static="1"><f a="">
+	<unknown/>
+	<c path="String"/>
+</f></file_contents>
+		<file_open line="76" static="1"><f a=":">
+	<unknown/>
+	<unknown/>
+	<e path="sys.io.FileHandle"/>
+</f></file_open>
+		<haxe_doc>
+	API for reading and writing to files.
+</haxe_doc>
+	</class>
+	<class path="sys.io.FileInput" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/FileInput.hx">
+		<extends path="haxe.io.Input"/>
+		<file_eof line="75" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<e path="Bool"/>
+</f></file_eof>
+		<file_read line="77" static="1"><f a=":::">
+	<e path="sys.io.FileHandle"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></file_read>
+		<file_read_char line="78" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<c path="Int"/>
+</f></file_read_char>
+		<file_close line="80" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<unknown/>
+</f></file_close>
+		<file_seek line="81" static="1"><f a="::">
+	<e path="sys.io.FileHandle"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<unknown/>
+</f></file_seek>
+		<file_tell line="82" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<c path="Int"/>
+</f></file_tell>
+		<__f><e path="sys.io.FileHandle"/></__f>
+		<readByte public="1" set="method" line="35" override="1"><f a=""><c path="Int"/></f></readByte>
+		<readBytes public="1" set="method" line="46" override="1"><f a="s:p:l">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></readBytes>
+		<close public="1" set="method" line="57" override="1"><f a=""><e path="Void"/></f></close>
+		<seek public="1" set="method" line="62"><f a="p:pos">
+	<c path="Int"/>
+	<e path="sys.io.FileSeek"/>
+	<e path="Void"/>
+</f></seek>
+		<tell public="1" set="method" line="66"><f a=""><c path="Int"/></f></tell>
+		<eof public="1" set="method" line="71"><f a=""><e path="Bool"/></f></eof>
+		<new set="method" line="31"><f a="f">
+	<e path="sys.io.FileHandle"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+	Use [sys.io.File.read] to create a [FileInput]
+</haxe_doc>
+	</class>
+	<class path="sys.io.FileOutput" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/FileOutput.hx">
+		<extends path="haxe.io.Output"/>
+		<file_close line="60" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<unknown/>
+</f></file_close>
+		<file_seek line="61" static="1"><f a="::">
+	<e path="sys.io.FileHandle"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<unknown/>
+</f></file_seek>
+		<file_tell line="62" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<c path="Int"/>
+</f></file_tell>
+		<file_flush line="64" static="1"><f a="">
+	<e path="sys.io.FileHandle"/>
+	<unknown/>
+</f></file_flush>
+		<file_write line="65" static="1"><f a=":::">
+	<e path="sys.io.FileHandle"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></file_write>
+		<file_write_char line="66" static="1"><f a=":">
+	<e path="sys.io.FileHandle"/>
+	<c path="Int"/>
+	<unknown/>
+</f></file_write_char>
+		<__f><e path="sys.io.FileHandle"/></__f>
+		<writeByte public="1" set="method" line="35" override="1"><f a="c">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeByte>
+		<writeBytes public="1" set="method" line="39" override="1"><f a="s:p:l">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></writeBytes>
+		<flush public="1" set="method" line="43" override="1"><f a=""><e path="Void"/></f></flush>
+		<close public="1" set="method" line="47" override="1"><f a=""><e path="Void"/></f></close>
+		<seek public="1" set="method" line="52"><f a="p:pos">
+	<c path="Int"/>
+	<e path="sys.io.FileSeek"/>
+	<e path="Void"/>
+</f></seek>
+		<tell public="1" set="method" line="56"><f a=""><c path="Int"/></f></tell>
+		<new set="method" line="31"><f a="f">
+	<e path="sys.io.FileHandle"/>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc>
+	Use [sys.io.File.write] to create a [FileOutput]
+</haxe_doc>
+	</class>
+	<enum path="sys.io.FileSeek" params="" file="/usr/lib/haxe/std/sys/io/FileSeek.hx">
+		<SeekEnd/>
+		<SeekCur/>
+		<SeekBegin/>
+	</enum>
+	<class path="sys.io._Process.Stdin" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/Process.hx" private="1" module="sys.io.Process">
+		<extends path="haxe.io.Output"/>
+		<_stdin_write line="55" static="1"><f a=":::">
+	<e path="Void"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></_stdin_write>
+		<_stdin_close line="56" static="1"><f a="">
+	<e path="Void"/>
+	<unknown/>
+</f></_stdin_close>
+		<p><e path="Void"/></p>
+		<buf><c path="haxe.io.Bytes"/></buf>
+		<close public="1" set="method" line="37" override="1"><f a=""><e path="Void"/></f></close>
+		<writeByte public="1" set="method" line="42" override="1"><f a="c">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></writeByte>
+		<writeBytes public="1" set="method" line="47" override="1"><f a="buf:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></writeBytes>
+		<new public="1" set="method" line="32"><f a="p">
+	<e path="Void"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="sys.io._Process.Stdout" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/Process.hx" private="1" module="sys.io.Process">
+		<extends path="haxe.io.Input"/>
+		<_stdout_read line="86" static="1"><f a=":::">
+	<e path="Void"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></_stdout_read>
+		<_stderr_read line="87" static="1"><f a=":::">
+	<e path="Void"/>
+	<t path="haxe.io.BytesData"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></_stderr_read>
+		<p><e path="Void"/></p>
+		<out><e path="Bool"/></out>
+		<buf><c path="haxe.io.Bytes"/></buf>
+		<readByte public="1" set="method" line="72" override="1"><f a=""><c path="Int"/></f></readByte>
+		<readBytes public="1" set="method" line="78" override="1"><f a="str:pos:len">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Int"/>
+</f></readBytes>
+		<new public="1" set="method" line="66"><f a="p:out">
+	<e path="Void"/>
+	<e path="Bool"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="sys.io.Process" params="" file="/usr/lib/haxe/std/neko/_std/sys/io/Process.hx">
+		<_run line="121" static="1"><f a=":">
+	<unknown/>
+	<d/>
+	<e path="Void"/>
+</f></_run>
+		<_exit line="122" static="1"><f a="">
+	<e path="Void"/>
+	<c path="Int"/>
+</f></_exit>
+		<_pid line="123" static="1"><f a="">
+	<e path="Void"/>
+	<c path="Int"/>
+</f></_pid>
+		<_close line="124" static="1"><f a="">
+	<e path="Void"/>
+	<unknown/>
+</f></_close>
+		<_kill line="125" static="1"><f a="">
+	<e path="Void"/>
+	<unknown/>
+</f></_kill>
+		<p><e path="Void"/></p>
+		<stdout public="1" set="null"><c path="haxe.io.Input"/></stdout>
+		<stderr public="1" set="null"><c path="haxe.io.Input"/></stderr>
+		<stdin public="1" set="null"><c path="haxe.io.Output"/></stdin>
+		<getPid public="1" set="method" line="105"><f a=""><c path="Int"/></f></getPid>
+		<exitCode public="1" set="method" line="109"><f a=""><c path="Int"/></f></exitCode>
+		<close public="1" set="method" line="113"><f a=""><e path="Void"/></f></close>
+		<kill public="1" set="method" line="117"><f a=""><e path="Void"/></f></kill>
+		<new public="1" set="method" line="98"><f a="cmd:args">
+	<c path="String"/>
+	<c path="Array"><c path="String"/></c>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<class path="xa.Application" params="" file="../../src/haxe/xa/Application.hx">
+		<getFolder public="1" set="method" line="39" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the full path to the folder where your application is located.</p>
+	* <p>If you are planning to use this folder to store data, please read <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a>.</p> 
+	]]></haxe_doc>
+		</getFolder>
+		<getPath public="1" set="method" line="49" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the full path of your application's executable.</p>
+	* <p>Internal call is <a href="http://haxe.org/api/sys">Sys.executablePath()</a>.</p> 
+	]]></haxe_doc>
+		</getPath>
+		<getArguments public="1" set="method" line="58" static="1">
+			<f a=""><c path="Array"><c path="String"/></c></f>
+			<haxe_doc><![CDATA[
+	* <p>Returns an array of strings with the parameters passed to your application.</p>
+	* <p>Internal call is <a href="http://haxe.org/api/sys">Sys.args()</a>.</p>  
+	]]></haxe_doc>
+		</getArguments>
+		<exit public="1" set="method" line="69" static="1">
+			<f a="code">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Terminates the application with the provided exit code.</p>
+	* <p>Use 0 if everything went ok and 1 or above depending on your error. You can read more about
+	*  exit code conventions in <a href="http://tldp.org/LDP/abs/html/exit-status.html">Exit Status</a> and
+	*  <a href="http://tldp.org/LDP/abs/html/exitcodes.html">Exit Codes</a>.</p>
+	]]></haxe_doc>
+		</exit>
+		<exitError public="1" set="method" line="78" static="1">
+			<f a="message:?code">
+				<c path="String"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Terminates the application with the provided exit error message. Default error code is 1.</p>
+	* <p>This is just a shortcut to [xa.Utils.print(message)] combined with [xa.Application.exit(code)].</p>
+	]]></haxe_doc>
+		</exitError>
+		<haxe_doc><![CDATA[
+*  <p>The Application class provides access to basic information about your application. </p> 
+]]></haxe_doc>
+	</class>
+	<class path="xa.File" params="" file="../../src/haxe/xa/File.hx">
+		<read public="1" set="method" line="38" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Reads the content of a text file.</p> 
+	]]></haxe_doc>
+		</read>
+		<write public="1" set="method" line="50" static="1">
+			<f a="path:content">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Writes content to a text file.</p> 
+	]]></haxe_doc>
+		</write>
+		<append public="1" set="method" line="60" static="1">
+			<f a="path:content">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Appends content to a text file. It creates the file if it doesn't exist.</p> 
+	]]></haxe_doc>
+		</append>
+		<remove public="1" set="method" line="70" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Removes a file.</p> 
+	]]></haxe_doc>
+		</remove>
+		<copy public="1" set="method" line="81" static="1">
+			<f a="sourcePath:destinationPath">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten (<strong>no warning!</strong>).</p>
+	* <p>Example: if you want to copy file "a.txt" to "folder", you need this:</p>
+	* <p>[xa.File.copy("a.txt", "folder/a.txt");]</p>
+	* <p>Note that you just can't pass "folder", <strong>you need to pass the full path of the new file</strong>.</p> 
+	]]></haxe_doc>
+		</copy>
+		<isFile public="1" set="method" line="89" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns true if the path exists <strong>and</strong> is a file.</p> 
+	]]></haxe_doc>
+		</isFile>
+		<hasExtension public="1" set="method" line="101" static="1">
+			<f a="path:extensions">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
+	*  <p>Example: if you want to check if a file has either HTML or HTM extension, you could try:</p>
+	*  <p>[var isHtml = xa.File.hasExtension("file.html", \["htm", "html"\])].</p>
+	*  <p>Extensions are case-insensitve ("txt" will match both txt and TXT).</p>
+	*  <p><b>DO NOT INCLUDE "." on the extensions to be matched.</b></p>
+	]]></haxe_doc>
+		</hasExtension>
+		<launch public="1" set="method" line="126" static="1">
+			<f a="path:?args">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Launches a given file with system's default application passing the parameters given.</p>
+	* <p>For example, it will open html files with your default browser and pdf files with your pdf reader.</p> 
+	]]></haxe_doc>
+		</launch>
+		<size public="1" set="method" line="138" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the size in bytes of the file</p>
+	]]></haxe_doc>
+		</size>
+		<haxe_doc><![CDATA[
+* <p>The File class provides access to files in the system.</p> 
+* <p>You can use both relative and absolute paths. Please note that paths are relative to your current working directory (which might not be your application's directory).</p> 
+]]></haxe_doc>
+	</class>
+	<class path="xa.FileSystem" params="" file="../../src/haxe/xa/FileSystem.hx">
+		<pathToCurrent public="1" set="method" line="37" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Translates a path to the current OS.</p>
+	]]></haxe_doc>
+		</pathToCurrent>
+		<pathToUnix public="1" set="method" line="45" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Translates a path to Unix.</p>
+	]]></haxe_doc>
+		</pathToUnix>
+		<pathToWindows public="1" set="method" line="53" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Translates a path to Windows.</p>
+	]]></haxe_doc>
+		</pathToWindows>
+		<exists public="1" set="method" line="61" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns true if the given path exists on the file system, false otherwise.</p>
+	]]></haxe_doc>
+		</exists>
+		<rename public="1" set="method" line="71" static="1">
+			<f a="path:newPath">
+				<c path="String"/>
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Renames a file or folder to a new path. <strong>Please note that you must provide a new path (either absolute or relative), not only the new desired name</strong>.</p>
+	* <p>Example: if you want to rename "a.txt" to "b.txt", you can use:</p>
+	* <p>[xa.FileSystem.rename("a.txt", "b.txt");]</p>
+	]]></haxe_doc>
+		</rename>
+		<isHidden public="1" set="method" line="84" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns true if a file or folder is hidden, false otherwise.</p>
+	* <p>In Mac and Linux, all files/folders starting with "." are considered hidden. Please note that in OSX there are
+	*  other methods to hide files and folders, see <a href="http://www.westwind.com/reference/OS-X/invisibles.html">Mac OS X Hidden Files and Directories</a> for more info.</p> 
+	* <p>In Windows, we use the <a href="http://www.computerhope.com/attribhl.htm">attrib command</a>, so the process might be fairly slow.</p>
+	* <p>Ideally, <a href="http://haxe.org/api/sys/filestat">sys.io.FileStat</a> would return whether an item is hidden or not in a crossplatform 
+	* and native manner, but until then, this is our best bet. If you can come up with faster and more reliable ways of finding out, please let us know!</p>
+	]]></haxe_doc>
+		</isHidden>
+		<getNameFromPath public="1" set="method" line="112" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Given the path to an item, it returns its name, <strong>including the extension (if any)</strong>.</p> 
+	]]></haxe_doc>
+		</getNameFromPath>
+		<haxe_doc><![CDATA[
+* <p>The FileSystem class offers basic funcionality for both files and folders, including path formatting.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.filters.IFilter" params="" file="../../src/haxe/xa/filters/IFilter.hx" interface="1">
+		<filter public="1" set="method">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p> Takes the path to an item (file or folder) and should return true for that item to be included in the results, false otherwise.
+	]]></haxe_doc>
+		</filter>
+		<haxe_doc><![CDATA[
+* <p>Main interface for filters.</p>
+* <p>The main purpose of a filter is removing certain results from search and copy operations.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.filters.All" params="" file="../../src/haxe/xa/filters/All.hx">
+		<implements path="xa.filters.IFilter"/>
+		<filter public="1" set="method" line="40">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	* @inheritdoc
+	</haxe_doc>
+		</filter>
+		<new public="1" set="method" line="35"><f a=""><e path="Void"/></f></new>
+		<haxe_doc><![CDATA[
+* <p>Default filter for search and copy operations, allows all items.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.filters.AllButHidden" params="" file="../../src/haxe/xa/filters/AllButHidden.hx">
+		<implements path="xa.filters.IFilter"/>
+		<filter public="1" set="method" line="42">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	* @inheritdoc
+	</haxe_doc>
+		</filter>
+		<new public="1" set="method" line="37"><f a=""><e path="Void"/></f></new>
+		<haxe_doc><![CDATA[
+* <p>Returns false for all hidden files. Please see [xa.FileSystem.isHidden()] for a full
+* explanation of how this works across different systems.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.Filter" params="" file="../../src/haxe/xa/Filter.hx">
+		<ALL public="1" line="42" static="1">
+			<c path="xa.filters.IFilter"/>
+			<haxe_doc><![CDATA[
+	* <p>See [xa.filters.All].</p> 
+	]]></haxe_doc>
+		</ALL>
+		<ALL_BUT_HIDDEN public="1" line="47" static="1">
+			<c path="xa.filters.IFilter"/>
+			<haxe_doc><![CDATA[
+	* <p>See [xa.filters.AllButHidden].</p>
+	]]></haxe_doc>
+		</ALL_BUT_HIDDEN>
+		<haxe_doc><![CDATA[
+* <p>The Filter class offers predetermined filters for actions such as Folder.copy() and Search.search().</p> 
+* <p>As a rule of thumb, when you build your own filters, you should return true when you want the given
+* item to be copied or returned as part of the search, false otherwise.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.Folder" params="" file="../../src/haxe/xa/Folder.hx">
+		<read public="1" set="method" line="42" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Reads the contents of the given folder returning an array of strings with the paths to the items contained.</p> 
+	* <p>Please note that [xa.Folder.read()] is NOT recursive, it returns items on the given folder only. If you need to
+	*  read recursively, you can use [xa.Search.search()].</p>
+	]]></haxe_doc>
+		</read>
+		<create public="1" set="method" line="50" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Creates a folder in the given path.</p> 
+	]]></haxe_doc>
+		</create>
+		<remove public="1" set="method" line="58" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Removes the folder in the given path. <strong>The folder cannot be removed if it's not empty</strong> (an exception is thrown).</p> 
+	]]></haxe_doc>
+		</remove>
+		<forceRemove public="1" set="method" line="67" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	*  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
+	*  <p>In Mac and Linux uses [rm -rf path] and in Windows [RMDIR path /s /q]</p>
+	]]></haxe_doc>
+		</forceRemove>
+		<copy public="1" set="method" line="88" static="1">
+			<f a="sourcePath:destinationPath:?filter:?deep">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="xa.filters.IFilter"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
+	* <p>If you want to exclude items from being copied, use an IFilter instance. See built-in filters in xa.Filter. 
+	* The filter function will get called once per item, receiving the path (of each item, that is).
+	* It should return true if the item has to be copied, false otherwise. You can use the predefined filters in the Filter class or roll your own.</p>
+	* <p>The copy is fully recursive by default (deep = -1). To copy <strong>only</strong> the items in the root of the source folder, pass 0 for the deep parameter.
+	* If you want to copy items in the root and the next level, pass 1. To copy items in root + first and second levels, past 2, etc.</p> 
+	]]></haxe_doc>
+		</copy>
+		<copyByExtension public="1" set="method" line="105" static="1">
+			<f a="source:destination:extensions:copy:?deep">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="Array"><c path="String"/></c>
+				<e path="Bool"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	*  <p>Copies source folder to destination filtering files by extension.</p>
+	*  <p>Pass an array of extensions and whether files matching those extensions should be copied (true) or excluded (false).</p>
+	*  <p>If you want to <strong>only</strong> copy .txt files from the source folder:</p> 
+	*  <p>[xa.Folder.copyByExtension(source, destination, [".txt"], true);]</p>
+	*  <p>If you want to copy al files <strong>but</strong> .swf and .project files:</p>
+	*  <p>[xa.Folder.copyByExtension(source, destination, [".swf", ".project"], false);]</p>
+	*  <p>Extensions are case-insensitve (would match .txt or .TXT).</p>
+	*  <p>Remember that you can always roll your own filter if you have more specific needs.</p>
+	]]></haxe_doc>
+		</copyByExtension>
+		<isFolder public="1" set="method" line="115" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns true if the path exists and is a folder, false otherwise.</p>
+	]]></haxe_doc>
+		</isFolder>
+		<getTotalItems public="1" set="method" line="124" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the number of items in the given folder.</p>
+	]]></haxe_doc>
+		</getTotalItems>
+		<isEmpty public="1" set="method" line="133" static="1">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns true if the folder has no items.</p>
+	]]></haxe_doc>
+		</isEmpty>
+		<size public="1" set="method" line="142" static="1">
+			<f a="path">
+				<c path="String"/>
+				<c path="Int"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the size in bytes of the folder, including all its items.</p>
+	]]></haxe_doc>
+		</size>
+		<privateCopy set="method" line="158" static="1"><f a="source:destination:?filter:?deep:?currentLevel">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="xa.filters.IFilter"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></privateCopy>
+		<haxe_doc><![CDATA[
+* <p>The Folder class offers functionality to work with folders in the system.</p> 
+]]></haxe_doc>
+	</class>
+	<class path="xa.Process" params="" file="../../src/haxe/xa/Process.hx">
+		<extends path="sys.io.Process"/>
+		<getError public="1" set="method" line="39">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the standard error from the process.</p>
+	]]></haxe_doc>
+		</getError>
+		<getOutput public="1" set="method" line="47">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	* <p>Returns the standard output from the process.</p> 
+	]]></haxe_doc>
+		</getOutput>
+		<success public="1" set="method" line="56">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns true if the exit code is 0, false otherwise.</p>
+	*  <p>Please note that <strong>calling success() will block your app until the process has finished</strong>.</p>
+	]]></haxe_doc>
+		</success>
+		<exitCode public="1" set="method" line="65" override="1">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns process' exit code. If there are no errors, code is 0, more than 0 otherwise.</p>
+	*  <p>Please note that <strong>calling exitCode() will block your app until the process has finished</strong>.</p>
+	]]></haxe_doc>
+		</exitCode>
+		<readStream set="method" line="83">
+			<f a="stream">
+				<c path="haxe.io.Input"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc><![CDATA[
+	*  <p>Reads a stream line by line until the end. to avoid problems reading long streams.</p>
+	*  <p>Reading line by line in a loop prevents errors when the stream returned is too long.</p>
+	]]></haxe_doc>
+		</readStream>
+		<_code><c path="Int"/></_code>
+		<new public="1" set="method" line="33"><f a="cmd:args">
+	<c path="String"/>
+	<c path="Array"><c path="String"/></c>
+	<e path="Void"/>
+</f></new>
+		<haxe_doc><![CDATA[
+* <p>Use the Process to launch and interact with other tools in the system (SVN, MTASC, commands such ls, etc.).</p>
+* <p>See <a href="http://haxe.org/api/sys/io/process">sys.io.Process</a> for the full API and <a href="http://haxe.org/api/neko/io/process/examples">usage samples</a>.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.Search" params="" file="../../src/haxe/xa/Search.hx">
+		<search public="1" set="method" line="44" static="1">
+			<f a="folderPath:?filter:?deep">
+				<c path="String"/>
+				<c path="xa.filters.IFilter"/>
+				<c path="Int"/>
+				<c path="Array"><c path="String"/></c>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Searches for items in the given folder path.</p>
+	* <p>Similar to [xa.Folder.copy()], you can exclude items from the search using a [xa.filters.IFilter] instance. See predefined filters in [xa.Filter].
+	* The filter function will get called once per item, receiving the path of each item. It should return true to include the item in the
+	* search result or false otherwise. You can use predefined filters or roll your own implementing [xa.filters.IFilter].</p>
+	* <p>Default filter is [xa.filters.All].
+	* <p>The search is fully recursive by default (deep = -1). To search <strong>only</strong> the items in the root of the folder, pass 0 for the deep parameter.
+	* If you want to search for items in the root and the next level, pass 1. To search for items in root + first and second levels, past 2, etc.</p> 
+	]]></haxe_doc>
+		</search>
+		<privateSearch set="method" line="52" static="1"><f a="folderPath:?filter:?deep:?currentLevel">
+	<c path="String"/>
+	<c path="xa.filters.IFilter"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="Array"><c path="String"/></c>
+</f></privateSearch>
+		<haxe_doc><![CDATA[
+* <p>Provides search functionality over system items.</p> 
+]]></haxe_doc>
+	</class>
+	<class path="xa.System" params="" file="../../src/haxe/xa/System.hx">
+		<WIN public="1" line="37" static="1">
+			<c path="String"/>
+			<haxe_doc><![CDATA[
+	* <p>Windows system identifier.</p>
+	]]></haxe_doc>
+		</WIN>
+		<MAC public="1" line="42" static="1">
+			<c path="String"/>
+			<haxe_doc><![CDATA[
+	* <p>Mac system identifier.</p>
+	]]></haxe_doc>
+		</MAC>
+		<LINUX public="1" line="47" static="1">
+			<c path="String"/>
+			<haxe_doc><![CDATA[
+	* <p>Linux system identifier.</p>
+	]]></haxe_doc>
+		</LINUX>
+		<WIN_SEPARATOR public="1" line="52" static="1">
+			<c path="String"/>
+			<haxe_doc><![CDATA[
+	* <p>Folder separator for Windows systems ("\").</p>
+	]]></haxe_doc>
+		</WIN_SEPARATOR>
+		<UNIX_SEPARATOR public="1" line="57" static="1">
+			<c path="String"/>
+			<haxe_doc><![CDATA[
+	* <p>Folder separator for Unix systems ("/").</p>
+	]]></haxe_doc>
+		</UNIX_SEPARATOR>
+		<isMac public="1" set="method" line="62" static="1">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns true if the system is Mac.</p>
+	]]></haxe_doc>
+		</isMac>
+		<isWindows public="1" set="method" line="70" static="1">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns true if the system is Windows.</p>
+	]]></haxe_doc>
+		</isWindows>
+		<isLinux public="1" set="method" line="78" static="1">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns true if the system is Linux.</p>
+	]]></haxe_doc>
+		</isLinux>
+		<isUnix public="1" set="method" line="86" static="1">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns true if the system is either Mac or Linux.</p>
+	]]></haxe_doc>
+		</isUnix>
+		<getName public="1" set="method" line="94" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns system name: "Windows", "Mac" or "Linux".</p>
+	]]></haxe_doc>
+		</getName>
+		<getSeparator public="1" set="method" line="102" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns current's system separator.</p>
+	]]></haxe_doc>
+		</getSeparator>
+		<getUserFolder public="1" set="method" line="113" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns user's folder.</p>
+	*  <p>In Windows returns the value of %USERPROFILE% and in Mac and Linux returns the value of $HOME.</p>
+	*  <p>Please read first <a href="http://www.codinghorror.com/blog/archives/001032.html">Don't polute the user space</a> 
+	*  in case you are planning to write files in the user folder.</p>
+	]]></haxe_doc>
+		</getUserFolder>
+		<getTempFolder public="1" set="method" line="122" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns systems's temp folder.</p>
+	*  <p>In Windows returns the value of %TEMP% or %TMP%. in Linux returns the value of $TMPDIR if exists, /tmp otherwise. In Macs returns the value of $TMPDIR.</p>
+	]]></haxe_doc>
+		</getTempFolder>
+		<getAppDataFolder public="1" set="method" line="159" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns systems's applications data folder.</p>
+	*  <p>In Windows returns the value of %APPDATA%. in Linux returns the value of $HOME and Macs $HOME + "/Library/Application Support".</p>
+	*  <p>Please note that is standard across Linux systems writing application data to the user folder, usually in a hidden folder such as ".appName".</p>
+	]]></haxe_doc>
+		</getAppDataFolder>
+		<getHostName public="1" set="method" line="185" static="1">
+			<f a=""><c path="String"/></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns the name of the current host system.</p>
+	]]></haxe_doc>
+		</getHostName>
+		<environment public="1" set="method" line="207" static="1">
+			<f a=""><c path="Hash"><c path="String"/></c></f>
+			<haxe_doc><![CDATA[
+	*  <p>Returns a hash containing systems's environment variables.</p>
+	]]></haxe_doc>
+		</environment>
+		<haxe_doc><![CDATA[
+* <p>Provides information about the system.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.Utils" params="" file="../../src/haxe/xa/Utils.hx">
+		<print public="1" set="method" line="37" static="1">
+			<f a="txt">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Prints out to the standard output (automatically adds a line break).</p>
+	]]></haxe_doc>
+		</print>
+		<printError public="1" set="method" line="45" static="1">
+			<f a="txt">
+				<c path="String"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[
+	* <p>Prints out to the standard error (automatically adds a line break).</p>
+	]]></haxe_doc>
+		</printError>
+		<haxe_doc><![CDATA[
+* <p>Provides simple helper methods.</p>
+]]></haxe_doc>
+	</class>
+	<class path="xa.filters.ExtensionFilter" params="" file="../../src/haxe/xa/filters/ExtensionFilter.hx">
+		<implements path="xa.filters.IFilter"/>
+		<filter public="1" set="method" line="53">
+			<f a="path">
+				<c path="String"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>
+	* @inheritdoc
+	</haxe_doc>
+		</filter>
+		<extensions><c path="Array"><c path="String"/></c></extensions>
+		<allow><e path="Bool"/></allow>
+		<new public="1" set="method" line="44">
+			<f a="extensions:allow">
+				<c path="Array"><c path="String"/></c>
+				<e path="Bool"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>
+	* @param extensions Array of extensions to filter
+	* @param allow True if the files with the given extensions should be included, false otherwise.
+	* 
+	* @see xa.File#hasExtension()
+	</haxe_doc>
+		</new>
+		<haxe_doc><![CDATA[
+* <p>Filters files based on its extension.</p>
+* <p>It internally uses [xa.File.hasExtension()], see for more info.</p>
+* <p>It allows all folders.</p>
+]]></haxe_doc>
+	</class>
+</haxe>
