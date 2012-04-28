@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI 0.4 documentation</title>
+<title>XAPI 0.4.1 documentation</title>
 
 <style type="text/css">
 body
@@ -114,24 +114,23 @@ dt
 
 	<body>
 		<div class="document">
-			<div class="title">XAPI 0.4 documentation</div>
+			<div class="title">XAPI 0.4.1 documentation</div>
 			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.File</div><div class="classdoc">
  <p>The File class provides access to files in the system.</p>
  <p>You can use both relative and absolute paths. Please note that paths are relative to your current working directory (which might not be your application's directory).</p>
 </div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>append(path : <a href="../String.html" class="type">String</a>, content : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	 <p>Appends content to a text file.</p>
+	 <p>Appends content to a text file. It creates the file if it doesn't exist.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Copies source file to destination <strong>file</strong>. If destination file doesn't exist, it will be created. If it does, it will be overwritten (<strong>no warning!</strong>).</p>
 	 <p>Example: if you want to copy file "a.txt" to "folder", you need this:</p>
 	 <p><code>xa.File.copy("a.txt", "folder/a.txt");</code></p>
 	 <p>Note that you just can't pass "folder", <strong>you need to pass the full path of the new file</strong>.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>delete(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	 DEPRECATED. Please use remove instead.
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>hasExtension(path : <a href="../String.html" class="type">String</a>, extensions : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;) : <a href="../Bool.html" class="type">Bool</a></dt><dd>
 	  <p>Returns true if the given file has any of the extensions passed, false otherwise.</p>
-	  <p>Example: if you want to check if a file has either html or htm extension, you could try:</p>
-	  <p><code>var isHtml = xa.File.hasExtension(path, \[".htm", ".html"\])</code>.</p>
-	  <p>Extensions are case-insensitve (".txt" will match both .txt and .TXT).</p>
+	  <p>Example: if you want to check if a file has either HTML or HTM extension, you could try:</p>
+	  <p><code>var isHtml = xa.File.hasExtension("file.html", \["htm", "html"\])</code>.</p>
+	  <p>Extensions are case-insensitve ("txt" will match both txt and TXT).</p>
+	  <p><b>DO NOT INCLUDE "." on the extensions to be matched.</b></p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>isFile(path : <a href="../String.html" class="type">String</a>) : <a href="../Bool.html" class="type">Bool</a></dt><dd>
 	 <p>Returns true if the path exists <strong>and</strong> is a file.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>launch(path : <a href="../String.html" class="type">String</a>, ?args : <a href="../Array.html" class="type">Array</a>&lt;<a href="../String.html" class="type">String</a>&gt;) : <a href="../Void.html" class="type">Void</a></dt><dd>

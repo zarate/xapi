@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>XAPI 0.4 documentation</title>
+<title>XAPI 0.4.1 documentation</title>
 
 <style type="text/css">
 body
@@ -114,7 +114,7 @@ dt
 
 	<body>
 		<div class="document">
-			<div class="title">XAPI 0.4 documentation</div>
+			<div class="title">XAPI 0.4.1 documentation</div>
 			<a href="#" onclick="javascript:history.back(-1); return false" class="index">Back</a> | <a href="../../index.html" class="index">Index</a><div class="classname"><span class="kwd">class </span>xa.Folder</div><div class="classdoc">
  <p>The Folder class offers functionality to work with folders in the system.</p>
 </div><dl><dt><span class="kwd">static </span><span class="kwd">function </span>copy(sourcePath : <a href="../String.html" class="type">String</a>, destinationPath : <a href="../String.html" class="type">String</a>, ?filter : <a href="../xa/filters/IFilter.html" class="type">xa.filters.IFilter</a>, ?deep : <a href="../Int.html" class="type">Int</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
@@ -135,10 +135,6 @@ dt
 	  <p>Remember that you can always roll your own filter if you have more specific needs.</p>
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>create(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	 <p>Creates a folder in the given path.</p>
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>delete(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	 DEPRECATED. Please use remove instead.
-</dd><dt><span class="kwd">static </span><span class="kwd">function </span>forceDelete(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
-	 DEPRECATED. Please use forceRemove instead.
 </dd><dt><span class="kwd">static </span><span class="kwd">function </span>forceRemove(path : <a href="../String.html" class="type">String</a>) : <a href="../Void.html" class="type">Void</a></dt><dd>
 	  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
 	  <p>In Mac and Linux uses <code>rm -rf path</code> and in Windows <code>RMDIR path /s /q</code></p>
