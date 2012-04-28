@@ -1,4 +1,4 @@
-***** TO BE RELEASED
+***** 28 / April / 2012: 0.4.1
 
 * Finally removed deprecated xa.File.delete(), xa.Folder.delete() and xa.Folder.forceDelete().
 * Fixed issue #1 > xa.File.hasExtension() matches partial extensions.
