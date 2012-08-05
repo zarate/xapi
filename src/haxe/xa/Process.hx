@@ -105,5 +105,5 @@ class Process extends sys.io.Process
 		
 	}
 	
-	private var _code : Int;	
+	private var _code : Null<Int>;	
 }
