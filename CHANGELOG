@@ -1,3 +1,5 @@
+* Fixed issue #2, null <> Int comparison on CPP. Thanks to Andy Li for the report and patch.
+
 ***** 28 / April / 2012: 0.4.1
 
 * Finally removed deprecated xa.File.delete(), xa.Folder.delete() and xa.Folder.forceDelete().
