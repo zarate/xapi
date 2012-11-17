@@ -14,6 +14,8 @@ class Main
 	var _tmpOutputFolder : String;
 	
 	var _outputFolder : String;
+
+	var _commit : String;
 	
 	static var TEMPLATES_FOLDER_PATH : String = "templates";
 	
@@ -57,6 +59,9 @@ class Main
 				case "-o":
 					_outputFolder = args[x+1];
 				
+				case "-c":
+					_commit = args[x+1];
+
 				case "-h", "-help":
 					printHelp();
 					exit();
@@ -114,13 +119,15 @@ class Main
 			exit(clone.getError());
 		}
 		
-		// to checkout the tag we need to set the 
+		// to checkout a particular tag or commit we need to set the 
 		// current working directory in the source folder
 		// we bring it back to the current one when we are done
 		var cwd = Sys.getCwd();
 		Sys.setCwd(_sourceFolder);
 		
-		var checkout = new xa.Process("git", ["checkout", _version]);
+		var checkoutNode = (null == _commit)? _version : _commit;
+
+		var checkout = new xa.Process("git", ["checkout", checkoutNode]);
 		
 		if(!checkout.success())
 		{
@@ -241,8 +248,11 @@ class Main
 		var help = [];
 		
 		help.push("Usage:");
-		help.push("\t-v: version to be generated, ie: 0.4, 1.2, etc");
+		help.push("\t-v: version to be generated, ie: 0.4, 1.2, etc. Used by default as the tag name");
+		help.push("\t    to checkout the repo at. See -c to specify a particular commit");
 		help.push("\t-o: output folder. Optional, defaults to current working directory");
+		help.push("\t-c: commit used to generate the release (HEAD and other GIT tricks work too).");
+		help.push("\t    Optional, by default the tag specified in -v will be used");
 		help.push("\t-h -help: print this help");
 		
 		log(help.join("\n"));
