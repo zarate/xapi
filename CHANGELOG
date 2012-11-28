@@ -1,3 +1,4 @@
+* Moved Flash ActionScript implementation to Haxe files + conditional compilation.
 * Fixed issue #2, null <> Int comparison on CPP. Thanks to Andy Li for the report and patch.
 
 ***** 28 / April / 2012: 0.4.1
