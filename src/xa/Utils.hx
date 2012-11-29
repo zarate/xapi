@@ -29,6 +29,17 @@ THE SOFTWARE.
 
 package xa;
 
+#if flash
+
+import flash.filesystem.FileStream;
+import flash.filesystem.File;
+import flash.filesystem.FileMode;
+
+// See below for how to print from Flash to stdout and stderr:
+// http://docs.freebsd.org/info/gawk/gawk.info.Special_Files.html
+
+#end
+
 class Utils
 {
 	/**
@@ -36,7 +47,18 @@ class Utils
 	**/
 	public static function print(txt : String) : Void
 	{
+		#if flash
+
+		var stdout = new FileStream();
+		stdout.open(new File("/dev/stdout"), FileMode.WRITE);
+		stdout.writeUTFBytes(txt + "\n");
+		stdout.close();
+
+		#else
+
 		Sys.stdout().writeString(txt + '\n');
+		
+		#end
 	}
 	
 	/**
@@ -44,6 +66,17 @@ class Utils
 	**/
 	public static function printError(txt : String) : Void
 	{
+		#if flash
+
+		var stdout = new FileStream();
+		stdout.open(new File("/dev/stderr"), FileMode.WRITE);
+		stdout.writeUTFBytes(txt + "\n");
+		stdout.close();
+
+		#else
+
 		Sys.stderr().writeString(txt + '\n');
+
+		#end
 	}
 }
