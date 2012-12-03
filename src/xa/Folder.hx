@@ -97,27 +97,32 @@ class Folder
 		#end
 	}
 	
-	#if (neko || cpp || php)
-
 	/**
 	*  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
 	*  <p>In Mac and Linux uses [rm -rf path] and in Windows [RMDIR path /s /q]</p>
 	**/
 	public static function forceRemove(path : String) : Void
 	{
-		if(xa.System.isWindows())
-		{
-			var exit = Sys.command('RMDIR', [path, '/s', '/q']);
-		}
-		else
-		{
-			var p = new xa.Process('rm', ['-rf', path]);
-			var exit = p.exitCode();
-		}
+		#if flash
+
+			var folder = new flash.filesystem.File(path);
+			folder.deleteDirectory(true);
+
+		#else
+
+			if(xa.System.isWindows())
+			{
+				var exit = Sys.command('RMDIR', [path, '/s', '/q']);
+			}
+			else
+			{
+				var p = new xa.Process('rm', ['-rf', path]);
+				var exit = p.exitCode();
+			}
+
+		#end
 	}
 
-	#end
-	
 	/**
 	* <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
 	* <p>If you want to exclude items from being copied, use an IFilter instance. See built-in filters in xa.Filter. 
