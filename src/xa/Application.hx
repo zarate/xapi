@@ -38,8 +38,16 @@ class Application
 	**/
 	public static function getFolder() : String
 	{
-		var path = getPath();
-		return path.substr(0, path.lastIndexOf(xa.System.getSeparator()));
+		#if flash
+
+			return flash.filesystem.File.applicationDirectory.nativePath;
+
+		#else
+
+			var path = getPath();
+			return path.substr(0, path.lastIndexOf(xa.System.getSeparator()));
+
+		#end
 	}
 	
 	/**
@@ -48,9 +56,33 @@ class Application
 	**/
 	public static function getPath() : String
 	{
-		return Sys.executablePath();
+		#if flash
+
+			var path = null;
+
+			var flashXml = flash.desktop.NativeApplication.nativeApplication.applicationDescriptor.toString();
+
+			// NOTE (JD): yeah, this is ugly, but seems impossible to get Haxe to play
+			// at all with XML namespaces in Flash!
+
+			var ereg = ~/<filename>([0-9a-z]+)<\/filename>/i;
+
+			if(ereg.match(flashXml))
+			{
+				path = xa.FileSystem.pathToCurrent(getFolder() + '/' + ereg.matched(1));
+			}
+
+			return path;
+
+		#else
+
+			return Sys.executablePath();
+
+		#end
 	}
 	
+	#if (neko || cpp || php)
+
 	/**
 	* <p>Returns an array of strings with the parameters passed to your application.</p>
 	* <p>Internal call is <a href="http://haxe.org/api/sys">Sys.args()</a>.</p>  
@@ -60,6 +92,8 @@ class Application
 		return Sys.args();
 	}
 	
+	#end
+
 	/**
 	* <p>Terminates the application with the provided exit code.</p>
 	* <p>Use 0 if everything went ok and 1 or above depending on your error. You can read more about
@@ -68,7 +102,15 @@ class Application
 	**/
 	public static function exit(code : Int) : Void
 	{
-		Sys.exit(code);
+		#if flash
+
+			flash.desktop.NativeApplication.nativeApplication.exit(code);
+
+		#else
+
+			Sys.exit(code);
+
+		#end
 	}
 	
 	/**
