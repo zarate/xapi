@@ -4,6 +4,5 @@
 test/build
 test/report
 test/ExampleTest.hx
-test/TestMain.hx
 test/TestSuite.hx
 .DS_Store
