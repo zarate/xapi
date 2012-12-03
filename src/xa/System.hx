@@ -34,27 +34,27 @@ class System
 	/**
 	* <p>Windows system identifier.</p>
 	**/
-	public static var WIN : String = "Windows";
+	public static var WIN (default, null) : String = "Windows";
 	
 	/**
 	* <p>Mac system identifier.</p>
 	**/
-	public static var MAC : String = "Mac";
+	public static var MAC (default, null) : String = "Mac";
 	
 	/**
 	* <p>Linux system identifier.</p>
 	**/
-	public static var LINUX : String = "Linux";
+	public static var LINUX (default, null) : String = "Linux";
 	
 	/**
 	* <p>Folder separator for Windows systems ("\").</p>
 	**/
-	public static var WIN_SEPARATOR:String = "\\";
+	public static var WIN_SEPARATOR (default, null) : String = "\\";
 	
 	/**
 	* <p>Folder separator for Unix systems ("/").</p>
 	**/
-	public static var UNIX_SEPARATOR:String = "/";
+	public static var UNIX_SEPARATOR (default, null) : String = "/";
 	
 	/**
 	*  <p>Returns true if the system is Mac.</p>
@@ -93,7 +93,32 @@ class System
 	**/
 	public static function getName() : String
 	{
+		#if flash
+
+		var name = null;
+
+		var version = flash.system.Capabilities.version;
+
+		var ereg = ~/(^[a-z]+)/i;
+
+		if(ereg.match(version))
+		{
+			name = switch(ereg.matched(1))
+			{
+				case "WIN": WIN;
+				case "MAC": MAC;
+				case "LNX": LINUX;
+				default : ereg.matched(1);
+			}
+		}
+
+		return name;
+
+		#else
+
 		return Sys.systemName();
+
+		#end
 	}
 	
 	/**
@@ -104,6 +129,8 @@ class System
 		return (isWindows())? WIN_SEPARATOR : UNIX_SEPARATOR;
 	}
 	
+	#if (neko || cpp)
+
 	/**
 	*  <p>Returns user's folder.</p>
 	*  <p>In Windows returns the value of %USERPROFILE% and in Mac and Linux returns the value of $HOME.</p>
@@ -112,7 +139,7 @@ class System
 	**/
 	public static function getUserFolder() : String
 	{
-		return (isWindows())? Sys.getEnv("USERPROFILE") : Sys.getEnv("HOME");
+		return (isWindows())? getEnvironment("USERPROFILE") : getEnvironment("HOME");
 	}
 	
 	/**
@@ -127,20 +154,20 @@ class System
 		{
 			case WIN:
 				
-				folder = Sys.getEnv("TEMP");
+				folder = getEnvironment("TEMP");
 				
 				if(folder == null)
 				{
-					folder = Sys.getEnv("TMP");
+					folder = getEnvironment("TMP");
 				}
 				
 			case MAC:
 				
-				folder = Sys.getEnv("TMPDIR");
+				folder = getEnvironment("TMPDIR");
 				
 			case LINUX: 
 				
-				folder = Sys.getEnv("TMPDIR");
+				folder = getEnvironment("TMPDIR");
 				
 				if(folder == null)
 				{
@@ -164,7 +191,7 @@ class System
 		{
 			case WIN:
 				
-				folder = Sys.getEnv("APPDATA");
+				folder = getEnvironment("APPDATA");
 				
 			case MAC:
 				
@@ -172,7 +199,7 @@ class System
 				
 			case LINUX: 
 				
-				folder = Sys.getEnv("HOME");
+				folder = getEnvironment("HOME");
 				
 		}
 		
@@ -195,12 +222,12 @@ class System
 		{
 			var p = new xa.Process('hostname', []);
 			hostname = p.getOutput();
-			#if !php p.close(); #end // Waiting for bug 85 in the haXe compiler to be fixed (php target has not Process.close())
+			p.close();
 		}
 		
 		return hostname;
 	}
-	
+
 	/**
 	*  <p>Returns a hash containing systems's environment variables.</p>
 	**/
@@ -208,4 +235,11 @@ class System
 	{
 		return Sys.environment();
 	}
+
+	private static function getEnvironment(name : String) : String
+	{
+		return Sys.getEnv(name);
+	}
+
+	#end
 }

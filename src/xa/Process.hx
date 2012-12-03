@@ -30,8 +30,87 @@ THE SOFTWARE.
 
 package xa;
 
+#if flash
+
+import flash.desktop.NativeProcess;
+import flash.desktop.NativeProcessStartupInfo;
+import flash.filesystem.File;
+import flash.events.NativeProcessExitEvent;
+import flash.events.ProgressEvent;
+
+class Process
+{
+	var _process : NativeProcess;
+
+	var _exitCode : Float;
+
+	public function new(command : flash.filesystem.File, arguments : Array<String>)
+	{
+		var vector = new flash.Vector<String>();
+
+		for(argument in arguments)
+		{
+			vector.push(argument);
+		}
+
+		var info = new NativeProcessStartupInfo();
+		info.arguments = vector;
+		info.executable = command;
+
+		_process = new NativeProcess();
+		_process.addEventListener(NativeProcessExitEvent.EXIT, onExit);
+		_process.addEventListener(ProgressEvent.STANDARD_ERROR_DATA, onErrorData);
+		_process.addEventListener(ProgressEvent.STANDARD_OUTPUT_DATA, onOutputData);
+		_process.start(info);
+	}
+
+	public function getError() : String
+	{
+		return null;
+	}
+
+	public function getOutput() : String
+	{
+		return null;
+	}
+
+	public function success() : Bool
+	{
+		return _exitCode == 0;
+	}
+
+	public function exitCode() : Float
+	{
+		return _exitCode;
+	}
+
+	public function close() : Void
+	{
+		_process.closeInput();
+		_process.exit();
+		_process = null;
+	}
+
+	function onExit(event : NativeProcessExitEvent) : Void
+	{
+		_exitCode = event.exitCode;
+	}
+
+	function onErrorData(event : ProgressEvent) : Void
+	{
+	}
+
+	function onOutputData(event : ProgressEvent) : Void
+	{
+	}
+}
+
+
+#else
+
 class Process extends sys.io.Process
 {
+	private var _code : Null<Int>;	
 
 	/**
 	* <p>Returns the standard error from the process.</p>
@@ -64,17 +143,13 @@ class Process extends sys.io.Process
 	**/
 	override public function exitCode() : Int
 	{
-		
 		if(_code == null)
 		{
 			_code = super.exitCode();
 		}
 		
 		return _code;
-		
 	}
-	
-	// -------
 	
 	/**
 	*  <p>Reads a stream line by line until the end. to avoid problems reading long streams.</p>
@@ -82,12 +157,10 @@ class Process extends sys.io.Process
 	**/
 	private function readStream(stream : haxe.io.Input) : String
 	{
-		
 		var s = '';
 		
 		while(true)
 		{
-			
 			try
 			{
 				s += stream.readLine() + '\n';
@@ -96,14 +169,12 @@ class Process extends sys.io.Process
 			{
 				break;
 			}
-			
 		}
 		
 		stream.close();
 		
 		return s;
-		
 	}
-	
-	private var _code : Null<Int>;	
 }
+
+#end
