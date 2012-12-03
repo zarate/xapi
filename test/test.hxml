@@ -3,6 +3,17 @@
 -lib munit
 -lib hamcrest
 -cp src
-
 -cp test
 -neko test/build/neko_test.n
+
+--next
+
+# Flash / AIR
+-main TestMain
+-lib munit
+-lib hamcrest
+-lib air3
+-cp src
+-cp test
+-swf-version 11
+-swf test/build/air_test.swf

@@ -37,11 +37,27 @@ class File
 	**/
 	public static function read(path : String) : String
 	{
-		var f = sys.io.File.read(path, false);
-		var content = f.readAll().toString();
-		f.close();
-		 
-		return content;
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			
+			var stream = new flash.filesystem.FileStream();
+			stream.open(file, flash.filesystem.FileMode.READ);
+
+			var content : String = stream.readUTFBytes(stream.bytesAvailable);
+			stream.close();
+			
+			return content;
+
+		#else
+
+			var file = sys.io.File.read(path, false);
+			var content = file.readAll().toString();
+			file.close();
+			 
+			return content;
+
+		#end
 	}
 	
 	/**
@@ -49,9 +65,22 @@ class File
 	**/
 	public static function write(path : String, content : String) : Void
 	{
-		var f = sys.io.File.write(path, false);
-		f.writeString(content);
-		f.close();
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			
+			var stream = new flash.filesystem.FileStream();
+			stream.open(file, flash.filesystem.FileMode.WRITE);
+			stream.writeUTFBytes(content);
+			stream.close();
+
+		#else
+
+			var file = sys.io.File.write(path, false);
+			file.writeString(content);
+			file.close();
+
+		#end
 	}
 	
 	/**
@@ -59,9 +88,22 @@ class File
 	**/
 	public static function append(path : String, content : String) : Void 
 	{
-		var f = sys.io.File.append(path, false);
-		f.writeString(content);
-		f.close();
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			
+			var stream = new flash.filesystem.FileStream();
+			stream.open(file, flash.filesystem.FileMode.APPEND);
+			stream.writeUTFBytes(content);
+			stream.close();
+
+		#else
+
+			var file = sys.io.File.append(path, false);
+			file.writeString(content);
+			file.close();
+
+		#end
 	}
 	
 	/**
@@ -69,7 +111,16 @@ class File
 	**/
 	public static function remove(path : String) : Void
 	{
-		sys.FileSystem.deleteFile(path);
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			file.deleteFile();
+
+		#else
+
+			sys.FileSystem.deleteFile(path);
+
+		#end
 	}
 	
 	/**
@@ -80,7 +131,16 @@ class File
 	**/
 	public static function copy(sourcePath : String, destinationPath : String) : Void 
 	{
-		sys.io.File.copy(sourcePath, destinationPath);
+		#if flash
+
+			var source = new flash.filesystem.File(sourcePath);
+			source.copyTo(new flash.filesystem.File(destinationPath), true);
+
+		#else
+
+			sys.io.File.copy(sourcePath, destinationPath);
+
+		#end
 	}
 	
 	/**
@@ -88,7 +148,16 @@ class File
 	**/
 	public static function isFile(path : String) : Bool
 	{
-		return (sys.FileSystem.exists(path) && !sys.FileSystem.isDirectory(path));
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			return (file.exists && !file.isDirectory);
+
+		#else
+
+			return (sys.FileSystem.exists(path) && !sys.FileSystem.isDirectory(path));
+
+		#end
 	}
 	
 	/**
@@ -125,11 +194,22 @@ class File
 	**/
 	public static function launch(path : String, ?args : Array<String>) : Void 
 	{
-		// Worth taking a look to http://haxe.org/api/neko/io/Process
-		// http://lists.motion-twin.com/pipermail/haxe/2008-March/015438.html
-		
-		var command = (xa.System.isWindows())? "start" : "open";		
-		Sys.command('"' + command + '" ' + sys.FileSystem.fullPath(path), args);
+		#if flash
+
+			// Read this for more info: http://www.adobe.com/devnet/air/flex/articles/exploring_file_capabilities.html#a
+			
+			var file = new flash.filesystem.File(path);
+			file.openWithDefaultApplication();
+
+		#else
+
+			// Worth taking a look to http://haxe.org/api/neko/io/Process
+			// http://lists.motion-twin.com/pipermail/haxe/2008-March/015438.html
+			
+			var command = (xa.System.isWindows())? "start" : "open";		
+			Sys.command('"' + command + '" ' + sys.FileSystem.fullPath(path), args);
+
+		#end
 	}	
 	
 	/**
@@ -137,6 +217,15 @@ class File
 	**/
 	public static function size(path : String) : Int
 	{
-		return sys.FileSystem.stat(path).size;
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			return Std.int(file.size);
+
+		#else
+
+			return sys.FileSystem.stat(path).size;
+
+		#end
 	}
 }
