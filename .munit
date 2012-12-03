@@ -3,4 +3,4 @@ src=test
 bin=test/build
 report=test/report
 hxml=test/test.hxml
-classPaths=src/haxe
+classPaths=src

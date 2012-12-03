@@ -2,7 +2,7 @@
 -main TestMain
 -lib munit
 -lib hamcrest
--cp src/haxe
+-cp src
 
 -cp test
 -neko test/build/neko_test.n
