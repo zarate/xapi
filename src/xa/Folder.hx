@@ -41,7 +41,26 @@ class Folder
 	**/
 	public static function read(path : String) : Array<String>
 	{
-		return sys.FileSystem.readDirectory(path);
+		#if flash
+
+			var items = [];
+			
+			var folder = new flash.filesystem.File(path);
+			var folderItems = folder.getDirectoryListing();
+			
+			for(i in 0...folderItems.length)
+			{
+				var item = folderItems[i];
+				items.push(item.name);
+			}
+			
+			return items;
+
+		#else
+
+			return sys.FileSystem.readDirectory(path);
+
+		#end
 	}
 	
 	/**
@@ -49,7 +68,16 @@ class Folder
 	**/
 	public static function create(path : String) : Void 
 	{
-		sys.FileSystem.createDirectory(path);
+		#if flash
+
+			var folder = new flash.filesystem.File(path);
+			folder.createDirectory();
+
+		#else
+
+			sys.FileSystem.createDirectory(path);
+
+		#end
 	}
 	
 	/**
@@ -57,9 +85,20 @@ class Folder
 	**/
 	public static function remove(path : String) : Void 
 	{
-		sys.FileSystem.deleteDirectory(path);
+		#if flash
+
+			var folder = new flash.filesystem.File(path);
+			folder.deleteDirectory(false);
+
+		#else
+
+			sys.FileSystem.deleteDirectory(path);
+
+		#end
 	}
 	
+	#if (neko || cpp || php)
+
 	/**
 	*  <p>Removes a folder <strong>WITHOUT ANY WARNINGS OR CONFIRMATIONS, even if it has content on it</strong>. USE WITH CARE!.</p>
 	*  <p>In Mac and Linux uses [rm -rf path] and in Windows [RMDIR path /s /q]</p>
@@ -76,6 +115,8 @@ class Folder
 			var exit = p.exitCode();
 		}
 	}
+
+	#end
 	
 	/**
 	* <p>Copies the contents of source folder to destination folder. <strong>Destination folder must not exist</strong>. By default all items (including hidden files and folders) are copied and the process is fully recursive.</p>
@@ -114,7 +155,16 @@ class Folder
 	
 	public static function isFolder(path : String) : Bool 
 	{
-		return (sys.FileSystem.exists(path) && sys.FileSystem.isDirectory(path));
+		#if flash
+
+			var folder = new flash.filesystem.File(path);
+			return (folder.exists && folder.isDirectory);
+
+		#else
+
+			return (sys.FileSystem.exists(path) && sys.FileSystem.isDirectory(path));
+
+		#end
 	}
 	
 	/**
@@ -135,28 +185,12 @@ class Folder
 		return (getTotalItems(path) == 0);
 	}
 	
-	/**
-	* <p>Returns the size in bytes of the folder, including all its items.</p>
-	**/
-	
-	public static function size(path : String) : Int
-	{
-		var totalBytes = 0;
-		
-		var items = xa.Search.search(path);
-		
-		for(item in items)
-		{
-			totalBytes += sys.FileSystem.stat(item).size;
-		}
-		
-		return totalBytes;		
-	}
-	
 	// ---------------------------- 
 	
 	private static function privateCopy(source : String, destination : String, ?filter : IFilter, ?deep : Int = -1, ?currentLevel : Int = 0) : Void
 	{
+		var separator = xa.System.getSeparator();
+
 		create(destination);
 		
 		if(filter == null)
@@ -168,7 +202,7 @@ class Folder
 		
 		for(itemName in items)
 		{
-			var itemPath = source + "/" + itemName;
+			var itemPath = source + separator + itemName;
 			
 			if(filter.filter(itemPath))
 			{
@@ -177,7 +211,7 @@ class Folder
 					if(deep == -1)
 					{
 						// Full recursion, so just go ahead
-						privateCopy(itemPath, destination + "/" + itemName, filter, deep);
+						privateCopy(itemPath, destination + separator + itemName, filter, deep);
 					} 
 					else 
 					{
@@ -185,13 +219,13 @@ class Folder
 						if(currentLevel <= deep)
 						{
 							currentLevel++;
-							privateCopy(itemPath, destination + "/" + itemName, filter, deep, currentLevel);
+							privateCopy(itemPath, destination + separator + itemName, filter, deep, currentLevel);
 						}
 					}
 				} 
 				else 
 				{	
-					xa.File.copy(itemPath, destination + "/" + itemName);	
+					xa.File.copy(itemPath, destination + separator + itemName);	
 				}
 			}
 		}	

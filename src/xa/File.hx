@@ -210,22 +210,5 @@ class File
 			Sys.command('"' + command + '" ' + sys.FileSystem.fullPath(path), args);
 
 		#end
-	}	
-	
-	/**
-	* <p>Returns the size in bytes of the file</p>
-	**/
-	public static function size(path : String) : Int
-	{
-		#if flash
-
-			var file = new flash.filesystem.File(path);
-			return Std.int(file.size);
-
-		#else
-
-			return sys.FileSystem.stat(path).size;
-
-		#end
 	}
 }

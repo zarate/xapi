@@ -30,8 +30,9 @@ THE SOFTWARE.
 
 package xa.filters;
 
-import xa.filters.IFilter;
+#if (neko || cpp || php)
 
+import xa.filters.IFilter;
 class AllButHidden implements IFilter
 {
 	public function new(){}
@@ -44,3 +45,5 @@ class AllButHidden implements IFilter
 		return !xa.FileSystem.isHidden(path);
 	}
 }
+
+#end

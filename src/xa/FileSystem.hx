@@ -60,9 +60,42 @@ class FileSystem
 	**/
 	public static function exists(path : String) : Bool
 	{
-		return sys.FileSystem.exists(path);
+		#if flash
+
+			var item = new flash.filesystem.File(path);
+			return item.exists;
+
+		#else
+
+			return sys.FileSystem.exists(path);
+
+		#end
 	}
 	
+	/**
+	* <p>Returns the size in bytes of the item. If it is a folder, it includes all its items.</p>
+	**/
+	public static function size(path : String) : Int
+	{
+		var totalBytes = 0;
+
+		if(xa.File.isFile(path))
+		{
+			totalBytes = getItemSize(path);
+		}
+		else
+		{	
+			var items = xa.Search.search(path);
+			
+			for(item in items)
+			{
+				totalBytes += getItemSize(path);
+			}
+		}
+
+		return totalBytes;
+	}
+
 	/**
 	* <p>Renames a file or folder to a new path. <strong>Please note that you must provide a new path (either absolute or relative), not only the new desired name</strong>.</p>
 	* <p>Example: if you want to rename "a.txt" to "b.txt", you can use:</p>
@@ -70,9 +103,22 @@ class FileSystem
 	**/
 	public static function rename(path : String, newPath : String) : Void 
 	{
-		sys.FileSystem.rename(path, newPath);
+		#if flash
+
+			var file = new flash.filesystem.File(path);
+			
+			var newFile = new flash.filesystem.File(newPath);
+			file.moveTo(newFile, false); // TODO: check out if haxe overwrites by default an update docs
+
+		#else
+
+			sys.FileSystem.rename(path, newPath);
+
+		#end
 	}
 	
+	#if (neko || cpp || php)
+
 	/**
 	* <p>Returns true if a file or folder is hidden, false otherwise.</p>
 	* <p>In Mac and Linux, all files/folders starting with "." are considered hidden. Please note that in OSX there are
@@ -106,12 +152,28 @@ class FileSystem
 		return hidden;
 	}
 	
+	#end
+
 	/**
 	* <p>Given the path to an item, it returns its name, <strong>including the extension (if any)</strong>.</p> 
 	**/
 	public static function getNameFromPath(path : String) : String
 	{
-		var path = new haxe.io.Path(sys.FileSystem.fullPath(path));
+		var path = new haxe.io.Path(path);
 		return (null == path.ext)? path.file : path.file + "." + path.ext;
+	}
+
+	static function getItemSize(path) : Int
+	{
+		#if flash
+
+			var item = new flash.filesystem.File(path);
+			return Std.int(item.size);
+
+		#else
+
+			return sys.FileSystem.stat(path).size;
+
+		#end
 	}
 }
