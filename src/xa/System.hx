@@ -95,28 +95,28 @@ class System
 	{
 		#if flash
 
-		var name = null;
+			var name = null;
 
-		var version = flash.system.Capabilities.version;
+			var version = flash.system.Capabilities.version;
 
-		var ereg = ~/(^[a-z]+)/i;
+			var ereg = ~/(^[a-z]+)/i;
 
-		if(ereg.match(version))
-		{
-			name = switch(ereg.matched(1))
+			if(ereg.match(version))
 			{
-				case "WIN": WIN;
-				case "MAC": MAC;
-				case "LNX": LINUX;
-				default : ereg.matched(1);
+				name = switch(ereg.matched(1))
+				{
+					case "WIN": WIN;
+					case "MAC": MAC;
+					case "LNX": LINUX;
+					default : ereg.matched(1);
+				}
 			}
-		}
 
-		return name;
+			return name;
 
 		#else
 
-		return Sys.systemName();
+			return Sys.systemName();
 
 		#end
 	}

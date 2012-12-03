@@ -49,14 +49,14 @@ class Utils
 	{
 		#if flash
 
-		var stdout = new FileStream();
-		stdout.open(new File("/dev/stdout"), FileMode.WRITE);
-		stdout.writeUTFBytes(txt + "\n");
-		stdout.close();
+			var stdout = new FileStream();
+			stdout.open(new File("/dev/stdout"), FileMode.WRITE);
+			stdout.writeUTFBytes(txt + "\n");
+			stdout.close();
 
 		#else
 
-		Sys.stdout().writeString(txt + '\n');
+			Sys.stdout().writeString(txt + '\n');
 		
 		#end
 	}
@@ -68,14 +68,14 @@ class Utils
 	{
 		#if flash
 
-		var stdout = new FileStream();
-		stdout.open(new File("/dev/stderr"), FileMode.WRITE);
-		stdout.writeUTFBytes(txt + "\n");
-		stdout.close();
+			var stdout = new FileStream();
+			stdout.open(new File("/dev/stderr"), FileMode.WRITE);
+			stdout.writeUTFBytes(txt + "\n");
+			stdout.close();
 
 		#else
 
-		Sys.stderr().writeString(txt + '\n');
+			Sys.stderr().writeString(txt + '\n');
 
 		#end
 	}
