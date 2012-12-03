@@ -129,7 +129,7 @@ class System
 		return (isWindows())? WIN_SEPARATOR : UNIX_SEPARATOR;
 	}
 	
-	#if (neko || cpp)
+	#if (neko || cpp || php)
 
 	/**
 	*  <p>Returns user's folder.</p>
