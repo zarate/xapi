@@ -116,8 +116,6 @@ class FileSystem
 
 		#end
 	}
-	
-	#if (neko || cpp || php)
 
 	/**
 	* <p>Returns true if a file or folder is hidden, false otherwise.</p>
@@ -129,31 +127,39 @@ class FileSystem
 	**/
 	public static function isHidden(path : String) : Bool
 	{
-		var hidden : Bool;
-		
-		if(xa.System.isUnix())
-		{
-			var name = xa.FileSystem.getNameFromPath(path);
-			hidden = StringTools.startsWith(name, ".");
-			
-		} else {
-			
-			var p = new xa.Process('attrib', [path]);
+		#if flash
 
-			// We need to clean up the output removing the path and empty spaces.
-			// Sadly, this only makes things slower :|
+			var file = new flash.filesystem.File(path);
+			return file.isHidden;
+
+		#else
+
+			var hidden : Bool;
 			
-			var output = StringTools.trim(p.getOutput());
-			output = output.substr(0, output.length - sys.FileSystem.fullPath(path).length);
+			if(xa.System.isUnix())
+			{
+				var name = xa.FileSystem.getNameFromPath(path);
+				hidden = StringTools.startsWith(name, ".");
+				
+			}
+			else
+			{
+				var p = new xa.Process('attrib', [path]);
+
+				// We need to clean up the output removing the path and empty spaces.
+				// Sadly, this only makes things slower :|
+				
+				var output = StringTools.trim(p.getOutput());
+				output = output.substr(0, output.length - sys.FileSystem.fullPath(path).length);
+				
+				hidden = (output.indexOf('H') != -1);
+			}
 			
-			hidden = (output.indexOf('H') != -1);
-		}
-		
-		return hidden;
+			return hidden;
+
+		#end
 	}
 	
-	#end
-
 	/**
 	* <p>Given the path to an item, it returns its name, <strong>including the extension (if any)</strong>.</p> 
 	**/
