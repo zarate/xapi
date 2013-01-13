@@ -41,12 +41,8 @@ class Filter
 	**/	
 	public static var ALL : IFilter = new xa.filters.All();
 
-	#if (neko || cpp || php)
-
 	/**
 	* <p>See [xa.filters.AllButHidden].</p>
 	**/
 	public static var ALL_BUT_HIDDEN : IFilter = new xa.filters.AllButHidden();
-
-	#end
 }
