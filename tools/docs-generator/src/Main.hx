@@ -18,7 +18,7 @@ class Main
 	
 	var _version : String;
 	
-	static var XAPI_SRC_PATH : String = "../../src/haxe";
+	static var XAPI_SRC_PATH : String = "../../src";
 	
 	static var XAPI_HAXEDOC_TEMPLATE_FILENAME : String = "template.xml";
 	
@@ -89,7 +89,7 @@ class Main
 		allClassesContent.push("class All");
 		allClassesContent.push("{");
 		
-		var classes = xa.Search.search(XAPI_SRC_PATH);
+		var classes = xa.Search.search(XAPI_SRC_PATH, xa.Filter.ALL_BUT_HIDDEN);
 		
 		for(x in 0...classes.length)
 		{

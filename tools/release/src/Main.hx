@@ -17,11 +17,13 @@ class Main
 
 	var _commit : String;
 	
+	var _branch : String;
+
 	static var TEMPLATES_FOLDER_PATH : String = "templates";
 	
 	static var HAXELIB_DESCRIPTOR_TEMPLATE_PATH : String = TEMPLATES_FOLDER_PATH + xa.System.getSeparator() + "haxelib.xml";
 	
-	static var XAPI_SRC_PATH : String = "/src/haxe";
+	static var XAPI_SRC_PATH : String = "/src";
 	
 	static var XAPI_README_FILENAME : String = "README";
 	
@@ -59,8 +61,11 @@ class Main
 				case "-o":
 					_outputFolder = args[x+1];
 				
-				case "-c":
+				case "-c", "-commit":
 					_commit = args[x+1];
+
+				case "-b", "-branch":
+					_branch = args[x+1];
 
 				case "-h", "-help":
 					printHelp();
@@ -80,6 +85,11 @@ class Main
 			_outputFolder = Sys.getCwd();
 		}
 		
+		if(null == _branch)
+		{
+			_branch = "master";
+		}
+
 		if(!xa.Folder.isFolder(_outputFolder))
 		{
 			log("ERROR: output folder is not valid: " + _outputFolder);
@@ -111,7 +121,7 @@ class Main
 	{
 		log("Cloning remote repository: " + XAPI_REPO_URL);
 		
-		var clone = new xa.Process("git", ["clone", XAPI_REPO_URL, _sourceFolder]);
+		var clone = new xa.Process("git", ["clone", "-b", _branch, XAPI_REPO_URL, _sourceFolder]);
 		
 		if(!clone.success())
 		{
@@ -253,6 +263,7 @@ class Main
 		help.push("\t-o: output folder. Optional, defaults to current working directory");
 		help.push("\t-c: commit used to generate the release (HEAD and other GIT tricks work too).");
 		help.push("\t    Optional, by default the tag specified in -v will be used");
+		help.push("\t-b: branch. Optional, defaults to master");
 		help.push("\t-h -help: print this help");
 		
 		log(help.join("\n"));
