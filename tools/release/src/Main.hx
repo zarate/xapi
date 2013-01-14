@@ -41,6 +41,7 @@ class Main
 		copySourceCode();
 		generateHaxelibXml();
 		generateHaxelibPackage();
+		generateSwc();
 		
 		log("All done (" + ((Date.now().getTime() - now.getTime()) / 1000) + "s)");
 	}
@@ -162,7 +163,6 @@ class Main
 		xa.File.write(_tmpOutputFolder + xa.System.getSeparator() + xa.FileSystem.getNameFromPath(HAXELIB_DESCRIPTOR_TEMPLATE_PATH), descriptorTemplate.execute({version: _version}));
 	}
 	
-	
 	function generateHaxelibPackage() : Void
 	{
 		log("Generating ZIP file");
@@ -249,10 +249,38 @@ class Main
 		xa.File.copy(outputHaxelibZipPath, finalZipPath);
 		
 		log(_version + " ZIP ready: " + finalZipPath);
-		
-		xa.Folder.forceRemove(_tmpFolder);
 	}
 	
+	function generateSwc() : Void
+	{
+		// SWC generation as defined here: http://haxe.org/manual/swc
+
+		log("Generating SWC file");
+
+		var args = [];
+
+		args.push("-cp");
+		args.push(_sourceFolder + XAPI_SRC_PATH);
+		args.push("-lib");
+		args.push("air3");
+		args.push("-swf");
+		args.push("xapi-" + _version + ".swc");
+		args.push("-swf-version");
+		args.push("11");
+		args.push("--macro");
+		args.push("include('xa')");
+
+		var haxe = new xa.Process("haxe", args);
+
+		if(!haxe.success())
+		{
+			log("ERROR during SWC creation");
+			exit(haxe.getError());
+		}
+
+		xa.Folder.forceRemove(_tmpFolder);
+	}
+
 	function printHelp() : Void
 	{
 		var help = [];
