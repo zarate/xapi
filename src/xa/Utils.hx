@@ -56,10 +56,10 @@ class Utils
 	{
 		#if flash
 
-			var stdout = new flash.filesystem.FileStream();
-			stdout.open(new flash.filesystem.File("/dev/stderr"), flash.filesystem.FileMode.WRITE);
-			stdout.writeUTFBytes(txt + "\n");
-			stdout.close();
+			var stderr = new flash.filesystem.FileStream();
+			stderr.open(new flash.filesystem.File("/dev/stderr"), flash.filesystem.FileMode.WRITE);
+			stderr.writeUTFBytes(txt + "\n");
+			stderr.close();
 
 		#else
 
