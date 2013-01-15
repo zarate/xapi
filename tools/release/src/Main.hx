@@ -120,7 +120,7 @@ class Main
 	
 	function checkoutSource() : Void
 	{
-		log("Cloning remote repository: " + XAPI_REPO_URL);
+		log("Cloning remote repository: " + XAPI_REPO_URL + " (" + _branch + ")");
 		
 		var clone = new xa.Process("git", ["clone", "-b", _branch, XAPI_REPO_URL, _sourceFolder]);
 		
